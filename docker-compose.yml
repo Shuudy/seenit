@@ -1,0 +1,44 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "9000:9000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: nexttube
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/var/www/html
+      - /var/www/html/vendor
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nexttube
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+
+volumes:
+  db_data:
