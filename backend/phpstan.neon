@@ -1,0 +1,14 @@
+parameters:
+    level: 10
+    paths:
+        - app
+
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+    checkImplicitMixed: true
+    checkBenevolentUnionTypes: true
+    checkMissingOverrideMethodAttribute: true
+    exceptions:
+        check:
+            missingCheckedExceptionInThrows: true
+            tooWideThrowType: true
