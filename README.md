@@ -1,5 +1,17 @@
 # Seenit
 
+<p align="center">
+  <a href="https://github.com/Shuudy/seenit">
+    <img width="140px" alt="Seenit" src="https://github.com/user-attachments/assets/a9daeac7-78f6-43fe-a80f-d79b09a88582" />    
+  </a>
+</p>
+<p align="center">
+    <a href="#main-features">Main Features</a> |
+    <a href="#technologies">Technologies</a> |
+    <a href="#getting-started">Getting Started</a>
+    <br /><br />
+</p>
+
 **Seenit** is a YouTube-like video sharing web application with a modern, responsive UI built with **Next.js** and a backend API powered by **Laravel**.  
 It features secure user authentication, video upload and streaming, as well as comments, likes, and subscriptions. 
 
