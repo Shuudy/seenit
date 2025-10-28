@@ -17,7 +17,7 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 3306
-      DB_DATABASE: nexttube
+      DB_DATABASE: seenit
       DB_USERNAME: root
       DB_PASSWORD: root
     depends_on:
@@ -30,7 +30,7 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: nexttube
+      MYSQL_DATABASE: seenit
     ports:
       - "3306:3306"
     volumes:
