@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Comment extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['content', 'user_id', 'video_id'];
 
     /**
@@ -19,11 +22,19 @@ class Comment extends Model
     }
 
     /**
+     * Get the video that the comment belongs to.
+     */
+    public function video(): BelongsTo
+    {
+        return $this->belongsTo(Video::class);
+    }
+
+    /**
      * The users that liked the comment.
      */
     public function likedBy(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_comment')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_comment');
     }
 
     /**

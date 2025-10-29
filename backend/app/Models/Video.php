@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Video extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['title', 'description', 'url', 'duration', 'views_count', 'user_id'];
 
     /**
@@ -32,7 +35,7 @@ class Video extends Model
      */
     public function likedBy(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_video')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_video');
     }
 
     /**
