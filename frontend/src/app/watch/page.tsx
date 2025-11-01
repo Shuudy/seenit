@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/header";
 import Image from "next/image";
+import { useState } from "react";
 
 const videoDetails = {
   id: 1,
@@ -56,6 +57,8 @@ const recommendedVideos = [
 ];
 
 export default function WatchPage() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -122,11 +125,21 @@ export default function WatchPage() {
               <p className="text-xs text-muted-foreground mb-2">
                 {videoDetails.views} vues • {videoDetails.uploadedAt}
               </p>
-              <p className="text-sm text-foreground whitespace-pre-line line-clamp-3 hover:line-clamp-none cursor-pointer">
+              <p
+                className={`text-sm text-foreground whitespace-pre-line  cursor-pointer ${
+                  expanded ? "" : "line-clamp-3"
+                }`}
+                onClick={() => !expanded && setExpanded(true)}
+                aria-expanded={expanded}
+              >
                 {videoDetails.description}
               </p>
-              <button className="mt-3 text-xs font-medium text-foreground hover:text-muted-foreground cursor-pointer">
-                Afficher plus
+              <button
+                className="mt-3 text-xs font-medium text-foreground hover:text-muted-foreground cursor-pointer"
+                onClick={() => setExpanded((s) => !s)}
+                aria-controls="video-description"
+              >
+                {expanded ? "Afficher moins" : "Afficher plus"}
               </button>
             </div>
 
