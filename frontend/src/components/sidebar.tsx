@@ -1,13 +1,23 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export function Sidebar() {
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname?.startsWith(href));
+
+  const linkClass = (href: string) =>
+    `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+      isActive(href) ? "bg-secondary text-foreground" : "hover:bg-secondary"
+    }`;
+
   return (
     <aside className="hidden md:flex flex-col w-64 bg-background border-r border-border fixed left-0 top-16 bottom-0 overflow-y-auto">
       <nav className="px-3 py-2 space-y-1">
-        <a
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-secondary transition-colors"
-        >
+        <Link href="/" className={linkClass("/")}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -22,20 +32,14 @@ export function Sidebar() {
             />
           </svg>
           <span className="text-sm font-medium">Accueil</span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-secondary transition-colors"
-        >
+        </Link>
+        <Link href="#" className={linkClass("/shorts")}>
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
           <span className="text-sm font-medium">Shorts</span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-secondary transition-colors"
-        >
+        </Link>
+        <Link href="#" className={linkClass("/subscriptions")}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -50,16 +54,13 @@ export function Sidebar() {
             />
           </svg>
           <span className="text-sm font-medium">Abonnements</span>
-        </a>
+        </Link>
       </nav>
 
       <div className="mx-3 my-1 border-t border-border" />
 
       <nav className="px-3 py-2 space-y-1">
-        <a
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-secondary transition-colors"
-        >
+        <Link href="#" className={linkClass("/profile")}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -74,11 +75,8 @@ export function Sidebar() {
             />
           </svg>
           <span className="text-sm font-medium">Vous</span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-secondary transition-colors"
-        >
+        </Link>
+        <Link href="#" className={linkClass("/history")}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -93,7 +91,7 @@ export function Sidebar() {
             />
           </svg>
           <span className="text-sm font-medium">Historique</span>
-        </a>
+        </Link>
       </nav>
     </aside>
   );
