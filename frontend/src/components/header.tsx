@@ -6,7 +6,7 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border h-16 flex items-center px-4 gap-4">
       <div className="flex items-center gap-4">
-        <button className="md:hidden p-2 hover:bg-secondary rounded-full transition-colors">
+        <button className="md:hidden p-2 hover:bg-secondary rounded-full transition-colors cursor-pointer">
           <svg
             className="w-6 h-6"
             fill="none"
