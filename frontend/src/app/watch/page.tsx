@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "@/components/header";
+import Image from "next/image";
 
 const videoDetails = {
   id: 1,
@@ -63,6 +64,7 @@ export default function WatchPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4 md:px-6">
           <div className="lg:col-span-2">
             <div className="bg-black rounded-lg overflow-hidden aspect-video mb-3 w-full">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={videoDetails.thumbnail}
                 alt={videoDetails.title}
@@ -90,7 +92,7 @@ export default function WatchPage() {
                   </p>
                 </div>
                 <button className="px-4 py-2 bg-foreground text-background rounded-full font-medium text-sm hover:bg-muted-foreground transition-colors whitespace-nowrap cursor-pointer">
-                  S'abonner
+                  S&apos;abonner
                 </button>
               </div>
 
@@ -175,7 +177,7 @@ export default function WatchPage() {
                           >
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11z" />
                           </svg>
-                          J'aime
+                          J&apos;aime
                         </button>
                         <button className="text-xs text-muted-foreground hover:text-foreground cursor-pointer">
                           Répondre
@@ -196,9 +198,11 @@ export default function WatchPage() {
               {recommendedVideos.map((video, index) => (
                 <div key={index} className="flex gap-2 group cursor-pointer">
                   <div className="w-32 h-20 bg-secondary rounded overflow-hidden flex-shrink-0 relative">
-                    <img
+                    <Image
                       src="/video-thumbnail.jpg"
                       alt={video.title}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 128px"
                       className="w-full h-full object-cover group-hover:brightness-75 transition-all"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">

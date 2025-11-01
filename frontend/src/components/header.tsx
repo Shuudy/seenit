@@ -22,6 +22,7 @@ export function Header() {
           </svg>
         </button>
         <Link href="/">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.svg" alt="Seenit" className="h-10 w-auto" />
         </Link>
       </div>

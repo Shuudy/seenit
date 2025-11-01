@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface VideoCardProps {
   thumbnail?: string;
   title: string;
@@ -18,9 +20,11 @@ export function VideoCard({
   return (
     <a href="#" className="flex flex-col gap-2 group cursor-pointer">
       <div className="relative bg-secondary rounded-lg overflow-hidden aspect-video">
-        <img
+        <Image
           src={thumbnail}
           alt={title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="w-full h-full object-cover group-hover:brightness-75 transition-all"
         />
         <div className="absolute inset-0 flex items-center justify-center">
