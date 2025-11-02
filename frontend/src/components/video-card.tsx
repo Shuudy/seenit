@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 interface VideoCardProps {
   thumbnail?: string;
@@ -18,7 +19,7 @@ export function VideoCard({
   uploadedAt,
 }: VideoCardProps) {
   return (
-    <a href="#" className="flex flex-col gap-2 group cursor-pointer">
+    <Link href="/watch/1" className="flex flex-col gap-2 group cursor-pointer">
       <div className="relative bg-secondary rounded-lg overflow-hidden aspect-video">
         <Image
           src={thumbnail}
@@ -47,6 +48,6 @@ export function VideoCard({
           </p>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
