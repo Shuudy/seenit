@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/header";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const videoDetails = {
@@ -87,9 +88,12 @@ export default function WatchPage() {
                   </span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-foreground hover:text-muted-foreground cursor-pointer">
+                  <Link
+                    href="/channel/1"
+                    className="block m-0 text-sm font-medium text-foreground hover:text-muted-foreground cursor-pointer no-underline"
+                  >
                     {videoDetails.channel}
-                  </p>
+                  </Link>
                   <p className="text-xs text-muted-foreground">
                     {videoDetails.channelSubscribers}
                   </p>
