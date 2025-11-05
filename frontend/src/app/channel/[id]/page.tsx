@@ -14,9 +14,8 @@ const creatorInfo = {
   subscribers: "542K",
   subscribersRaw: 542000,
   videos: "128",
-  image: "/creator-avatar-tech.jpg",
-  banner: "/tech-creator-channel-banner.jpg",
-  verified: true,
+  image: "/channel-avatar.jpg",
+  banner: "/channel-banner.jpg",
 };
 
 const channelVideos = [
@@ -95,18 +94,10 @@ export default function ChannelPage() {
               </div>
 
               <div className="flex-1 flex flex-col justify-end relative z-10">
-                <div className="flex items-center gap-2 mb-1">
+                <div className="mb-1">
                   <h1 className="text-2xl md:text-3xl font-bold">
                     {creatorInfo.name}
                   </h1>
-                  {creatorInfo.verified && (
-                    <svg
-                      className="w-5 h-5 text-accent fill-accent"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                    </svg>
-                  )}
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">
                   {creatorInfo.handle}
@@ -134,7 +125,7 @@ export default function ChannelPage() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsSubscribed(!isSubscribed)}
-                    className={`px-5 py-2 rounded-full font-medium text-sm transition-all ${
+                    className={`px-5 py-2 rounded-full font-medium text-sm transition-all cursor-pointer ${
                       isSubscribed
                         ? "bg-secondary text-foreground hover:bg-secondary/80"
                         : "bg-accent text-accent-foreground hover:bg-accent/90"
