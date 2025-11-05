@@ -148,7 +148,7 @@ export default function ChannelPage() {
                   onClick={() => setActiveTab(tab)}
                   className={`py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
                     activeTab === tab
-                      ? "border-accent text-foreground"
+                      ? "border-b-foreground text-foreground"
                       : "border-transparent text-muted-foreground hover:text-foreground"
                   }`}
                 >
