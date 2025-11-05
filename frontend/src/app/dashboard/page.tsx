@@ -4,6 +4,12 @@ import { useState } from "react";
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 
+type VideoData = {
+  title: string;
+  description: string;
+  file: File | null;
+};
+
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("profile");
   const [profileImage, setProfileImage] = useState("/abstract-profile.png");
@@ -13,7 +19,7 @@ export default function Dashboard() {
     email: "user@example.com",
     bio: "Créateur de contenu passionné",
   });
-  const [videoData, setVideoData] = useState({
+  const [videoData, setVideoData] = useState<VideoData>({
     title: "",
     description: "",
     file: null,
@@ -53,7 +59,8 @@ export default function Dashboard() {
   ) => {
     const { name, value } = e.target;
     if (name === "file") {
-      const file = (e.target as HTMLInputElement).files?.[0];
+      const input = e.target as HTMLInputElement;
+      const file = input.files?.[0] ?? null;
       setVideoData((prev) => ({ ...prev, file }));
     } else {
       setVideoData((prev) => ({ ...prev, [name]: value }));
