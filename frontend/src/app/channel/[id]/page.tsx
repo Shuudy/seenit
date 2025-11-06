@@ -5,16 +5,17 @@ import { Sidebar } from "@/components/sidebar";
 import { VideoCard } from "@/components/video-card";
 import { useState } from "react";
 
-const creatorInfo = {
-  id: "1",
-  name: "Tech Talks Daily",
+import type { User } from "@/types/user";
+
+const creatorInfo: User = {
+  id: 1,
+  username: "Tech Talks Daily",
   handle: "@techtalksdaily",
-  description:
-    "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
+  bio: "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
   subscribers: "542K",
   subscribersRaw: 542000,
   videos: "128",
-  image: "/channel-avatar.jpg",
+  avatarUrl: "/channel-avatar.jpg",
   banner: "/channel-banner.jpg",
 };
 
@@ -87,8 +88,8 @@ export default function ChannelPage() {
             <div className="flex flex-col md:flex-row gap-4 md:gap-6 -mt-12 md:-mt-16 pb-4">
               <div className="flex-shrink-0 relative z-10">
                 <img
-                  src={creatorInfo.image}
-                  alt={creatorInfo.name}
+                  src={creatorInfo.avatarUrl}
+                  alt={creatorInfo.username}
                   className="w-28 md:w-40 h-28 md:h-40 rounded-full border-4 border-background object-cover shadow-lg"
                 />
               </div>
@@ -96,7 +97,7 @@ export default function ChannelPage() {
               <div className="flex-1 flex flex-col justify-end relative z-10">
                 <div className="mb-1">
                   <h1 className="text-2xl md:text-3xl font-bold">
-                    {creatorInfo.name}
+                    {creatorInfo.username}
                   </h1>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">
@@ -119,7 +120,7 @@ export default function ChannelPage() {
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-3 max-w-3xl line-clamp-2">
-                  {creatorInfo.description}
+                  {creatorInfo.bio}
                 </p>
 
                 <div className="flex gap-3">
@@ -168,7 +169,7 @@ export default function ChannelPage() {
                   <VideoCard
                     key={index}
                     title={video.title}
-                    channel={creatorInfo.name}
+                    channel={creatorInfo.username}
                     views={video.views}
                     uploadedAt={video.uploadedAt}
                   />
@@ -191,7 +192,7 @@ export default function ChannelPage() {
                   <VideoCard
                     key={index}
                     title={video.title}
-                    channel={creatorInfo.name}
+                    channel={creatorInfo.username}
                     views={video.views}
                     uploadedAt={video.uploadedAt}
                   />
@@ -205,7 +206,7 @@ export default function ChannelPage() {
               <div className="bg-secondary p-6 rounded-lg mb-6">
                 <h3 className="font-bold mb-3">Description de la chaîne</h3>
                 <p className="text-sm text-foreground mb-4">
-                  {creatorInfo.description}
+                  {creatorInfo.bio}
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Rejoignez notre communauté de {creatorInfo.subscribers}{" "}

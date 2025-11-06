@@ -4,11 +4,7 @@ import { useState } from "react";
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 
-type VideoData = {
-  title: string;
-  description: string;
-  file: File | null;
-};
+import type { VideoData } from "@/types/video";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("profile");

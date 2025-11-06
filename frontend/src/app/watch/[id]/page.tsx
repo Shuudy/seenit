@@ -1,14 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { Header } from "@/components/header";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+
+import type { User } from "@/types/user";
 
 const videoDetails = {
   id: 1,
   title: "L'avenir du développement web en 2025",
-  channel: "Tech Talks Daily",
+  user: {
+    id: 1,
+    username: "Tech Talks Daily",
+    email: "techtalks@example.com",
+    avatarUrl: "/avatar-tech-talks.png",
+  } as User,
   channelSubscribers: "1,2M abonnés",
   views: "2,543,892",
   likes: 45230,
@@ -92,7 +99,7 @@ export default function WatchPage() {
                     href="/channel/1"
                     className="block m-0 text-sm font-medium text-foreground hover:text-muted-foreground cursor-pointer no-underline"
                   >
-                    {videoDetails.channel}
+                    {videoDetails.user.username}
                   </Link>
                   <p className="text-xs text-muted-foreground">
                     {videoDetails.channelSubscribers}

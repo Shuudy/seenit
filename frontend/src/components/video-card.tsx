@@ -3,13 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface VideoCardProps {
-  thumbnail?: string;
-  title: string;
-  channel: string;
-  views: string;
-  uploadedAt: string;
-}
+import type { VideoCardProps } from "@/types/props";
 
 export function VideoCard({
   thumbnail = "/video-thumbnail.jpg",
