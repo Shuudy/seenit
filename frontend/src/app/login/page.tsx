@@ -1,5 +1,8 @@
 "use client";
 
+import { AuthErrorMessage } from "@/components/auth/auth-error-message";
+import { AuthFooter } from "@/components/auth/auth-footer";
+import { AuthLogo } from "@/components/auth/auth-logo";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,36 +19,15 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="mb-12">
-          <div className="flex justify-center mb-4">
-            <img src="/logo.svg" alt="Seenit" className="h-16 w-auto" />
-          </div>
-        </div>
+        <AuthLogo />
 
         <div className="bg-card rounded-lg p-8 border border-border">
           <h2 className="text-lg font-semibold text-foreground mb-6">
             Connexion
           </h2>
 
-          {error && (
-            <div className="mb-4 flex items-center gap-2 rounded-lg bg-red-700/10 border border-red-700 px-4 py-2 text-red-700">
-              <svg
-                className="w-5 h-5 flex-shrink-0 text-red-700"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <circle cx="12" cy="12" r="10" stroke="currentColor" />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 8v4m0 4h.01"
-                />
-              </svg>
-              <span className="text-sm">{error}</span>
-            </div>
-          )}
+          <AuthErrorMessage message={error} />
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label
@@ -108,19 +90,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="text-center mt-6 text-xs text-muted-foreground space-x-4">
-          <a href="#" className="hover:text-foreground transition-colors">
-            Aide
-          </a>
-          <span>•</span>
-          <a href="#" className="hover:text-foreground transition-colors">
-            Confidentialité
-          </a>
-          <span>•</span>
-          <a href="#" className="hover:text-foreground transition-colors">
-            Conditions
-          </a>
-        </div>
+        <AuthFooter />
       </div>
     </div>
   );
