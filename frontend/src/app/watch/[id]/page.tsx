@@ -70,9 +70,28 @@ export default function WatchPage() {
 
   const [likes, setLikes] = useState(videoDetails.likes);
   const [liked, setLiked] = useState(false);
+  const [disliked, setDisliked] = useState(false);
   const toggleLike = () => {
-    setLikes(liked ? likes - 1 : likes + 1);
-    setLiked(!liked);
+    if (liked) {
+      setLiked(false);
+      setLikes((n) => n - 1);
+      return;
+    }
+    setLiked(true);
+    setLikes((n) => n + 1);
+    if (disliked) setDisliked(false);
+  };
+
+  const toggleDislike = () => {
+    if (disliked) {
+      setDisliked(false);
+      return;
+    }
+    if (liked) {
+      setLiked(false);
+      setLikes((n) => n - 1);
+    }
+    setDisliked(true);
   };
 
   return (
@@ -122,6 +141,7 @@ export default function WatchPage() {
                 <button
                   className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-full hover:bg-secondary-foreground/20 transition-colors cursor-pointer"
                   onClick={toggleLike}
+                  aria-pressed={liked}
                 >
                   {liked ? (
                     <svg
@@ -155,6 +175,41 @@ export default function WatchPage() {
                   <span className="text-sm font-medium hidden sm:inline">
                     {likes.toLocaleString()}
                   </span>
+                </button>
+                <button
+                  className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-full hover:bg-secondary-foreground/20 transition-colors cursor-pointer"
+                  onClick={toggleDislike}
+                  aria-pressed={disliked}
+                >
+                  {disliked ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-5 h-5"
+                    >
+                      <path d="M17 14V2" />
+                      <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-5 h-5"
+                    >
+                      <path d="M17 14V2" />
+                      <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z" />
+                    </svg>
+                  )}
                 </button>
               </div>
             </div>
