@@ -112,7 +112,7 @@ export default function WatchPage() {
               </div>
 
               <div className="flex gap-2">
-                <button className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-full hover:bg-muted transition-colors cursor-pointer">
+                <button className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-full hover:bg-secondary-foreground/20 transition-colors cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
