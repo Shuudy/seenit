@@ -19,6 +19,7 @@ const videoDetails = {
   channelSubscribers: "1,2M abonnés",
   views: "2,543,892",
   likes: 45230,
+  comments: 1234,
   uploadedAt: "il y a 2 jours",
   description:
     "Découvrez les tendances majeures du développement web en 2025. Dans cette vidéo, nous explorons les nouvelles technologies, les frameworks émergents et les meilleures pratiques que tout développeur web doit connaître.\n\nSommet:\n• React et Next.js\n• TypeScript et les types\n• Performance web\n• Sécurité des applications\n\nAbonnez-vous pour plus de contenu sur le développement web!",
@@ -156,7 +157,7 @@ export default function WatchPage() {
 
             <div className="mt-6">
               <h2 className="text-base font-bold text-foreground mb-4">
-                {videoDetails.likes} commentaires
+                {videoDetails.comments.toLocaleString()} commentaires
               </h2>
 
               <div className="flex gap-3 mb-6 pb-6 border-b border-secondary">
