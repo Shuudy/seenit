@@ -242,7 +242,7 @@ export default function WatchPage() {
                 {videoDetails.comments.toLocaleString()} commentaires
               </h2>
 
-              <div className="flex gap-3 mb-6 pb-6 border-b border-secondary">
+              <div className="flex gap-3 pb-6">
                 <div className="w-10 h-10 bg-secondary rounded-full flex-shrink-0 flex items-center justify-center">
                   <span className="text-sm font-semibold text-foreground">
                     V
@@ -255,7 +255,7 @@ export default function WatchPage() {
                 />
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-7">
                 {[1, 2, 3].map((i) => (
                   <Comment
                     key={i}
