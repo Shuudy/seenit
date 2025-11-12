@@ -1,29 +1,24 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function Sidebar() {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
-    pathname === href || (href !== "/" && pathname?.startsWith(href));
+    pathname === href || (href !== '/' && pathname?.startsWith(href));
 
   const linkClass = (href: string) =>
     `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-      isActive(href) ? "bg-secondary text-foreground" : "hover:bg-secondary"
+      isActive(href) ? 'bg-secondary text-foreground' : 'hover:bg-secondary'
     }`;
 
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-background border-r border-border fixed left-0 top-16 bottom-0 overflow-y-auto">
-      <nav className="px-3 py-2 space-y-1">
-        <Link href="/" className={linkClass("/")}>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+    <aside className="bg-background border-border fixed top-16 bottom-0 left-0 hidden w-64 flex-col overflow-y-auto border-r md:flex">
+      <nav className="space-y-1 px-3 py-2">
+        <Link href="/" className={linkClass('/')}>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -33,19 +28,14 @@ export function Sidebar() {
           </svg>
           <span className="text-sm font-medium">Accueil</span>
         </Link>
-        <Link href="#" className={linkClass("/shorts")}>
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <Link href="#" className={linkClass('/shorts')}>
+          <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
           <span className="text-sm font-medium">Shorts</span>
         </Link>
-        <Link href="#" className={linkClass("/subscriptions")}>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+        <Link href="#" className={linkClass('/subscriptions')}>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -57,16 +47,11 @@ export function Sidebar() {
         </Link>
       </nav>
 
-      <div className="mx-3 my-1 border-t border-border" />
+      <div className="border-border mx-3 my-1 border-t" />
 
-      <nav className="px-3 py-2 space-y-1">
-        <Link href="#" className={linkClass("/profile")}>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+      <nav className="space-y-1 px-3 py-2">
+        <Link href="#" className={linkClass('/profile')}>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -76,13 +61,8 @@ export function Sidebar() {
           </svg>
           <span className="text-sm font-medium">Vous</span>
         </Link>
-        <Link href="#" className={linkClass("/history")}>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+        <Link href="#" className={linkClass('/history')}>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"

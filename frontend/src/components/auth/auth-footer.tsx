@@ -1,6 +1,6 @@
 export function AuthFooter() {
   return (
-    <div className="text-center mt-6 text-xs text-muted-foreground space-x-4">
+    <div className="text-muted-foreground mt-6 space-x-4 text-center text-xs">
       <a href="#" className="hover:text-foreground transition-colors">
         Aide
       </a>

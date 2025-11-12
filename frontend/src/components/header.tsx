@@ -1,18 +1,13 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 export function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border h-16 flex items-center px-4 gap-4">
+    <header className="bg-background border-border fixed top-0 right-0 left-0 z-50 flex h-16 items-center gap-4 border-b px-4">
       <div className="flex items-center gap-4">
-        <button className="md:hidden p-2 hover:bg-secondary rounded-full transition-colors cursor-pointer">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+        <button className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors md:hidden">
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -27,10 +22,10 @@ export function Header() {
         </Link>
       </div>
 
-      <div className="hidden sm:flex flex-1 max-w-md">
-        <div className="w-full flex items-center gap-2 bg-secondary rounded-full px-4 py-2">
+      <div className="hidden max-w-md flex-1 sm:flex">
+        <div className="bg-secondary flex w-full items-center gap-2 rounded-full px-4 py-2">
           <svg
-            className="w-5 h-5 text-muted-foreground"
+            className="text-muted-foreground h-5 w-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -45,19 +40,14 @@ export function Header() {
           <input
             type="text"
             placeholder="Rechercher"
-            className="flex-1 bg-transparent outline-none text-foreground placeholder-muted-foreground text-sm"
+            className="text-foreground placeholder-muted-foreground flex-1 bg-transparent text-sm outline-none"
           />
         </div>
       </div>
 
-      <div className="flex items-center gap-4 ml-auto">
-        <button className="p-2 cursor-pointer hover:bg-secondary rounded-full transition-colors">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+      <div className="ml-auto flex items-center gap-4">
+        <button className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors">
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -66,13 +56,8 @@ export function Header() {
             />
           </svg>
         </button>
-        <button className="p-2 cursor-pointer hover:bg-secondary rounded-full transition-colors">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+        <button className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors">
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
