@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import type { VideoCardProps } from "@/types/props";
+import type { VideoCardProps } from '@/types/props';
 
 export function VideoCard({
-  thumbnail = "/video-thumbnail.jpg",
+  thumbnail = '/video-thumbnail.jpg',
   title,
   channel,
   views,
   uploadedAt,
 }: VideoCardProps) {
   return (
-    <Link href="/watch/1" className="flex flex-col gap-2 group cursor-pointer">
-      <div className="relative bg-secondary rounded-lg overflow-hidden aspect-video">
+    <Link href="/watch/1" className="group flex cursor-pointer flex-col gap-2">
+      <div className="bg-secondary relative aspect-video overflow-hidden rounded-lg">
         <Image
           src={thumbnail}
           alt={title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="w-full h-full object-cover group-hover:brightness-75 transition-all"
+          className="h-full w-full object-cover transition-all group-hover:brightness-75"
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-black/60 rounded-full p-3 hover:bg-black/80 transition-all">
-            <svg className="w-6 h-6 text-white fill-white" viewBox="0 0 24 24">
+          <div className="rounded-full bg-black/60 p-3 transition-all hover:bg-black/80">
+            <svg className="h-6 w-6 fill-white text-white" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </div>
@@ -32,12 +32,12 @@ export function VideoCard({
       </div>
 
       <div className="flex gap-3 px-0">
-        <div className="flex-1 min-w-0">
-          <h3 className="font-medium text-sm line-clamp-2 group-hover:text-foreground text-foreground">
+        <div className="min-w-0 flex-1">
+          <h3 className="group-hover:text-foreground text-foreground line-clamp-2 text-sm font-medium">
             {title}
           </h3>
-          <p className="text-xs text-muted-foreground mt-1">{channel}</p>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground mt-1 text-xs">{channel}</p>
+          <p className="text-muted-foreground text-xs">
             {views} • {uploadedAt}
           </p>
         </div>
