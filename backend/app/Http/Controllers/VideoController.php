@@ -9,6 +9,7 @@ use App\Http\Resources\SuccessResource;
 use App\Http\Resources\VideoResource;
 use App\Models\Video;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Throwable;
 
@@ -86,6 +87,9 @@ class VideoController extends Controller
      */
     public function update(Video $video, UpdateVideoRequest $request): SuccessResource
     {
+        // Authorize the update action using the VideoPolicy
+        Gate::authorize('update', $video);
+
         $video->update($request->validated());
 
         return new SuccessResource([
@@ -99,6 +103,9 @@ class VideoController extends Controller
      */
     public function delete(Video $video): SuccessResource
     {
+        // Authorize the delete action using the VideoPolicy
+        Gate::authorize('delete', $video);
+
         $videoPath = $video->url;
         if (Storage::disk('public')->exists($videoPath)) {
             Storage::disk('public')->delete($videoPath);

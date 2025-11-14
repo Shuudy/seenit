@@ -14,10 +14,10 @@ Route::prefix('/videos')->controller(VideoController::class)->group(function () 
     Route::post('/{video}/view', 'incrementViews');
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::put('/{video}', 'update');
+        Route::put('/{video}', 'update')->middleware('can:update,video');
         Route::post('/{video}/like', 'like');
         Route::post('/', 'store');
-        Route::delete('/{video}', 'delete');
+        Route::delete('/{video}', 'delete')->middleware('can:delete,video');
     });
 });
 
