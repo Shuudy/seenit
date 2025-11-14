@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Video;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateVideoRequest extends FormRequest

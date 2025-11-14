@@ -1,0 +1,108 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\Video\UpdateVideoRequest;
+use App\Http\Requests\Video\UploadVideoRequest;
+use App\Http\Resources\SuccessResource;
+use App\Http\Resources\VideoResource;
+use App\Models\Video;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+class VideoController extends Controller
+{
+    /**
+     * Display a listing of the videos.
+     */
+    public function index(): SuccessResource
+    {
+        $videos = Video::with('user')->latest()->get();
+
+        return new SuccessResource([
+            'message' => 'Videos retrieved',
+            'data' => VideoResource::collection($videos),
+        ]);
+    }
+
+    /**
+     * Display the specified video.
+     */
+    public function show(Video $video): SuccessResource
+    {
+        // Eager load the user relationship
+        $video->load('user');
+
+        return new SuccessResource([
+            'message' => 'Video retrieved',
+            'data' => new VideoResource($video),
+        ]);
+    }
+
+    /**
+     * Store a newly uploaded video in storage.
+     */
+    public function store(UploadVideoRequest $request): SuccessResource|ErrorResource
+    {
+        $validated = $request->validated();
+
+        $storedPath = null;
+        DB::beginTransaction();
+
+        try {
+            $file = $request->file('video');
+
+            $storedPath = $file->store('videos', 'public');
+
+            $video = Video::create([
+                'title' => $validated['title'],
+                'description' => $validated['description'] ?? null,
+                'url' => $storedPath,
+                'duration' => 2000,
+                'user_id' => $request->user()->id,
+            ]);
+
+            DB::commit();
+
+            return new SuccessResource([
+                'message' => 'Video uploaded successfully',
+                'data' => new VideoResource($video),
+            ]);
+        } catch (Throwable $e) {
+            DB::rollBack();
+
+            if ($storedPath && Storage::disk('public')->exists($storedPath)) {
+                Storage::disk('public')->delete($storedPath);
+            }
+
+            return new ErrorResource('Video upload failed', 500);
+        }
+    }
+
+    /**
+     * Update the specified video.
+     */
+    public function update(Video $video, UpdateVideoRequest $request): SuccessResource
+    {
+        $video->update($request->validated());
+
+        return new SuccessResource([
+            'message' => 'Video updated',
+            'data' => new VideoResource($video),
+        ]);
+    }
+
+    /**
+     * Increment the view count of a video.
+     */
+    public function incrementViews(Video $video): SuccessResource
+    {
+        $video->increment('count_views');
+        $video->refresh();
+
+        return new SuccessResource([
+            'message' => 'View count updated',
+            'data' => ['count_views' => (int) $video->count_views],
+        ]);
+    }
+}
