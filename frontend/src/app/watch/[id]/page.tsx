@@ -8,6 +8,7 @@ import { Comment } from '@/components/comment';
 
 import type { User } from '@/types/user';
 import { VideoPlayer } from '@/components/video-player';
+import { VideoTitle } from '@/components/video-title';
 
 const videoDetails = {
   id: 1,
@@ -105,7 +106,7 @@ export default function WatchPage() {
           <div className="lg:col-span-2">
             <VideoPlayer thumbnail={videoDetails.thumbnail} title={videoDetails.title} />
 
-            <h1 className="text-foreground mb-3 text-lg font-bold">{videoDetails.title}</h1>
+            <VideoTitle title={videoDetails.title} />
 
             <div className="border-secondary flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-3">
