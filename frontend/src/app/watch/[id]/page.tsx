@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Comment } from '@/components/comment';
 
 import type { User } from '@/types/user';
+import { VideoPlayer } from '@/components/video-player';
 
 const videoDetails = {
   id: 1,
@@ -102,14 +103,7 @@ export default function WatchPage() {
       <main className="mt-16 w-full px-2 py-6 md:px-4">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 md:px-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <div className="mb-3 aspect-video w-full overflow-hidden rounded-lg bg-black">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={videoDetails.thumbnail}
-                alt={videoDetails.title}
-                className="h-full w-full object-cover"
-              />
-            </div>
+            <VideoPlayer thumbnail={videoDetails.thumbnail} title={videoDetails.title} />
 
             <h1 className="text-foreground mb-3 text-lg font-bold">{videoDetails.title}</h1>
 
