@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Resources\ErrorResource;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
@@ -16,4 +17,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{id}/liked-videos', 'likedVideos');
         Route::get('/{id}/liked-comments', 'likedComments');
     });
+});
+
+Route::fallback(function () {
+    return new ErrorResource([
+        'message' => 'Endpoint not found.',
+        'status_code' => 404,
+    ]);
 });
