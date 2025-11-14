@@ -77,7 +77,7 @@ export default function ChannelPage() {
       <main className="mt-16 md:ml-64">
         <div className="from-accent/20 to-accent/10 relative z-0 h-40 w-full overflow-hidden bg-gradient-to-r md:h-56">
           <Image
-            src={creatorInfo.banner}
+            src={creatorInfo.banner ?? '/channel-banner.jpg'}
             alt="Channel banner"
             fill
             className="h-full w-full object-cover"
@@ -92,7 +92,7 @@ export default function ChannelPage() {
             <div className="-mt-12 flex flex-col gap-4 pb-4 md:-mt-16 md:flex-row md:gap-6">
               <div className="relative z-10 flex-shrink-0">
                 <Image
-                  src={creatorInfo.avatarUrl}
+                  src={creatorInfo.avatarUrl ?? '/channel-avatar.jpg'}
                   alt={creatorInfo.username}
                   width="160"
                   height="160"
