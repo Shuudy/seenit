@@ -5,6 +5,7 @@ import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
 
 import type { VideoData } from '@/types/video';
+import Image from 'next/image';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -111,10 +112,12 @@ export default function Dashboard() {
                     Photo de bannière
                   </h2>
                   <div className="bg-secondary group relative h-32 overflow-hidden rounded-lg">
-                    <img
+                    <Image
                       src={bannerImage || '/placeholder.svg'}
                       alt="Bannière"
+                      fill
                       className="h-full w-full object-cover"
+                      sizes="(max-width: 768px) 100vw, 768px"
                     />
                     <label className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
                       <input
@@ -134,9 +137,11 @@ export default function Dashboard() {
                   </h2>
                   <div className="flex items-end gap-4">
                     <div className="group relative">
-                      <img
+                      <Image
                         src={profileImage || '/placeholder.svg'}
                         alt="Profil"
+                        width="80"
+                        height="80"
                         className="border-secondary h-20 w-20 rounded-full border-2 object-cover"
                       />
                       <label className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">

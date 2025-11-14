@@ -6,6 +6,7 @@ import { VideoCard } from '@/components/video-card';
 import { useState } from 'react';
 
 import type { User } from '@/types/user';
+import Image from 'next/image';
 
 const creatorInfo: User = {
   id: 1,
@@ -75,10 +76,13 @@ export default function ChannelPage() {
 
       <main className="mt-16 md:ml-64">
         <div className="from-accent/20 to-accent/10 relative z-0 h-40 w-full overflow-hidden bg-gradient-to-r md:h-56">
-          <img
+          <Image
             src={creatorInfo.banner}
             alt="Channel banner"
+            fill
             className="h-full w-full object-cover"
+            sizes="100vw"
+            priority
           />
           <div className="to-background/95 absolute inset-0 bg-gradient-to-b from-transparent via-transparent" />
         </div>
@@ -87,10 +91,14 @@ export default function ChannelPage() {
           <div className="mx-auto max-w-7xl px-4 md:px-6">
             <div className="-mt-12 flex flex-col gap-4 pb-4 md:-mt-16 md:flex-row md:gap-6">
               <div className="relative z-10 flex-shrink-0">
-                <img
+                <Image
                   src={creatorInfo.avatarUrl}
                   alt={creatorInfo.username}
+                  width="160"
+                  height="160"
                   className="border-background h-28 w-28 rounded-full border-4 object-cover shadow-lg md:h-40 md:w-40"
+                  sizes="(max-width: 768px) 112px, 160px"
+                  priority
                 />
               </div>
 
