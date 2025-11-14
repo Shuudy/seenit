@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Video\UpdateVideoRequest;
 use App\Http\Requests\Video\UploadVideoRequest;
+use App\Http\Resources\ErrorResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\VideoResource;
 use App\Models\Video;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Throwable;
 
 class VideoController extends Controller
 {
@@ -106,6 +108,27 @@ class VideoController extends Controller
 
         return new SuccessResource([
             'message' => 'Video deleted',
+        ]);
+    }
+
+    /**
+     * Like or unlike a video.
+     */
+    public function like(Video $video): SuccessResource
+    {
+        $user = request()->user();
+
+        $result = $user->likedVideos()->toggle($video->id);
+        $liked = ! empty($result['attached']);
+
+        $video->loadCount('likedBy');
+
+        return new SuccessResource([
+            'message' => $liked ? 'Video liked' : 'Video unliked',
+            'data' => [
+                'liked' => $liked,
+                'likes_count' => (int) $video->liked_by_count,
+            ],
         ]);
     }
 
