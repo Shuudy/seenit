@@ -112,6 +112,19 @@ class VideoController extends Controller
     }
 
     /**
+     * Get comments for the specified video.
+     */
+    public function comments(Video $video): SuccessResource
+    {
+        $comments = $video->comments()->with('user')->get();
+
+        return new SuccessResource([
+            'message' => 'Comments retrieved',
+            'data' => $comments,
+        ]);
+    }
+
+    /**
      * Like or unlike a video.
      */
     public function like(Video $video): SuccessResource
