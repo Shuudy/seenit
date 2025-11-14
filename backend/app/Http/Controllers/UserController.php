@@ -14,10 +14,10 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return response()->json(new SuccessResource([
+        return new SuccessResource([
             'message' => 'User found successfully.',
             'data' => $user,
-        ]));
+        ]);
     }
 
     /**
@@ -28,10 +28,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $videos = $user->videos;
 
-        return response()->json(new SuccessResource([
+        return new SuccessResource([
             'message' => 'User videos retrieved successfully.',
             'data' => $videos,
-        ]));
+        ]);
     }
 
     /**
@@ -42,10 +42,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $likedVideos = $user->likedVideos;
 
-        return response()->json(new SuccessResource([
+        return new SuccessResource([
             'message' => 'User liked videos retrieved successfully.',
             'data' => $likedVideos,
-        ]));
+        ]);
     }
 
     /**
@@ -56,9 +56,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $likedComments = $user->likedComments;
 
-        return response()->json(new SuccessResource([
+        return new SuccessResource([
             'message' => 'User liked comments retrieved successfully.',
             'data' => $likedComments,
-        ]));
+        ]);
     }
 }
