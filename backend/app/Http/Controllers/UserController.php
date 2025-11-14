@@ -37,10 +37,11 @@ class UserController extends Controller
     /**
      * Get liked videos of the specified user.
      */
-    public function likedVideos($id) {
+    public function likedVideos($id)
+    {
         $user = User::findOrFail($id);
         $likedVideos = $user->likedVideos;
-    
+
         return response()->json(new SuccessResource([
             'message' => 'User liked videos retrieved successfully.',
             'data' => $likedVideos,
@@ -50,7 +51,8 @@ class UserController extends Controller
     /**
      * Get liked comments of the specified user.
      */
-    public function likedComments($id) {
+    public function likedComments($id)
+    {
         $user = User::findOrFail($id);
         $likedComments = $user->likedComments;
 
