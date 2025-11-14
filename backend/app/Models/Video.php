@@ -12,7 +12,7 @@ class Video extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'url', 'duration', 'views_count', 'user_id'];
+    protected $fillable = ['title', 'description', 'url', 'duration', 'count_views', 'user_id'];
 
     /**
      * Get the user that owns the video.
