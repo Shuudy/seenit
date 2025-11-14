@@ -15,6 +15,7 @@ Route::prefix('/videos')->controller(VideoController::class)->group(function () 
     Route::middleware('auth:sanctum')->group(function () {
         Route::put('/{video}', 'update');
         Route::post('/', 'store');
+        Route::delete('/{video}', 'delete');
     });
 });
 

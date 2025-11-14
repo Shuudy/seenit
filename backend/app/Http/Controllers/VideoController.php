@@ -93,6 +93,23 @@ class VideoController extends Controller
     }
 
     /**
+     * Remove the specified video.
+     */
+    public function delete(Video $video): SuccessResource
+    {
+        $videoPath = $video->url;
+        if (Storage::disk('public')->exists($videoPath)) {
+            Storage::disk('public')->delete($videoPath);
+        }
+
+        $video->delete();
+
+        return new SuccessResource([
+            'message' => 'Video deleted',
+        ]);
+    }
+
+    /**
      * Increment the view count of a video.
      */
     public function incrementViews(Video $video): SuccessResource
