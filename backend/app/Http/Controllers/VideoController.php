@@ -130,7 +130,7 @@ class VideoController extends Controller
             ->with('user')
             ->withCount('likedBy')
             ->withExists([
-                'likedBy as is_liked_by_current_user' => fn ($q) => $q->where('user_id', $user->id),
+                'likedBy as is_liked_by_current_user' => fn ($q) => $q->where('user_id', $user?->id),
             ])
             ->get();
 
