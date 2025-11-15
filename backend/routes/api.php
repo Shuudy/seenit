@@ -12,10 +12,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/logout', [AuthController::class, 'logout']);
 
     Route::prefix('/users')->controller(UserController::class)->group(function () {
-        Route::get('/{id}', 'show');
-        Route::get('/{id}/videos', 'videos');
-        Route::get('/{id}/liked-videos', 'likedVideos');
-        Route::get('/{id}/liked-comments', 'likedComments');
+        Route::get('/{user}', 'show');
+        Route::get('/{user}/videos', 'videos');
+        Route::get('/{user}/liked-videos', 'likedVideos');
+        Route::get('/{user}/liked-comments', 'likedComments');
     });
 });
 
