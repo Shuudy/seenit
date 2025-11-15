@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Video\UpdateVideoRequest;
 use App\Http\Requests\Video\UploadVideoRequest;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\ErrorResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\VideoResource;
@@ -123,11 +124,23 @@ class VideoController extends Controller
      */
     public function comments(Video $video): SuccessResource
     {
-        $comments = $video->comments()->with('user')->get();
+        $user = auth('sanctum')->user();
+
+        $comments = $video->comments()
+            ->with('user')
+            ->withCount('likedBy')
+            ->withExists([
+                'likedBy as is_liked_by_current_user' => fn ($q) => $q->where('user_id', $user->id),
+            ])
+            ->get();
+
+        if (! $user) {
+            $comments->each(fn ($c) => $c->is_liked_by_current_user = false);
+        }
 
         return new SuccessResource([
             'message' => 'Comments retrieved',
-            'data' => $comments,
+            'data' => CommentResource::collection($comments),
         ]);
     }
 
