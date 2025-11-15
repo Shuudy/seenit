@@ -4,14 +4,14 @@ export function CommentSkeleton() {
       <div className="bg-secondary/70 h-10 w-10 flex-shrink-0 animate-pulse rounded-full" />
       <div className="flex-1 space-y-2">
         <div className="flex items-center gap-2">
-          <div className="h-3 w-32 rounded bg-secondary/60 animate-pulse" />
-          <div className="h-3 w-16 rounded bg-secondary/40 animate-pulse" />
+          <div className="bg-secondary/60 h-3 w-32 animate-pulse rounded" />
+          <div className="bg-secondary/40 h-3 w-16 animate-pulse rounded" />
         </div>
-        <div className="h-3 w-11/12 rounded bg-secondary/60 animate-pulse" />
-        <div className="h-3 w-9/12 rounded bg-secondary/50 animate-pulse" />
+        <div className="bg-secondary/60 h-3 w-11/12 animate-pulse rounded" />
+        <div className="bg-secondary/50 h-3 w-9/12 animate-pulse rounded" />
         <div className="flex gap-6 pt-2">
-          <div className="h-4 w-12 rounded bg-secondary/50 animate-pulse" />
-          <div className="h-4 w-16 rounded bg-secondary/40 animate-pulse" />
+          <div className="bg-secondary/50 h-4 w-12 animate-pulse rounded" />
+          <div className="bg-secondary/40 h-4 w-16 animate-pulse rounded" />
         </div>
       </div>
     </div>
