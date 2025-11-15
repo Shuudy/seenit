@@ -10,10 +10,8 @@ class UserController extends Controller
     /**
      * Show the specified user.
      */
-    public function show($id)
+    public function show(User $user) : SuccessResource
     {
-        $user = User::findOrFail($id);
-
         return new SuccessResource([
             'message' => 'User found successfully.',
             'data' => $user,
@@ -23,9 +21,8 @@ class UserController extends Controller
     /**
      * Get videos of the specified user.
      */
-    public function videos($id)
+    public function videos(User $user) : SuccessResource
     {
-        $user = User::findOrFail($id);
         $videos = $user->videos;
 
         return new SuccessResource([
@@ -37,9 +34,8 @@ class UserController extends Controller
     /**
      * Get liked videos of the specified user.
      */
-    public function likedVideos($id)
+    public function likedVideos(User $user) : SuccessResource
     {
-        $user = User::findOrFail($id);
         $likedVideos = $user->likedVideos;
 
         return new SuccessResource([
@@ -51,9 +47,8 @@ class UserController extends Controller
     /**
      * Get liked comments of the specified user.
      */
-    public function likedComments($id)
+    public function likedComments(User $user) : SuccessResource
     {
-        $user = User::findOrFail($id);
         $likedComments = $user->likedComments;
 
         return new SuccessResource([
