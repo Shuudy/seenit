@@ -10,7 +10,7 @@ class UserController extends Controller
     /**
      * Show the specified user.
      */
-    public function show(User $user) : SuccessResource
+    public function show(User $user): SuccessResource
     {
         return new SuccessResource([
             'message' => 'User found successfully.',
@@ -21,7 +21,7 @@ class UserController extends Controller
     /**
      * Get videos of the specified user.
      */
-    public function videos(User $user) : SuccessResource
+    public function videos(User $user): SuccessResource
     {
         $videos = $user->videos;
 
@@ -34,7 +34,7 @@ class UserController extends Controller
     /**
      * Get liked videos of the specified user.
      */
-    public function likedVideos(User $user) : SuccessResource
+    public function likedVideos(User $user): SuccessResource
     {
         $likedVideos = $user->likedVideos;
 
@@ -47,7 +47,7 @@ class UserController extends Controller
     /**
      * Get liked comments of the specified user.
      */
-    public function likedComments(User $user) : SuccessResource
+    public function likedComments(User $user): SuccessResource
     {
         $likedComments = $user->likedComments;
 
