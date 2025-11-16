@@ -10,13 +10,13 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/logout', [AuthController::class, 'logout']);
+});
 
-    Route::prefix('/users')->controller(UserController::class)->group(function () {
-        Route::get('/{user}', 'show');
-        Route::get('/{user}/videos', 'videos');
-        Route::get('/{user}/liked-videos', 'likedVideos');
-        Route::get('/{user}/liked-comments', 'likedComments');
-    });
+Route::prefix('/users')->controller(UserController::class)->group(function () {
+    Route::get('/{user}', 'show');
+    Route::get('/{user}/videos', 'videos');
+    Route::get('/{user}/liked-videos', 'likedVideos');
+    Route::get('/{user}/liked-comments', 'likedComments');
 });
 
 Route::fallback(function () {
