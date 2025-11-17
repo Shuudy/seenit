@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\SuccessResource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 
 class UserController extends Controller
@@ -14,7 +15,7 @@ class UserController extends Controller
     {
         return new SuccessResource([
             'message' => 'User found successfully.',
-            'data' => $user,
+            'data' => new UserResource($user),
         ]);
     }
 
