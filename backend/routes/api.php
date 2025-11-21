@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\VideoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoController;
 use App\Http\Resources\ErrorResource;
 use Illuminate\Support\Facades\Route;
 
