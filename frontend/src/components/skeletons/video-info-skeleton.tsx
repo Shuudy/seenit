@@ -12,6 +12,8 @@ export function VideoInfoSkeleton() {
             <div className="bg-secondary/60 h-3 w-40 animate-pulse rounded" />
             <div className="bg-secondary/40 h-3 w-28 animate-pulse rounded" />
           </div>
+
+          <div className="bg-secondary/70 h-9 w-28 animate-pulse rounded-full" />
         </div>
 
         <div className="flex gap-2">
