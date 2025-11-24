@@ -169,7 +169,6 @@ export default function ChannelPage() {
                   <VideoCard
                     key={index}
                     title={video.title}
-                    channel={creatorInfo.username}
                     views={video.views}
                     uploadedAt={video.uploadedAt}
                   />
@@ -192,7 +191,6 @@ export default function ChannelPage() {
                   <VideoCard
                     key={index}
                     title={video.title}
-                    channel={creatorInfo.username}
                     views={video.views}
                     uploadedAt={video.uploadedAt}
                   />
