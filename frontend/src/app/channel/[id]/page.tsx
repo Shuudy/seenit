@@ -6,7 +6,8 @@ import { VideoCard } from '@/components/video-card';
 import { useState } from 'react';
 
 import type { User } from '@/types/user';
-import Image from 'next/image';
+import { ChannelHeader } from './_components/channel-header';
+import { ChannelTabs } from './_components/channel-tabs';
 
 const creatorInfo: User = {
   id: 1,
@@ -75,90 +76,13 @@ export default function ChannelPage() {
       <Sidebar />
 
       <main className="mt-16 md:ml-64">
-        <div className="from-accent/20 to-accent/10 relative z-0 h-40 w-full overflow-hidden bg-gradient-to-r md:h-56">
-          <Image
-            src={creatorInfo.banner ?? '/channel-banner.jpg'}
-            alt="Channel banner"
-            fill
-            className="h-full w-full object-cover"
-            sizes="100vw"
-            priority
-          />
-          <div className="to-background/95 absolute inset-0 bg-gradient-to-b from-transparent via-transparent" />
-        </div>
+        <ChannelHeader
+          channel={creatorInfo}
+          isSubscribed={isSubscribed}
+          onToggleSubscribe={() => setIsSubscribed(s => !s)}
+        />
 
-        <div className="relative">
-          <div className="mx-auto max-w-7xl px-4 md:px-6">
-            <div className="-mt-12 flex flex-col gap-4 pb-4 md:-mt-16 md:flex-row md:gap-6">
-              <div className="relative z-10 flex-shrink-0">
-                <Image
-                  src={creatorInfo.avatarUrl ?? '/channel-avatar.jpg'}
-                  alt={creatorInfo.username}
-                  width="160"
-                  height="160"
-                  className="border-background h-28 w-28 rounded-full border-4 object-cover shadow-lg md:h-40 md:w-40"
-                  sizes="(max-width: 768px) 112px, 160px"
-                  priority
-                />
-              </div>
-
-              <div className="relative z-10 flex flex-1 flex-col justify-end">
-                <div className="mb-1">
-                  <h1 className="text-2xl font-bold md:text-3xl">{creatorInfo.username}</h1>
-                </div>
-                <p className="text-muted-foreground mb-2 text-sm">{creatorInfo.handle}</p>
-
-                <div className="mb-3 flex gap-4 text-sm">
-                  <span className="text-muted-foreground">
-                    <span className="text-foreground font-semibold">{creatorInfo.subscribers}</span>{' '}
-                    abonnés
-                  </span>
-                  <span className="text-muted-foreground">
-                    <span className="text-foreground font-semibold">{creatorInfo.videos}</span>{' '}
-                    vidéos
-                  </span>
-                </div>
-
-                <p className="text-muted-foreground mb-3 line-clamp-2 max-w-3xl text-sm">
-                  {creatorInfo.bio}
-                </p>
-
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setIsSubscribed(!isSubscribed)}
-                    className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-all ${
-                      isSubscribed
-                        ? 'bg-secondary text-foreground hover:bg-secondary/80'
-                        : 'bg-accent text-accent-foreground hover:bg-accent/90'
-                    }`}
-                  >
-                    {isSubscribed ? 'Abonné' : "S'abonner"}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-border border-b">
-          <div className="mx-auto max-w-7xl px-4 md:px-6">
-            <div className="flex gap-8 overflow-x-auto">
-              {tabs.map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`cursor-pointer border-b-2 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
-                    activeTab === tab
-                      ? 'border-b-foreground text-foreground'
-                      : 'text-muted-foreground hover:text-foreground border-transparent'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <ChannelTabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
         <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
           {activeTab === 'Accueil' && (
