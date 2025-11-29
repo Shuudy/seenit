@@ -13,22 +13,22 @@ export function ChannelAbout({ bio }: { bio?: string }) {
         <h3 className="mb-3 font-bold">Liens utiles</h3>
         <ul className="space-y-2 text-sm">
           <li>
-            <a href="#" className="text-accent hover:underline">
+            <a href="#" className="text-foreground hover:underline">
               Site web
             </a>
           </li>
           <li>
-            <a href="#" className="text-accent hover:underline">
+            <a href="#" className="text-foreground hover:underline">
               Twitter
             </a>
           </li>
           <li>
-            <a href="#" className="text-accent hover:underline">
+            <a href="#" className="text-foreground hover:underline">
               LinkedIn
             </a>
           </li>
           <li>
-            <a href="#" className="text-accent hover:underline">
+            <a href="#" className="text-foreground hover:underline">
               GitHub
             </a>
           </li>
