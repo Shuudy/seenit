@@ -8,6 +8,7 @@ import { useState } from 'react';
 import type { User } from '@/types/user';
 import { ChannelHeader } from './_components/channel-header';
 import { ChannelTabs } from './_components/channel-tabs';
+import { ChannelAbout } from './_components/channel-about';
 
 const creatorInfo: User = {
   id: 1,
@@ -123,43 +124,7 @@ export default function ChannelPage() {
             </div>
           )}
 
-          {activeTab === 'À propos' && (
-            <div className="max-w-2xl">
-              <div className="bg-secondary mb-6 rounded-lg p-6">
-                <h3 className="mb-3 font-bold">Description de la chaîne</h3>
-                <p className="text-foreground mb-4 text-sm">{creatorInfo.bio}</p>
-                <p className="text-muted-foreground text-sm">
-                  Rejoignez notre communauté de {creatorInfo.subscribers} abonnés et découvrez du
-                  contenu de qualité sur la technologie et le développement web.
-                </p>
-              </div>
-              <div className="bg-secondary rounded-lg p-6">
-                <h3 className="mb-3 font-bold">Liens utiles</h3>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    <a href="#" className="text-accent hover:underline">
-                      Site web
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-accent hover:underline">
-                      Twitter
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-accent hover:underline">
-                      LinkedIn
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-accent hover:underline">
-                      GitHub
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )}
+          {activeTab === 'À propos' && <ChannelAbout bio={creatorInfo.bio} />}
         </div>
       </main>
     </div>
