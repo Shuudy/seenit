@@ -2,13 +2,13 @@
 
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
-import { VideoCard } from '@/components/video-card';
 import { useState } from 'react';
 
 import type { User } from '@/types/user';
 import { ChannelHeader } from './_components/channel-header';
 import { ChannelTabs } from './_components/channel-tabs';
 import { ChannelAbout } from './_components/channel-about';
+import { ChannelVideoGrid } from './_components/channel-video-grid';
 
 const creatorInfo: User = {
   id: 1,
@@ -89,16 +89,7 @@ export default function ChannelPage() {
           {activeTab === 'Accueil' && (
             <div>
               <h2 className="mb-6 text-xl font-bold">Dernières vidéos</h2>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {channelVideos.map((video, index) => (
-                  <VideoCard
-                    key={index}
-                    title={video.title}
-                    views={video.views}
-                    uploadedAt={video.uploadedAt}
-                  />
-                ))}
-              </div>
+              <ChannelVideoGrid videos={channelVideos} />
             </div>
           )}
 
@@ -111,16 +102,7 @@ export default function ChannelPage() {
                   <option>Plus anciens</option>
                 </select>
               </div>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {channelVideos.map((video, index) => (
-                  <VideoCard
-                    key={index}
-                    title={video.title}
-                    views={video.views}
-                    uploadedAt={video.uploadedAt}
-                  />
-                ))}
-              </div>
+              <ChannelVideoGrid videos={channelVideos} />
             </div>
           )}
 
