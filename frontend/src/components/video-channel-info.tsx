@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import type { User } from '@/types/user';
+import { ChannelAvatar } from './channel-avatar';
 
 interface VideoChannelInfoProps {
   user: User;
@@ -11,11 +12,7 @@ interface VideoChannelInfoProps {
 export function VideoChannelInfo({ user, channelSubscribers }: VideoChannelInfoProps) {
   return (
     <div className="flex items-center gap-3">
-      <div className="bg-secondary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
-        <span className="text-foreground text-sm font-semibold">
-          {user.username[0].toUpperCase()}
-        </span>
-      </div>
+      <ChannelAvatar username={user.username} />
       <div className="flex-1">
         <Link
           href={`/channel/${user.id}`}
