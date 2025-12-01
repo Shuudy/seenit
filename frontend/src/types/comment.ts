@@ -3,4 +3,4 @@ export type Comment = {
   avatarLetter: string;
   content: string;
   daysAgo: number;
-}
+};

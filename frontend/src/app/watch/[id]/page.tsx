@@ -11,19 +11,18 @@ import { VideoData } from '@/types/video';
 import { formatViews } from '@/utils/formatViews';
 
 export default function WatchPage() {
-  const params = useParams()
-  const videoId = Number(params.id)
-  
-  const video = (mockVideos as VideoData[]).find(v => v.id === videoId)
-  if (!video) return <p className="text-center mt-20">Vidéo introuvable.</p>
-  
-  const recommendedVideos = (mockVideos as VideoData[]).filter(v => v.id !== videoId)
-
-  const [expanded, setExpanded] = useState(false);
-
+  const params = useParams();
+  const videoId = Number(params.id);
   const [likes, setLikes] = useState(video.likes);
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const video = (mockVideos as VideoData[]).find(v => v.id === videoId);
+  if (!video) return <p className="mt-20 text-center">Vidéo introuvable.</p>;
+
+  const recommendedVideos = (mockVideos as VideoData[]).filter(v => v.id !== videoId);
+
   const toggleLike = () => {
     if (liked) {
       setLiked(false);
@@ -46,7 +45,7 @@ export default function WatchPage() {
     }
     setDisliked(true);
   };
-//
+
   return (
     <div className="bg-background min-h-screen">
       <Header />
@@ -170,13 +169,13 @@ export default function WatchPage() {
 
               <div className="space-y-7">
                 {video.videoComments.map((comment, index) => (
-                    <Comment
-                      key={index}
-                      username={comment.username}
-                      avatarLetter={comment.avatarLetter}
-                      content={comment.content}
-                      daysAgo={comment.daysAgo}
-                    />
+                  <Comment
+                    key={index}
+                    username={comment.username}
+                    avatarLetter={comment.avatarLetter}
+                    content={comment.content}
+                    daysAgo={comment.daysAgo}
+                  />
                 ))}
               </div>
             </div>
