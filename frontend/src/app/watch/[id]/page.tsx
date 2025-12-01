@@ -15,6 +15,7 @@ import { VideoDescription } from '@/components/video-description';
 import { CommentInput } from '@/components/comment-input';
 import { CommentList } from '@/components/comment-list';
 import { RecommendedVideoItem } from '@/components/recommended-video-item';
+import { RecommendedVideoList } from '@/components/recommended-video-list';
 
 const videoDetails = {
   id: 1,
@@ -116,17 +117,7 @@ export default function WatchPage() {
 
           <div className="lg:col-span-1">
             <h3 className="text-foreground mb-4 text-sm font-bold">Recommandations</h3>
-            <div className="flex flex-col space-y-3">
-              {recommendedVideos.map((video, index) => (
-                <RecommendedVideoItem
-                  key={index}
-                  title={video.title}
-                  channel={video.channel}
-                  views={video.views}
-                  uploadedAt={video.uploadedAt}
-                />
-              ))}
-            </div>
+            <RecommendedVideoList videos={recommendedVideos} />
           </div>
         </div>
       </main>
