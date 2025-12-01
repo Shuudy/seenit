@@ -2,7 +2,7 @@ export interface VideoCardProps {
   id: number;
   thumbnail?: string;
   title: string;
-  channel: string;
+  channel?: string;
   views: string;
   uploadedAt: string;
 }
