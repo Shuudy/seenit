@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Resources\ErrorResource;
@@ -20,7 +21,14 @@ Route::prefix('/videos')->controller(VideoController::class)->group(function () 
         Route::post('/{video}/like', 'like');
         Route::post('/', 'store');
         Route::delete('/{video}', 'delete')->middleware('can:delete,video');
+        Route::post('/{video}/comments', 'storeComment');
     });
+});
+
+Route::prefix('/comments')->middleware('auth:sanctum')->controller(CommentController::class)->group(function () {
+    Route::post('/{comment}/like', 'like');
+    Route::put('/{comment}', 'update')->middleware('can:update,comment');
+    Route::delete('/{comment}', 'delete')->middleware('can:delete,comment');
 });
 
 Route::middleware('auth:sanctum')->group(function () {

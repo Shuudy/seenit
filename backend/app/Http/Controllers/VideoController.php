@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Comment\StoreCommentRequest;
 use App\Http\Requests\Video\UpdateVideoRequest;
 use App\Http\Requests\Video\UploadVideoRequest;
 use App\Http\Resources\CommentResource;
@@ -176,6 +177,25 @@ class VideoController extends Controller
         return new SuccessResource([
             'message' => 'View count updated',
             'data' => ['count_views' => (int) $video->count_views],
+        ]);
+    }
+
+    /**
+     * Store a new comment for the specified video.
+     */
+    public function storeComment(StoreCommentRequest $request, Video $video): SuccessResource
+    {
+        $user_id = $request->user()->id;
+
+        $comment = $video->comments()->create([
+            'content' => $request->validated('content'),
+            'user_id' => $user_id,
+        ]);
+        $comment->load('user');
+
+        return new SuccessResource([
+            'message' => 'Comment created',
+            'data' => new CommentResource($comment),
         ]);
     }
 }
