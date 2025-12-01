@@ -5,71 +5,23 @@ import { Header } from '@/components/header';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Comment } from '@/components/comment';
-
-import type { User } from '@/types/user';
-
-const videoDetails = {
-  id: 1,
-  title: "L'avenir du développement web en 2025",
-  user: {
-    id: 1,
-    username: 'Tech Talks Daily',
-    email: 'techtalks@example.com',
-    avatarUrl: '/avatar-tech-talks.png',
-  } as User,
-  channelSubscribers: '1,2M abonnés',
-  views: '2,543,892',
-  likes: 45230,
-  comments: 1234,
-  uploadedAt: 'il y a 2 jours',
-  description:
-    'Découvrez les tendances majeures du développement web en 2025. Dans cette vidéo, nous explorons les nouvelles technologies, les frameworks émergents et les meilleures pratiques que tout développeur web doit connaître.\n\nSommet:\n• React et Next.js\n• TypeScript et les types\n• Performance web\n• Sécurité des applications\n\nAbonnez-vous pour plus de contenu sur le développement web!',
-  thumbnail: '/video-thumbnail.jpg',
-};
-
-const recommendedVideos = [
-  {
-    title: 'Créer des applications incroyables avec React',
-    channel: 'Code Masters',
-    views: '1,8M vues',
-    uploadedAt: 'il y a 1 semaine',
-  },
-  {
-    title: 'Maîtriser les bases de TypeScript',
-    channel: 'Dev Education',
-    views: '945K vues',
-    uploadedAt: 'il y a 3 jours',
-  },
-  {
-    title: 'Next.js 15 : Les nouveautés',
-    channel: 'Frontend Focus',
-    views: '542K vues',
-    uploadedAt: 'il y a 5 jours',
-  },
-  {
-    title: 'CSS Grid expliqué : Tutoriel complet',
-    channel: 'Web Design Pro',
-    views: '1,2M vues',
-    uploadedAt: 'il y a 1 semaine',
-  },
-  {
-    title: 'Les meilleures pratiques du design de base de données',
-    channel: 'Backend Academy',
-    views: '832K vues',
-    uploadedAt: 'il y a 4 jours',
-  },
-  {
-    title: 'Optimisation des performances JavaScript',
-    channel: 'Dev Tips',
-    views: '723K vues',
-    uploadedAt: 'il y a 2 semaines',
-  },
-];
+import mockVideos from '@/data/mockVideos.json';
+import { useParams } from 'next/navigation';
+import { VideoData } from '@/types/video';
+import { formatViews } from '@/utils/formatViews';
 
 export default function WatchPage() {
+  const params = useParams()
+  const videoId = Number(params.id)
+  
+  const video = (mockVideos as VideoData[]).find(v => v.id === videoId)
+  if (!video) return <p className="text-center mt-20">Vidéo introuvable.</p>
+  
+  const recommendedVideos = (mockVideos as VideoData[]).filter(v => v.id !== videoId)
+
   const [expanded, setExpanded] = useState(false);
 
-  const [likes, setLikes] = useState(videoDetails.likes);
+  const [likes, setLikes] = useState(video.likes);
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const toggleLike = () => {
@@ -105,13 +57,13 @@ export default function WatchPage() {
             <div className="mb-3 aspect-video w-full overflow-hidden rounded-lg bg-black">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={videoDetails.thumbnail}
-                alt={videoDetails.title}
+                src="/video-thumbnail-1.jpg"
+                alt={video.title}
                 className="h-full w-full object-cover"
               />
             </div>
 
-            <h1 className="text-foreground mb-3 text-lg font-bold">{videoDetails.title}</h1>
+            <h1 className="text-foreground mb-3 text-lg font-bold">{video.title}</h1>
 
             <div className="border-secondary flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-3">
@@ -123,9 +75,9 @@ export default function WatchPage() {
                     href="/channel/1"
                     className="text-foreground hover:text-muted-foreground m-0 block cursor-pointer text-sm font-medium no-underline"
                   >
-                    {videoDetails.user.username}
+                    {video.user.username}
                   </Link>
-                  <p className="text-muted-foreground text-xs">{videoDetails.channelSubscribers}</p>
+                  <p className="text-muted-foreground text-xs">{video.channelSubscribers}</p>
                 </div>
                 <button className="bg-foreground text-background hover:bg-muted-foreground cursor-pointer rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors">
                   S&apos;abonner
@@ -180,7 +132,7 @@ export default function WatchPage() {
 
             <div className="bg-secondary mt-4 rounded-lg p-4">
               <p className="text-muted-foreground mb-2 text-xs">
-                {videoDetails.views} vues • {videoDetails.uploadedAt}
+                {video.views} vues • {video.uploadedAt}
               </p>
               <p
                 className={`text-foreground cursor-pointer text-sm whitespace-pre-line ${
@@ -189,7 +141,7 @@ export default function WatchPage() {
                 onClick={() => !expanded && setExpanded(true)}
                 aria-expanded={expanded}
               >
-                {videoDetails.description}
+                {video.description}
               </p>
               <button
                 className="text-foreground hover:text-muted-foreground mt-3 cursor-pointer text-xs font-medium"
@@ -202,7 +154,7 @@ export default function WatchPage() {
 
             <div className="mt-6">
               <h2 className="text-foreground mb-4 text-base font-bold">
-                {videoDetails.comments.toLocaleString()} commentaires
+                {video.comments.toLocaleString()} commentaires
               </h2>
 
               <div className="flex gap-3 pb-6">
@@ -217,14 +169,14 @@ export default function WatchPage() {
               </div>
 
               <div className="space-y-7">
-                {[1, 2, 3].map(i => (
-                  <Comment
-                    key={i}
-                    username={`Utilisateur ${i}`}
-                    avatarLetter={String.fromCharCode(64 + i)}
-                    content="Excellent contenu ! Très informatif et bien présenté."
-                    daysAgo={i}
-                  />
+                {video.videoComments.map((comment, index) => (
+                    <Comment
+                      key={index}
+                      username={comment.username}
+                      avatarLetter={comment.avatarLetter}
+                      content={comment.content}
+                      daysAgo={comment.daysAgo}
+                    />
                 ))}
               </div>
             </div>
@@ -237,7 +189,7 @@ export default function WatchPage() {
                 <div key={index} className="group flex cursor-pointer gap-2">
                   <div className="bg-secondary relative h-20 w-32 flex-shrink-0 overflow-hidden rounded">
                     <Image
-                      src="/video-thumbnail.jpg"
+                      src="/video-thumbnail-1.jpg"
                       alt={video.title}
                       fill
                       sizes="(max-width: 768px) 50vw, 128px"
@@ -253,9 +205,9 @@ export default function WatchPage() {
                     <p className="text-foreground group-hover:text-muted-foreground line-clamp-2 text-xs font-medium">
                       {video.title}
                     </p>
-                    <p className="text-muted-foreground mt-1 text-xs">{video.channel}</p>
+                    <p className="text-muted-foreground mt-1 text-xs">{video.user.username}</p>
                     <p className="text-muted-foreground text-xs">
-                      {video.views} • {video.uploadedAt}
+                      {formatViews(video.views)} • {video.uploadedAt}
                     </p>
                   </div>
                 </div>

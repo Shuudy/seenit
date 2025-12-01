@@ -1,62 +1,316 @@
 [
   {
+    "id": 1,
     "title": "L'avenir du développement web en 2025",
+    "user": {
+      "id": 1,
+      "username": "Tech Talks Daily",
+      "email": "techtalks@example.com",
+      "avatarUrl": "/avatar-tech-talks.png"
+    },
     "channel": "Tech Talks Daily",
-    "views": "2,5M vues",
-    "uploadedAt": "il y a 2 jours"
+    "channelSubscribers": "1,2M abonnés",
+    "views": "2,543,892",
+    "likes": 45230,
+    "comments": 1234,
+    "uploadedAt": "il y a 2 jours",
+    "description": "Découvrez les tendances majeures du développement web en 2025. Dans cette vidéo, nous explorons les nouvelles technologies, les frameworks émergents et les meilleures pratiques que tout développeur web doit connaître.\n\nSommaire:\n• React et Next.js\n• TypeScript et les types\n• Performance web\n• Sécurité des applications\n\nAbonnez-vous pour plus de contenu sur le développement web!",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Alice",
+        "avatarLetter": "A",
+        "content": "Très clair et précis, merci pour cette vidéo !",
+        "daysAgo": 1
+      },
+      {
+        "username": "Bob",
+        "avatarLetter": "B",
+        "content": "J'ai adoré l'explication sur Next.js et React, super instructif.",
+        "daysAgo": 2
+      },
+      {
+        "username": "Charlie",
+        "avatarLetter": "C",
+        "content": "Les points sur la performance web m'ont beaucoup aidé.",
+        "daysAgo": 3
+      }
+    ]
   },
   {
-    "title": "Créer des applications étonnantes avec React",
+    "id": 2,
+    "title": "Créer des applications incroyables avec React",
+    "user": {
+      "id": 2,
+      "username": "Code Masters",
+      "email": "codemasters@example.com",
+      "avatarUrl": "/avatar-code-masters.png"
+    },
     "channel": "Code Masters",
-    "views": "1,8M vues",
-    "uploadedAt": "il y a 1 semaine"
+    "channelSubscribers": "842K abonnés",
+    "views": "1,800,123",
+    "likes": 38210,
+    "comments": 980,
+    "uploadedAt": "il y a 1 semaine",
+    "description": "Un guide pas-à-pas pour construire des applications React performantes et maintenables. Cette vidéo couvre les concepts clés, les hooks, la gestion d'état et les bonnes pratiques pour vos projets front-end.\n\nSommaire:\n• Installation et configuration de l'environnement\n• Composants fonctionnels et hooks\n• Gestion des états locaux et globaux\n• Optimisation des performances\n• Conseils pour structurer vos projets\n\nAbonnez-vous pour maîtriser React et ses meilleures pratiques!",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "David",
+        "avatarLetter": "D",
+        "content": "Excellent tutoriel sur React ! J'ai appris beaucoup de nouvelles techniques.",
+        "daysAgo": 2
+      },
+      {
+        "username": "Emma",
+        "avatarLetter": "E",
+        "content": "Très utile pour structurer mes projets React correctement.",
+        "daysAgo": 3
+      }
+    ]
   },
   {
-    "title": "Maîtriser les fondamentaux de TypeScript",
+    "id": 3,
+    "title": "Maîtriser les bases de TypeScript",
+    "user": {
+      "id": 3,
+      "username": "Dev Education",
+      "email": "devedu@example.com",
+      "avatarUrl": "/avatar-dev-education.png"
+    },
     "channel": "Dev Education",
-    "views": "945K vues",
-    "uploadedAt": "il y a 3 jours"
+    "channelSubscribers": "540K abonnés",
+    "views": "945,000",
+    "likes": 21200,
+    "comments": 420,
+    "uploadedAt": "il y a 3 jours",
+    "description": "TypeScript expliqué simplement pour débutants et confirmés. Découvrez comment ajouter des types, prévenir les erreurs et améliorer la qualité de votre code JavaScript.\n\nSommaire:\n• Introduction à TypeScript\n• Types de base et avancés\n• Interfaces et types personnalisés\n• Gestion des modules et imports\n• Bonnes pratiques pour coder proprement\n\nAbonnez-vous pour devenir un expert TypeScript!",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Fiona",
+        "avatarLetter": "F",
+        "content": "Explications très claires sur les types en TypeScript !",
+        "daysAgo": 1
+      },
+      {
+        "username": "George",
+        "avatarLetter": "G",
+        "content": "Enfin je comprends les interfaces et types personnalisés.",
+        "daysAgo": 2
+      }
+    ]
   },
   {
-    "title": "Next.js 15 : nouveautés",
+    "id": 4,
+    "title": "Next.js 15 : Les nouveautés",
+    "user": {
+      "id": 4,
+      "username": "Frontend Focus",
+      "email": "frontend@example.com",
+      "avatarUrl": "/avatar-frontend-focus.png"
+    },
     "channel": "Frontend Focus",
-    "views": "542K vues",
-    "uploadedAt": "il y a 5 jours"
+    "channelSubscribers": "320K abonnés",
+    "views": "542,000",
+    "likes": 10890,
+    "comments": 210,
+    "uploadedAt": "il y a 5 jours",
+    "description": "Tour d'horizon des nouveautés de Next.js 15. Découvrez les nouvelles fonctionnalités, les optimisations de rendu et comment tirer parti du framework pour vos projets React.\n\nSommaire:\n• Server Components et ISR\n• Optimisations des performances\n• Nouveaux hooks et APIs\n• Meilleures pratiques pour le SEO\n• Exemples concrets de mise en œuvre\n\nAbonnez-vous pour rester à jour sur Next.js!",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Hugo",
+        "avatarLetter": "H",
+        "content": "Les nouvelles fonctionnalités sont bien expliquées !",
+        "daysAgo": 1
+      },
+      {
+        "username": "Isabelle",
+        "avatarLetter": "I",
+        "content": "La partie Server Components m'a beaucoup intéressée.",
+        "daysAgo": 2
+      }
+    ]
   },
   {
-    "title": "CSS Grid expliqué : tutoriel complet",
+    "id": 5,
+    "title": "CSS Grid expliqué : Tutoriel complet",
+    "user": {
+      "id": 5,
+      "username": "Web Design Pro",
+      "email": "webdesign@example.com",
+      "avatarUrl": "/avatar-web-design.png"
+    },
     "channel": "Web Design Pro",
-    "views": "1,2M vues",
-    "uploadedAt": "il y a 1 semaine"
+    "channelSubscribers": "760K abonnés",
+    "views": "1,200,000",
+    "likes": 25100,
+    "comments": 640,
+    "uploadedAt": "il y a 1 semaine",
+    "description": "Tout ce qu'il faut savoir pour maîtriser CSS Grid et créer des mises en page modernes et réactives.\n\nSommaire:\n• Bases du CSS Grid et création de grilles\n• Placement et alignement des éléments\n• Grilles responsives et media queries\n• Techniques avancées : subgrid, auto-fill, auto-fit\n• Exemples pratiques et projets réels\n\nAbonnez-vous pour perfectionner votre design web!",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Julien",
+        "avatarLetter": "J",
+        "content": "Les exemples pratiques sur CSS Grid sont parfaits pour mes projets.",
+        "daysAgo": 3
+      },
+      {
+        "username": "Karine",
+        "avatarLetter": "K",
+        "content": "Très bonne explication sur les grilles responsives.",
+        "daysAgo": 2
+      }
+    ]
   },
   {
-    "title": "Bonnes pratiques de conception de base de données",
+    "id": 6,
+    "title": "Les meilleures pratiques du design de base de données",
+    "user": {
+      "id": 6,
+      "username": "Backend Academy",
+      "email": "backend@example.com",
+      "avatarUrl": "/avatar-backend.png"
+    },
     "channel": "Backend Academy",
-    "views": "832K vues",
-    "uploadedAt": "il y a 4 jours"
+    "channelSubscribers": "410K abonnés",
+    "views": "832,000",
+    "likes": 9500,
+    "comments": 180,
+    "uploadedAt": "il y a 4 jours",
+    "description": "Apprenez les meilleures pratiques pour concevoir une base de données efficace et scalable.\n\nSommaire:\n• Comprendre les modèles relationnels et NoSQL\n• Normalisation et dénormalisation\n• Indexation et optimisation des requêtes\n• Gestion des transactions et intégrité des données\n• Études de cas pratiques\n\nAbonnez-vous pour devenir un expert en design de base de données!",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Louis",
+        "avatarLetter": "L",
+        "content": "Très utile pour comprendre la normalisation et l'indexation.",
+        "daysAgo": 1
+      },
+      {
+        "username": "Marie",
+        "avatarLetter": "M",
+        "content": "J'adore les études de cas pratiques, très instructif !",
+        "daysAgo": 2
+      }
+    ]
   },
   {
+    "id": 7,
     "title": "Optimisation des performances JavaScript",
+    "user": {
+      "id": 7,
+      "username": "Dev Tips",
+      "email": "devtips@example.com",
+      "avatarUrl": "/avatar-dev-tips.png"
+    },
     "channel": "Dev Tips",
-    "views": "723K vues",
-    "uploadedAt": "il y a 2 semaines"
+    "channelSubscribers": "299K abonnés",
+    "views": "723,000",
+    "likes": 8700,
+    "comments": 145,
+    "uploadedAt": "il y a 2 semaines",
+    "description": "Découvrez comment optimiser vos applications JavaScript pour des performances maximales.\n\nSommaire:\n• Réduction du TTFB et optimisation du chargement\n• Minification et bundling efficace\n• Lazy loading et code splitting\n• Optimisation des boucles et fonctions critiques\n• Analyse et monitoring des performances\n\nAméliorez la vitesse et la réactivité de vos applications JavaScript dès aujourd'hui !",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Nina",
+        "avatarLetter": "N",
+        "content": "Les conseils sur le lazy loading et le code splitting sont top !",
+        "daysAgo": 3
+      }
+    ]
   },
   {
-    "title": "Construire un produit SaaS",
+    "id": 8,
+    "title": "Créer un produit SaaS",
+    "user": {
+      "id": 8,
+      "username": "Startup Stories",
+      "email": "startup@example.com",
+      "avatarUrl": "/avatar-startup.png"
+    },
     "channel": "Startup Stories",
-    "views": "456K vues",
-    "uploadedAt": "il y a 1 semaine"
+    "channelSubscribers": "98K abonnés",
+    "views": "456,000",
+    "likes": 4300,
+    "comments": 60,
+    "uploadedAt": "il y a 1 semaine",
+    "description": "De l'idée au MVP, apprenez à construire un produit SaaS rentable.\n\nSommaire:\n• Identifier un problème et définir la solution\n• Créer un MVP fonctionnel rapidement\n• Choisir la stack technique adaptée\n• Tester et itérer avec des utilisateurs réels\n• Stratégies de croissance et monétisation\n\nAbonnez-vous pour suivre nos conseils sur la création de startups réussies!",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Oscar",
+        "avatarLetter": "O",
+        "content": "Excellents conseils pour lancer un MVP rapidement !",
+        "daysAgo": 2
+      }
+    ]
   },
   {
+    "id": 9,
     "title": "Bases de l'IA et du machine learning",
+    "user": {
+      "id": 9,
+      "username": "AI Simplified",
+      "email": "aisimplified@example.com",
+      "avatarUrl": "/avatar-ai.png"
+    },
     "channel": "AI Simplified",
-    "views": "1,1M vues",
-    "uploadedAt": "il y a 3 jours"
+    "channelSubscribers": "1,1M abonnés",
+    "views": "1,100,000",
+    "likes": 37200,
+    "comments": 780,
+    "uploadedAt": "il y a 3 jours",
+    "description": "Découvrez les concepts fondamentaux de l'intelligence artificielle et du machine learning.\n\nSommaire:\n• Introduction à l'IA et au machine learning\n• Algorithmes supervisés et non supervisés\n• Préparation et traitement des données\n• Création de modèles simples avec Python\n• Bonnes pratiques et ressources pour aller plus loin\n\nAbonnez-vous pour ne rien manquer sur l'IA et le machine learning !",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Paul",
+        "avatarLetter": "P",
+        "content": "Introduction parfaite pour les débutants en IA.",
+        "daysAgo": 1
+      },
+      {
+        "username": "Quentin",
+        "avatarLetter": "Q",
+        "content": "J'ai enfin compris la différence entre supervisé et non supervisé.",
+        "daysAgo": 2
+      }
+    ]
   },
   {
+    "id": 10,
     "title": "Sécurité Web : protégez votre application",
+    "user": {
+      "id": 10,
+      "username": "Security First",
+      "email": "security@example.com",
+      "avatarUrl": "/avatar-security.png"
+    },
     "channel": "Security First",
-    "views": "667K vues",
-    "uploadedAt": "il y a 6 jours"
+    "channelSubscribers": "204K abonnés",
+    "views": "667,000",
+    "likes": 11900,
+    "comments": 300,
+    "uploadedAt": "il y a 6 jours",
+    "description": "Apprenez à sécuriser vos applications web contre les menaces les plus courantes.\n\nSommaire:\n• Principales vulnérabilités : XSS, CSRF, injections SQL\n• Bonnes pratiques de sécurisation du code\n• Authentification et gestion des sessions\n• Chiffrement des données sensibles\n• Tests et audits de sécurité\n\nAbonnez-vous pour rester informé des meilleures pratiques en cybersécurité web !",
+    "thumbnail": "/video-thumbnail-1.jpg",
+    "videoComments": [
+      {
+        "username": "Romain",
+        "avatarLetter": "R",
+        "content": "Les explications sur XSS et CSRF sont très claires.",
+        "daysAgo": 1
+      },
+      {
+        "username": "Sophie",
+        "avatarLetter": "S",
+        "content": "Très utile pour sécuriser mes projets web.",
+        "daysAgo": 2
+      }
+    ]
   }
 ]
