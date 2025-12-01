@@ -4,16 +4,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import type { VideoCardProps } from '@/types/props';
+import { formatViews } from '@/utils/formatViews';
 
 export function VideoCard({
-  thumbnail = '/video-thumbnail.jpg',
+  id,
+  thumbnail = '/video-thumbnail-1.jpg',
   title,
   channel,
   views,
   uploadedAt,
 }: VideoCardProps) {
   return (
-    <Link href="/watch/1" className="group flex cursor-pointer flex-col gap-2">
+    <Link href={`/watch/${id}`} className="group flex cursor-pointer flex-col gap-2">
       <div className="bg-secondary relative aspect-video overflow-hidden rounded-lg">
         <Image
           src={thumbnail}
@@ -38,7 +40,7 @@ export function VideoCard({
           </h3>
           <p className="text-muted-foreground mt-1 text-xs">{channel}</p>
           <p className="text-muted-foreground text-xs">
-            {views} • {uploadedAt}
+            {formatViews(views)} • {uploadedAt}
           </p>
         </div>
       </div>
