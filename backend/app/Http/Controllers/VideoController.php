@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Video\UpdateVideoRequest;
-use App\Http\Requests\Video\UploadVideoRequest;
-use App\Http\Resources\CommentResource;
-use App\Http\Resources\ErrorResource;
-use App\Http\Resources\SuccessResource;
-use App\Http\Resources\VideoResource;
+use Throwable;
 use App\Models\Video;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Resources\ErrorResource;
+use App\Http\Resources\VideoResource;
+use App\Http\Resources\CommentResource;
+use App\Http\Resources\SuccessResource;
 use Illuminate\Support\Facades\Storage;
-use Throwable;
+use App\Http\Requests\Comment\StoreCommentsRequest;
+use App\Http\Requests\Video\UpdateVideoRequest;
+use App\Http\Requests\Video\UploadVideoRequest;
 
 class VideoController extends Controller
 {
@@ -130,12 +131,12 @@ class VideoController extends Controller
             ->with('user')
             ->withCount('likedBy')
             ->withExists([
-                'likedBy as is_liked_by_current_user' => fn ($q) => $q->where('user_id', $user?->id),
+                'likedBy as is_liked_by_current_user' => fn($q) => $q->where('user_id', $user?->id),
             ])
             ->get();
 
         if (! $user) {
-            $comments->each(fn ($c) => $c->is_liked_by_current_user = false);
+            $comments->each(fn($c) => $c->is_liked_by_current_user = false);
         }
 
         return new SuccessResource([
@@ -176,6 +177,19 @@ class VideoController extends Controller
         return new SuccessResource([
             'message' => 'View count updated',
             'data' => ['count_views' => (int) $video->count_views],
+        ]);
+    }
+
+    public function storeComment(StoreCommentsRequest $request, Video $video)
+    {
+        $comment = $video->comments()->create([
+            'content' => $request->validated()['content'],
+            'user_id' => $request->user()->id,
+        ]);
+        $comment->load('user');
+        return new SuccessResource([
+            'message' => 'Comment created successfully',
+            'data' => new CommentResource($comment),
         ]);
     }
 }
