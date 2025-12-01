@@ -7,13 +7,14 @@ import type { VideoCardProps } from '@/types/props';
 
 export function VideoCard({
   thumbnail = '/video-thumbnail.jpg',
+  id,
   title,
   channel,
   views,
   uploadedAt,
 }: VideoCardProps) {
   return (
-    <Link href="/watch/1" className="group flex cursor-pointer flex-col gap-2">
+    <Link href={`/watch/${id}`} className="group flex cursor-pointer flex-col gap-2">
       <div className="bg-secondary relative aspect-video overflow-hidden rounded-lg">
         <Image
           src={thumbnail}
