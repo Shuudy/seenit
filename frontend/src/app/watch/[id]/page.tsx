@@ -11,6 +11,7 @@ import { VideoPlayer } from '@/components/video-player';
 import { VideoTitle } from '@/components/video-title';
 import { VideoChannelInfo } from '@/components/video-channel-info';
 import { LikeDislikeButtons } from '@/components/like-dislike-buttons';
+import { VideoDescription } from '@/components/video-description';
 
 const videoDetails = {
   id: 1,
@@ -93,27 +94,11 @@ export default function WatchPage() {
               <LikeDislikeButtons initialLikes={videoDetails.likes} />
             </div>
 
-            <div className="bg-secondary mt-4 rounded-lg p-4">
-              <p className="text-muted-foreground mb-2 text-xs">
-                {videoDetails.views} vues • {videoDetails.uploadedAt}
-              </p>
-              <p
-                className={`text-foreground cursor-pointer text-sm whitespace-pre-line ${
-                  expanded ? '' : 'line-clamp-3'
-                }`}
-                onClick={() => !expanded && setExpanded(true)}
-                aria-expanded={expanded}
-              >
-                {videoDetails.description}
-              </p>
-              <button
-                className="text-foreground hover:text-muted-foreground mt-3 cursor-pointer text-xs font-medium"
-                onClick={() => setExpanded(s => !s)}
-                aria-controls="video-description"
-              >
-                {expanded ? 'Afficher moins' : 'Afficher plus'}
-              </button>
-            </div>
+            <VideoDescription
+              views={videoDetails.views}
+              uploadedAt={videoDetails.uploadedAt}
+              description={videoDetails.description}
+            />
 
             <div className="mt-6">
               <h2 className="text-foreground mb-4 text-base font-bold">
