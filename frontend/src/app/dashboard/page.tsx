@@ -4,12 +4,17 @@ import { useState } from 'react';
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
 
-import type { VideoData } from '@/types/video';
 import { DashboardTabs } from './_components/dashboard-tabs';
 import { ProfileForm } from './_components/profile-form';
 import { VideoUploadForm } from './_components/video-upload-form';
 import { ProfileAvatarPicker } from './_components/profile-avatar-picker';
 import { ProfileBannerPicker } from './_components/profile-banner-picker';
+
+export type VideoUploadData = {
+  title: string;
+  description: string;
+  file: File | null;
+};
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -20,7 +25,7 @@ export default function Dashboard() {
     email: 'user@example.com',
     bio: 'Créateur de contenu passionné',
   });
-  const [videoData, setVideoData] = useState<VideoData>({
+  const [videoData, setVideoData] = useState<VideoUploadData>({
     title: '',
     description: '',
     file: null,
