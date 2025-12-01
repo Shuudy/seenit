@@ -1,4 +1,5 @@
 export interface VideoCardProps {
+  id: number;
   thumbnail?: string;
   title: string;
   channel: string;
