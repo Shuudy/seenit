@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Resources\ErrorResource;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
-use App\Http\Controllers\CommentController;
+use App\Http\Resources\ErrorResource;
+use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
@@ -25,7 +24,6 @@ Route::prefix('/videos')->controller(VideoController::class)->group(function () 
         Route::post('/{video}/comments', 'storeComment');
     });
 });
-    
 
 Route::prefix('/comments')->middleware('auth:sanctum')->group(function () {
     Route::post('/{comment}/like', [CommentController::class, 'like']);

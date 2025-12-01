@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Comment\UpdateCommentsRequest;
+use App\Http\Resources\CommentResource;
+use App\Http\Resources\SuccessResource;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Resources\ErrorResource;
-use App\Http\Resources\CommentResource;
-use App\Http\Resources\SuccessResource;
-use App\Http\Requests\Comment\UpdateCommentsRequest;
 
 class CommentController extends Controller
 {
-
     public function update(UpdateCommentsRequest $request, Comment $comment)
     {
         Gate::authorize('update', $comment);
