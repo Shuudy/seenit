@@ -12,6 +12,7 @@ export type VideoData = {
   comments: number;
   uploadedAt: string;
   description: string;
+  file: File | null;
   thumbnail: string;
   videoComments: Comment[];
 };
