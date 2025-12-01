@@ -2,51 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Comment\UpdateCommentsRequest;
+use App\Http\Requests\Comment\UpdateCommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\SuccessResource;
 use App\Models\Comment;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
-    public function update(UpdateCommentsRequest $request, Comment $comment)
+    /**
+     * Update the specified comment.
+     */
+    public function update(Comment $comment, UpdateCommentRequest $request): SuccessResource
     {
+        // Authorize the update action using the CommentPolicy
         Gate::authorize('update', $comment);
 
         $comment->update($request->validated());
 
         return new SuccessResource([
-            'message' => 'Comment updated successfully',
+            'message' => 'Comment updated',
             'data' => new CommentResource($comment),
         ]);
     }
 
-    public function destroy(Request $request, Comment $comment)
+    /**
+     * Delete the specified comment.
+     */
+    public function delete(Comment $comment): SuccessResource
     {
+        // Authorize the delete action using the CommentPolicy
         Gate::authorize('delete', $comment);
 
         $comment->delete();
 
-        return new SuccessResource(['message' => 'Comment deleted successfully']);
+        return new SuccessResource([
+            'message' => 'Comment deleted',
+        ]);
     }
 
-    public function like(Request $request, Comment $comment)
+    /**
+     * Like or unlike the specified comment.
+     */
+    public function like(Comment $comment)
     {
-        $userId = $request->user()->id;
+        $user = request()->user();
 
-        if ($comment->likedBy()->where('user_id', $userId)->exists()) {
-            $comment->likedBy()->detach($userId);
-            $message = 'Like removed';
-        } else {
-            $comment->likedBy()->attach($userId);
-            $message = 'Comment liked';
-        }
+        $result = $comment->likedBy()->toggle($user->id);
+        $liked = ! empty($result['attached']);
+
+        $comment->loadCount('likedBy');
 
         return new SuccessResource([
-            'message' => $message,
-            'data' => ['likes_count' => $comment->likes_count],
+            'message' => $liked ? 'Comment liked' : 'Comment unliked',
+            'data' => [
+                'liked' => $liked,
+                'likes_count' => (int) $comment->liked_by_count,
+            ],
         ]);
     }
 }

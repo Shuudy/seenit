@@ -25,10 +25,10 @@ Route::prefix('/videos')->controller(VideoController::class)->group(function () 
     });
 });
 
-Route::prefix('/comments')->middleware('auth:sanctum')->group(function () {
-    Route::post('/{comment}/like', [CommentController::class, 'like']);
-    Route::put('/{comment}', [CommentController::class, 'update']);
-    Route::delete('/{comment}', [CommentController::class, 'destroy']);
+Route::prefix('/comments')->middleware('auth:sanctum')->controller(CommentController::class)->group(function () {
+    Route::post('/{comment}/like', 'like');
+    Route::put('/{comment}', 'update')->middleware('can:update,comment');
+    Route::delete('/{comment}', 'delete')->middleware('can:delete,comment');
 });
 
 Route::middleware('auth:sanctum')->group(function () {

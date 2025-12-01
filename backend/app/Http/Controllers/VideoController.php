@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Comment\StoreCommentsRequest;
+use App\Http\Requests\Comment\StoreCommentRequest;
 use App\Http\Requests\Video\UpdateVideoRequest;
 use App\Http\Requests\Video\UploadVideoRequest;
 use App\Http\Resources\CommentResource;
@@ -180,16 +180,21 @@ class VideoController extends Controller
         ]);
     }
 
-    public function storeComment(StoreCommentsRequest $request, Video $video)
+    /**
+     * Store a new comment for the specified video.
+     */
+    public function storeComment(StoreCommentRequest $request, Video $video)
     {
+        $user_id = $request->user()->id;
+
         $comment = $video->comments()->create([
-            'content' => $request->validated()['content'],
-            'user_id' => $request->user()->id,
+            'content' => $request->validated('content'),
+            'user_id' => $user_id,
         ]);
         $comment->load('user');
 
         return new SuccessResource([
-            'message' => 'Comment created successfully',
+            'message' => 'Comment created',
             'data' => new CommentResource($comment),
         ]);
     }
