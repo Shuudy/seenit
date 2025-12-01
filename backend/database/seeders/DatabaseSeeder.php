@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         });
 
         $comments = Comment::factory(100)
-            ->for($users->random())
-            ->for($videos->random())
+            ->recycle($users)
+            ->recycle($videos)
             ->create();
 
         foreach ($videos as $video) {
