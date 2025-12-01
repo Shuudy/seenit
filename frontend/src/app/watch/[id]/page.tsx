@@ -13,14 +13,13 @@ import { formatViews } from '@/utils/formatViews';
 export default function WatchPage() {
   const params = useParams();
   const videoId = Number(params.id);
-  const [likes, setLikes] = useState(video.likes);
+  const video = (mockVideos as VideoData[]).find(v => v.id === videoId);
+  const [likes, setLikes] = useState(video?.likes ?? 0);
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [expanded, setExpanded] = useState(false);
-
-  const video = (mockVideos as VideoData[]).find(v => v.id === videoId);
+  
   if (!video) return <p className="mt-20 text-center">Vidéo introuvable.</p>;
-
   const recommendedVideos = (mockVideos as VideoData[]).filter(v => v.id !== videoId);
 
   const toggleLike = () => {
