@@ -1,7 +1,7 @@
-import type { VideoData } from '@/types/video';
+import { VideoUploadData } from '../page';
 
 type Props = {
-  value: VideoData;
+  value: VideoUploadData;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
   onReset: () => void;
