@@ -183,7 +183,7 @@ class VideoController extends Controller
     /**
      * Store a new comment for the specified video.
      */
-    public function storeComment(StoreCommentRequest $request, Video $video)
+    public function storeComment(StoreCommentRequest $request, Video $video): SuccessResource
     {
         $user_id = $request->user()->id;
 

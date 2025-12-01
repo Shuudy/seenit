@@ -44,7 +44,7 @@ class CommentController extends Controller
     /**
      * Like or unlike the specified comment.
      */
-    public function like(Comment $comment)
+    public function like(Comment $comment): SuccessResource
     {
         $user = request()->user();
 
