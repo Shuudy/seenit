@@ -168,6 +168,7 @@ export default function ChannelPage() {
                 {channelVideos.map((video, index) => (
                   <VideoCard
                     key={index}
+                    id={video.id}
                     title={video.title}
                     channel={creatorInfo.username}
                     views={video.views}
@@ -191,6 +192,7 @@ export default function ChannelPage() {
                 {channelVideos.map((video, index) => (
                   <VideoCard
                     key={index}
+                    id={video.id}
                     title={video.title}
                     channel={creatorInfo.username}
                     views={video.views}
