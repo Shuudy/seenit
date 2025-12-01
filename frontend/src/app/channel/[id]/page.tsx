@@ -65,7 +65,7 @@ const channelVideos = [
   },
 ];
 
-const tabs = ['Accueil', 'Vidéos', 'Playlists', 'Communauté', 'À propos'];
+const tabs = ['Accueil', 'Vidéos', 'À propos'];
 
 export default function ChannelPage() {
   const [activeTab, setActiveTab] = useState('Accueil');
