@@ -13,6 +13,7 @@ import { VideoChannelInfo } from '@/components/video-channel-info';
 import { LikeDislikeButtons } from '@/components/like-dislike-buttons';
 import { VideoDescription } from '@/components/video-description';
 import { CommentInput } from '@/components/comment-input';
+import { CommentList } from '@/components/comment-list';
 
 const videoDetails = {
   id: 1,
@@ -108,17 +109,7 @@ export default function WatchPage() {
 
               <CommentInput />
 
-              <div className="space-y-7">
-                {[1, 2, 3].map(i => (
-                  <Comment
-                    key={i}
-                    username={`Utilisateur ${i}`}
-                    avatarLetter={String.fromCharCode(64 + i)}
-                    content="Excellent contenu ! Très informatif et bien présenté."
-                    daysAgo={i}
-                  />
-                ))}
-              </div>
+              <CommentList />
             </div>
           </div>
 
