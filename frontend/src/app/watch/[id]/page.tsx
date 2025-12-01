@@ -18,7 +18,7 @@ export default function WatchPage() {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  
+
   if (!video) return <p className="mt-20 text-center">Vidéo introuvable.</p>;
   const recommendedVideos = (mockVideos as VideoData[]).filter(v => v.id !== videoId);
 
