@@ -12,6 +12,7 @@ import { VideoTitle } from '@/components/video-title';
 import { VideoChannelInfo } from '@/components/video-channel-info';
 import { LikeDislikeButtons } from '@/components/like-dislike-buttons';
 import { VideoDescription } from '@/components/video-description';
+import { CommentInput } from '@/components/comment-input';
 
 const videoDetails = {
   id: 1,
@@ -105,16 +106,7 @@ export default function WatchPage() {
                 {videoDetails.comments.toLocaleString()} commentaires
               </h2>
 
-              <div className="flex gap-3 pb-6">
-                <div className="bg-secondary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
-                  <span className="text-foreground text-sm font-semibold">V</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Ajouter un commentaire..."
-                  className="text-foreground border-secondary focus:border-foreground placeholder-muted-foreground flex-1 border-b bg-transparent px-2 py-2 text-sm transition-colors focus:outline-none"
-                />
-              </div>
+              <CommentInput />
 
               <div className="space-y-7">
                 {[1, 2, 3].map(i => (
