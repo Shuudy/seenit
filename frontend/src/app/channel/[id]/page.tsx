@@ -21,41 +21,49 @@ const creatorInfo: User = {
 
 const channelVideos = [
   {
+    id: 1,
     title: "L'avenir du développement web en 2025",
     views: '2,5M vues',
     uploadedAt: 'il y a 2 jours',
   },
   {
+    id: 2,
     title: 'Créer des applications incroyables avec React',
     views: '1,8M vues',
     uploadedAt: 'il y a 1 semaine',
   },
   {
+    id: 3,
     title: 'Maîtriser les bases de TypeScript',
     views: '945K vues',
     uploadedAt: 'il y a 3 jours',
   },
   {
+    id: 4,
     title: 'Next.js 15 : Les nouveautés',
     views: '542K vues',
     uploadedAt: 'il y a 5 jours',
   },
   {
+    id: 5,
     title: 'CSS Grid expliqué : Tutoriel complet',
     views: '1,2M vues',
     uploadedAt: 'il y a 1 semaine',
   },
   {
+    id: 6,
     title: 'Les meilleures pratiques du design de base de données',
     views: '832K vues',
     uploadedAt: 'il y a 4 jours',
   },
   {
+    id: 7,
     title: 'Optimisation des performances JavaScript',
     views: '723K vues',
     uploadedAt: 'il y a 2 semaines',
   },
   {
+    id: 8,
     title: 'Créer un produit SaaS',
     views: '456K vues',
     uploadedAt: 'il y a 1 semaine',
