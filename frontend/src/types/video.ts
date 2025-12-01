@@ -1,5 +1,17 @@
+import { User } from "./user";
+import { Comment } from "./comment";
+
 export type VideoData = {
-  title: string;
-  description: string;
-  file: File | null;
-};
+  id: number
+  title: string
+  user: User
+  channel: string
+  channelSubscribers: string
+  views: string
+  likes: number
+  comments: number
+  uploadedAt: string
+  description: string
+  thumbnail: string
+  videoComments: Comment[]
+}
