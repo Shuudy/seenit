@@ -7,15 +7,15 @@ import Link from 'next/link';
 import { Comment } from '@/components/comment';
 
 import type { User } from '@/types/user';
-import { VideoPlayer } from '@/components/video-player';
-import { VideoTitle } from '@/components/video-title';
-import { VideoChannelInfo } from '@/components/video-channel-info';
-import { LikeDislikeButtons } from '@/components/like-dislike-buttons';
-import { VideoDescription } from '@/components/video-description';
-import { CommentInput } from '@/components/comment-input';
-import { CommentList } from '@/components/comment-list';
-import { RecommendedVideoItem } from '@/components/recommended-video-item';
-import { RecommendedVideoList } from '@/components/recommended-video-list';
+import { VideoPlayer } from '@/app/watch/_components/video-player';
+import { VideoTitle } from '@/app/watch/_components/video-title';
+import { VideoChannelInfo } from '@/app/watch/_components/video-channel-info';
+import { LikeDislikeButtons } from '@/app/watch/_components/like-dislike-buttons';
+import { VideoDescription } from '@/app/watch/_components/video-description';
+import { CommentInput } from '@/app/watch/_components/comment-input';
+import { CommentList } from '@/app/watch/_components/comment-list';
+import { RecommendedVideoItem } from '@/app/watch/_components/recommended-video-item';
+import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-list';
 
 const videoDetails = {
   id: 1,
