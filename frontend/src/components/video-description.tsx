@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { VideoStats } from './video-stats';
 
 interface VideoDescriptionProps {
   views: string;
@@ -13,9 +14,7 @@ export function VideoDescription({ views, uploadedAt, description }: VideoDescri
 
   return (
     <div className="bg-secondary mt-4 rounded-lg p-4">
-      <p className="text-muted-foreground mb-2 text-xs">
-        {views} vues • {uploadedAt}
-      </p>
+      <VideoStats views={views} uploadedAt={uploadedAt} />
 
       <p
         className={`text-foreground cursor-pointer text-sm whitespace-pre-line ${
