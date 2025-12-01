@@ -1,7 +1,7 @@
 import { VideoCard } from '@/components/video-card';
 
 type Props = {
-  videos: Array<{ 
+  videos: Array<{
     id: number;
     title: string;
     views: string;
