@@ -1,7 +1,12 @@
 import { VideoCard } from '@/components/video-card';
 
 type Props = {
-  videos: Array<{ title: string; views: string; uploadedAt: string }>;
+  videos: Array<{ 
+    id: number;
+    title: string;
+    views: string;
+    uploadedAt: string;
+  }>;
 };
 
 export function ChannelVideoGrid({ videos }: Props) {
@@ -10,6 +15,7 @@ export function ChannelVideoGrid({ videos }: Props) {
       {videos.map((video, index) => (
         <VideoCard
           key={index}
+          id={video.id}
           title={video.title}
           views={video.views}
           uploadedAt={video.uploadedAt}
