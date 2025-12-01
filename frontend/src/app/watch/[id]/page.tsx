@@ -9,6 +9,7 @@ import { Comment } from '@/components/comment';
 import type { User } from '@/types/user';
 import { VideoPlayer } from '@/components/video-player';
 import { VideoTitle } from '@/components/video-title';
+import { VideoChannelInfo } from '@/components/video-channel-info';
 
 const videoDetails = {
   id: 1,
@@ -109,23 +110,10 @@ export default function WatchPage() {
             <VideoTitle title={videoDetails.title} />
 
             <div className="border-secondary flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-3">
-                <div className="bg-secondary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
-                  <span className="text-foreground text-sm font-semibold">T</span>
-                </div>
-                <div className="flex-1">
-                  <Link
-                    href="/channel/1"
-                    className="text-foreground hover:text-muted-foreground m-0 block cursor-pointer text-sm font-medium no-underline"
-                  >
-                    {videoDetails.user.username}
-                  </Link>
-                  <p className="text-muted-foreground text-xs">{videoDetails.channelSubscribers}</p>
-                </div>
-                <button className="bg-foreground text-background hover:bg-muted-foreground cursor-pointer rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors">
-                  S&apos;abonner
-                </button>
-              </div>
+              <VideoChannelInfo
+                user={videoDetails.user}
+                channelSubscribers={videoDetails.channelSubscribers}
+              />
 
               <div className="flex gap-2">
                 <button
