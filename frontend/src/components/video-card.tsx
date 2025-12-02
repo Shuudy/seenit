@@ -7,9 +7,15 @@ import { Video } from '@/types/video';
 import { formatViews } from '@/utils/format-views';
 import { formatRelativeTime } from '@/utils/format-relative-time';
 
-export function VideoCard({ video }: { video: Video }) {
+interface VideoCardProps {
+  video: Video;
+  showChannel?: boolean;
+}
+
+export function VideoCard({ video, showChannel = true }: VideoCardProps) {
   const viewsFormatted = formatViews(video.count_views);
   const createdAtFormatted = formatRelativeTime(video.created_at);
+  const channelUsername = showChannel ? video.user.username : null;
 
   return (
     <Link href={`/watch/${video.id}`} className="group flex cursor-pointer flex-col gap-2">
@@ -35,7 +41,7 @@ export function VideoCard({ video }: { video: Video }) {
           <h3 className="group-hover:text-foreground text-foreground line-clamp-2 text-sm font-medium">
             {video.title}
           </h3>
-          <p className="text-muted-foreground mt-1 text-xs">{video.user.username}</p>
+          <p className="text-muted-foreground mt-1 text-xs">{channelUsername}</p>
           <p className="text-muted-foreground text-xs">
             {viewsFormatted} • {createdAtFormatted}
           </p>
