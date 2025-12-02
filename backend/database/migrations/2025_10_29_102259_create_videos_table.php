@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('url');
+            $table->string('thumbnail')->nullable();
             $table->integer('duration')->nullable();
             $table->unsignedBigInteger('count_views')->default(0);
 
