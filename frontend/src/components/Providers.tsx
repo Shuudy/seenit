@@ -1,12 +1,12 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 const queryClient = new QueryClient();
 
 interface Props {
-  children: ReactElement;
+  children: ReactNode;
 }
 
 export function Providers({ children }: Props) {
