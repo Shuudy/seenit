@@ -2,10 +2,10 @@
 
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
-import { VideoCard } from '@/components/video-card';
 
-import mockVideos from '@/data/mockVideos.json';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import { VideosGrid } from '@/app/_components/videos-grid';
+import { VideosGridFallback } from '@/app/_components/videos-grid-fallback';
 
 export default function Home() {
   const categories = [
@@ -45,9 +45,9 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {mockVideos.map((video, index) => (
-            <VideoCard key={index} {...video} />
-          ))}
+          <Suspense fallback={<VideosGridFallback />}>
+            <VideosGrid />
+          </Suspense>
         </div>
       </main>
     </div>

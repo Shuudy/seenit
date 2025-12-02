@@ -3,22 +3,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { VideoCardProps } from '@/types/props';
+import { Video } from '@/types/video';
+import { formatViews } from '@/utils/format-views';
+import { formatRelativeTime } from '@/utils/format-relative-time';
 
-export function VideoCard({
-  thumbnail = '/video-thumbnail.jpg',
-  id,
-  title,
-  channel,
-  views,
-  uploadedAt,
-}: VideoCardProps) {
+export function VideoCard({ video }: { video: Video }) {
+  const viewsFormatted = formatViews(video.count_views);
+  const createdAtFormatted = formatRelativeTime(video.created_at);
+
   return (
-    <Link href={`/watch/${id}`} className="group flex cursor-pointer flex-col gap-2">
+    <Link href={`/watch/${video.id}`} className="group flex cursor-pointer flex-col gap-2">
       <div className="bg-secondary relative aspect-video overflow-hidden rounded-lg">
         <Image
-          src={thumbnail}
-          alt={title}
+          src={video.thumbnail || '/video-thumbnail.jpg'}
+          alt={video.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="h-full w-full object-cover transition-all group-hover:brightness-75"
@@ -35,11 +33,11 @@ export function VideoCard({
       <div className="flex gap-3 px-0">
         <div className="min-w-0 flex-1">
           <h3 className="group-hover:text-foreground text-foreground line-clamp-2 text-sm font-medium">
-            {title}
+            {video.title}
           </h3>
-          <p className="text-muted-foreground mt-1 text-xs">{channel}</p>
+          <p className="text-muted-foreground mt-1 text-xs">{video.user.username}</p>
           <p className="text-muted-foreground text-xs">
-            {views} • {uploadedAt}
+            {viewsFormatted} • {createdAtFormatted}
           </p>
         </div>
       </div>
