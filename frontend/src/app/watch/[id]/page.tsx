@@ -1,10 +1,6 @@
 'use client';
 
-import { useState } from 'react';
 import { Header } from '@/components/header';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Comment } from '@/components/comment';
 
 import type { User } from '@/types/user';
 import { VideoPlayer } from '@/app/watch/_components/video-player';
@@ -14,7 +10,6 @@ import { LikeDislikeButtons } from '@/app/watch/_components/like-dislike-buttons
 import { VideoDescription } from '@/app/watch/_components/video-description';
 import { CommentInput } from '@/app/watch/_components/comment-input';
 import { CommentList } from '@/app/watch/_components/comment-list';
-import { RecommendedVideoItem } from '@/app/watch/_components/recommended-video-item';
 import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-list';
 
 const videoDetails = {
@@ -76,8 +71,6 @@ const recommendedVideos = [
 ];
 
 export default function WatchPage() {
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <div className="bg-background min-h-screen">
       <Header />
