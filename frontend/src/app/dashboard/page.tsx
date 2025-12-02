@@ -5,11 +5,11 @@ import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
 
 import type { VideoData } from '@/types/video';
-import { DashboardTabs } from './_components/dashboard-tabs';
-import { ProfileForm } from './_components/profile-form';
-import { VideoUploadForm } from './_components/video-upload-form';
-import { ProfileAvatarPicker } from './_components/profile-avatar-picker';
-import { ProfileBannerPicker } from './_components/profile-banner-picker';
+import { DashboardTabs } from '@/app/dashboard/_components/dashboard-tabs';
+import { ProfileForm } from '@/app/dashboard/_components/profile-form';
+import { VideoUploadForm } from '@/app/dashboard/_components/video-upload-form';
+import { ProfileAvatarPicker } from '@/app/dashboard/_components/profile-avatar-picker';
+import { ProfileBannerPicker } from '@/app/dashboard/_components/profile-banner-picker';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('profile');
