@@ -3,3 +3,20 @@ export type VideoData = {
   description: string;
   file: File | null;
 };
+
+export type Video = {
+  id: number;
+  title: string;
+  description: string;
+  thumbnail?: string;
+  url: string;
+  duration: number;
+  count_views: number;
+  likes_count: number;
+  user: {
+    id: number;
+    username: string;
+  };
+  created_at: string;
+  updated_at: string;
+};
