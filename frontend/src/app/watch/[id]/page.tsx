@@ -12,6 +12,7 @@ import { Comment } from '@/components/comment';
 import { useParams } from 'next/navigation';
 import { useVideoCommentsSuspenseQuery } from '../_hooks/queries/useVideoCommentsSuspenseQuery';
 
+// prettier-ignore
 const EMOJI_DATA = [
   {
     id: 'youtube',
