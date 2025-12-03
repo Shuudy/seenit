@@ -1,5 +1,5 @@
 import { ApiResponse } from '@/types/api';
-import { apiClient } from './api-client';
+import { apiClient } from '@/lib/api-client';
 import { Video } from '@/types/video';
 
 export async function getVideos(): Promise<Video[]> {
