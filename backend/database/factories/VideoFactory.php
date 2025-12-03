@@ -21,7 +21,7 @@ class VideoFactory extends Factory
             'title' => fake()->sentence(5),
             'description' => fake()->paragraph(),
             'url' => fake()->url(),
-            'thumbnail' => fake()->imageUrl(),
+            'thumbnail' => 'https://picsum.photos/300/200',
             'duration' => fake()->numberBetween(30, 7200), // duration in seconds
             'count_views' => fake()->numberBetween(0, 1000000),
             'user_id' => User::factory(),

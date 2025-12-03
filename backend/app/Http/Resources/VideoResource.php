@@ -19,7 +19,7 @@ class VideoResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'url' => $this->url,
-            'thumbnail' => 'https://picsum.photos/300/200',
+            'thumbnail' => $this->thumbnail,
             'duration' => $this->duration,
             'count_views' => (int) $this->count_views,
             'likes_count' => (int) $this->likes_count,
