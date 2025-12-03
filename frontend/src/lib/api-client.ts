@@ -7,6 +7,7 @@ export async function apiClient<T>(path: string): Promise<T> {
     headers: {
       'Content-Type': 'application/json',
     },
+    cache: 'no-store',
   };
   const response = await fetch(url, options);
   if (!response.ok) {
