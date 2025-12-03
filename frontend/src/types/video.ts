@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export type VideoData = {
   title: string;
   description: string;
