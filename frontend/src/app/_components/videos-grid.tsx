@@ -1,3 +1,5 @@
+'use client';
+
 import { VideoCard } from '@/components/video-card';
 import { useVideosSuspenseQuery } from '../_hooks/queries/useVideosSuspenseQuery';
 
