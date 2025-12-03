@@ -13,10 +13,7 @@ export type Video = {
   duration: number;
   count_views: number;
   likes_count: number;
-  user: {
-    id: number;
-    username: string;
-  };
+  user: User;
   created_at: string;
   updated_at: string;
 };
