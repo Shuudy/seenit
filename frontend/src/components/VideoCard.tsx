@@ -14,17 +14,19 @@ interface VideoCardProps {
 export function VideoCard({ video, showChannel = true }: VideoCardProps) {
   const formatViews = useFormatViews();
   const formatRelativeTime = useFormatRelativeTime();
-  const viewsFormatted = formatViews(video.count_views);
-  const createdAtFormatted = formatRelativeTime(video.created_at);
-  const durationFormatted = formatDuration(video.duration);
-  const channelUsername = showChannel ? video.user.username : undefined;
+  const { id, title, thumbnail, count_views, created_at, duration, user } = video;
+
+  const viewsFormatted = formatViews(count_views);
+  const createdAtFormatted = formatRelativeTime(created_at);
+  const channelUsername = showChannel ? user.username : undefined;
+  const durationFormatted = formatDuration(duration);
 
   return (
-    <Link href={`/watch/${video.id}`} className="group flex cursor-pointer flex-col gap-2">
+    <Link href={`/watch/${id}`} className="group flex cursor-pointer flex-col gap-2">
       <div className="bg-secondary relative aspect-video overflow-hidden rounded-lg">
         <Image
-          src={video.thumbnail || '/video-thumbnail.jpg'}
-          alt={video.title}
+          src={thumbnail || '/video-thumbnail.jpg'}
+          alt={title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="h-full w-full object-cover transition-all group-hover:brightness-75"
@@ -44,7 +46,7 @@ export function VideoCard({ video, showChannel = true }: VideoCardProps) {
       <div className="flex gap-3 px-0">
         <div className="min-w-0 flex-1">
           <h3 className="group-hover:text-foreground text-foreground line-clamp-2 text-sm font-medium">
-            {video.title}
+            {title}
           </h3>
           <p className="text-muted-foreground mt-1 text-xs">{channelUsername}</p>
           <p className="text-muted-foreground text-xs">
