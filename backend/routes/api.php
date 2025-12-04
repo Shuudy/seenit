@@ -14,6 +14,7 @@ Route::prefix('/videos')->controller(VideoController::class)->group(function () 
     Route::get('/', 'index');
     Route::get('/{video}', 'show');
     Route::get('/{video}/comments', 'comments');
+    Route::get('/{video}/recommendations', 'recommendations');
     Route::post('/{video}/view', 'incrementViews');
 
     Route::middleware('auth:sanctum')->group(function () {

@@ -181,6 +181,41 @@ class VideoController extends Controller
     }
 
     /**
+     * Get recommended videos based on the specified video.
+     */
+    public function recommendations(Video $video): SuccessResource
+    {
+        $baseQuery = Video::with('user')->where('id', '!=', $video->id);
+
+        $sameAuthor = (clone $baseQuery)
+            ->where('user_id', $video->user_id)
+            ->latest()
+            ->take(6)
+            ->get();
+
+        if ($sameAuthor->count() >= 6) {
+            $videos = $sameAuthor;
+        } else {
+            $needed = 6 - $sameAuthor->count();
+            $excludeIds = $sameAuthor->pluck('id')->push($video->id)->all();
+
+            $others = $baseQuery
+                ->whereNotIn('id', $excludeIds)
+                ->latest()
+                ->take($needed)
+                ->get();
+
+            // preserve order: sameAuthor first, then others
+            $videos = $sameAuthor->concat($others);
+        }
+
+        return new SuccessResource([
+            'message' => 'Recommended videos retrieved',
+            'data' => VideoResource::collection($videos),
+        ]);
+    }
+
+    /**
      * Store a new comment for the specified video.
      */
     public function storeComment(StoreCommentRequest $request, Video $video): SuccessResource
