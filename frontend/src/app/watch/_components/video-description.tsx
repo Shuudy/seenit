@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { VideoStats } from './video-stats';
 
 interface VideoDescriptionProps {
-  views: string;
+  views: number;
   uploadedAt: string;
   description: string;
 }

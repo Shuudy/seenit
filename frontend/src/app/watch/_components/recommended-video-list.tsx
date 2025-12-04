@@ -1,22 +1,18 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { RecommendedVideoItem } from './recommended-video-item';
+import { useRecommendedVideoListSuspenseQuery } from '@/app/watch/_hooks/queries/useRecommendedVideoListSuspenseQuery';
 
-interface RecommendedVideoListProps {
-  videos: Array<{
-    title: string;
-    channel: string;
-    views: string;
-    uploadedAt: string;
-    thumbnail?: string;
-  }>;
-}
+export function RecommendedVideoList() {
+  const { id: videoId } = useParams<{ id: string }>();
 
-export function RecommendedVideoList({ videos }: RecommendedVideoListProps) {
+  const { data: videos } = useRecommendedVideoListSuspenseQuery(videoId);
+
   return (
     <div className="flex flex-col space-y-3">
-      {videos.map((v, i) => (
-        <RecommendedVideoItem key={i} {...v} />
+      {videos.map(video => (
+        <RecommendedVideoItem key={video.id} video={video} />
       ))}
     </div>
   );

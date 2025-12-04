@@ -1,7 +1,7 @@
 'use client';
 
 interface VideoPlayerProps {
-  thumbnail: string;
+  thumbnail?: string;
   title: string;
 }
 

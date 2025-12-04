@@ -1,28 +1,20 @@
 'use client';
 
+import { Video } from '@/types/video';
+import { formatRelativeTime } from '@/utils/format-relative-time';
+import { formatViews } from '@/utils/format-views';
 import Image from 'next/image';
+import Link from 'next/link';
 
-interface RecommendedVideoItemProps {
-  title: string;
-  channel: string;
-  views: string;
-  uploadedAt: string;
-  thumbnail?: string;
-}
-
-export function RecommendedVideoItem({
-  title,
-  channel,
-  views,
-  uploadedAt,
-  thumbnail = '/video-thumbnail.jpg',
-}: RecommendedVideoItemProps) {
+export function RecommendedVideoItem({ video }: { video: Video }) {
+  const viewsFormatted = formatViews(video.count_views);
+  const createdAtFormatted = formatRelativeTime(video.created_at);
   return (
-    <div className="group flex cursor-pointer gap-2">
+    <Link href={`/watch/${video.id}`} className="group flex cursor-pointer gap-2">
       <div className="bg-secondary relative h-20 w-32 flex-shrink-0 overflow-hidden rounded">
         <Image
-          src={thumbnail}
-          alt={title}
+          src={video.thumbnail || '/video-thumbnail.jpg'}
+          alt={video.title}
           fill
           sizes="(max-width: 768px) 50vw, 128px"
           className="h-full w-full object-cover transition-all group-hover:brightness-75"
@@ -36,13 +28,13 @@ export function RecommendedVideoItem({
 
       <div className="min-w-0 flex-1">
         <p className="text-foreground group-hover:text-muted-foreground line-clamp-2 text-xs font-medium">
-          {title}
+          {video.title}
         </p>
-        <p className="text-muted-foreground mt-1 text-xs">{channel}</p>
+        <p className="text-muted-foreground mt-1 text-xs">{video.user.username}</p>
         <p className="text-muted-foreground text-xs">
-          {views} • {uploadedAt}
+          {viewsFormatted} • {createdAtFormatted}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

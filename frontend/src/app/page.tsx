@@ -5,7 +5,7 @@ import { Sidebar } from '@/components/sidebar';
 
 import { Suspense, useState } from 'react';
 import { VideosGrid } from '@/app/_components/videos-grid';
-import { VideosGridFallback } from '@/app/_components/videos-grid-fallback';
+import { VideosGridFallback } from '@/app/_components/fallbacks/videos-grid-fallback';
 
 export default function Home() {
   const categories = [

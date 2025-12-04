@@ -1,18 +1,13 @@
 'use client';
 
 import { Comment } from '@/components/comment';
+import { CommentListProps } from '@/types/props';
 
-export function CommentList() {
+export function CommentList({ comments }: CommentListProps) {
   return (
     <div className="space-y-7">
-      {[1, 2, 3].map(i => (
-        <Comment
-          key={i}
-          username={`Utilisateur ${i}`}
-          avatarLetter={String.fromCharCode(64 + i)}
-          content="Excellent contenu ! Très informatif et bien présenté."
-          daysAgo={i}
-        />
+      {comments.map(comment => (
+        <Comment key={comment.id} comment={comment} />
       ))}
     </div>
   );

@@ -1,6 +1,9 @@
+import { Comment } from '@/types/comment';
+
 export interface CommentProps {
-  username: string;
-  avatarLetter: string;
-  daysAgo: number;
-  content: string;
+  comment: Comment;
+}
+
+export interface CommentListProps {
+  comments: Comment[];
 }

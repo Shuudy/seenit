@@ -18,6 +18,7 @@ class SuccessResource extends JsonResource
             'status' => 'success',
             'message' => $this['message'],
             'data' => $this['data'] ?? null,
+            'meta' => $this['meta'] ?? null,
         ];
     }
 
