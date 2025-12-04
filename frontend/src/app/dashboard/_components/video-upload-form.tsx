@@ -1,3 +1,5 @@
+'use client';
+
 import type { VideoData } from '@/types/video';
 import { useState } from 'react';
 
