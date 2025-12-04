@@ -9,11 +9,10 @@ export function VideoComments() {
 
   const { meta, comments } = data;
 
-  const label = meta.comments_count === 1 ? 'commentaire' : 'commentaires';
   return (
     <>
       <h2 className="text-foreground mb-4 text-base font-bold">
-        {meta.comments_count} {label}
+        {meta.comments_count} {meta.comments_count === 1 ? 'commentaire' : 'commentaires'}
       </h2>
 
       <CommentInput />
