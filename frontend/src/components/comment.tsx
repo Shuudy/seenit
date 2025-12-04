@@ -1,4 +1,4 @@
-import { ChannelAvatar } from '@/app/watch/_components/channel-avatar';
+import { ChannelAvatar } from '@/components/channel-avatar';
 import { CommentProps } from '@/types/props';
 import { formatRelativeTime } from '@/utils/format-relative-time';
 import { useState } from 'react';
