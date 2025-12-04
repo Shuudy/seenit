@@ -6,7 +6,9 @@ import { z } from 'zod';
 const RegisterFormSchema = z
   .object({
     email: z
-      .email({ message: 'Adresse email invalide' }),
+      .string()
+      .min(1, { message: 'Email requis' })
+      .pipe(z.email('Email invalide')),
     password: z
       .string()
       .min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),

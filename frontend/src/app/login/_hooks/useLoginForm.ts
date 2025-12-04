@@ -5,7 +5,9 @@ import { z } from 'zod';
 // prettier-ignore
 const LoginFormSchema = z.object({
   email: z
-    .email({ message: 'Adresse email invalide' }),
+    .string()
+    .min(1, { message: 'Adresse Email requise' })
+    .pipe(z.email('Adresse Email invalide')),
   password: z
     .string()
     .min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),
