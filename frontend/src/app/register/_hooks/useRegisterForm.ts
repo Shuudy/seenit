@@ -4,9 +4,14 @@ import { z } from 'zod';
 
 const RegisterFormSchema = z
   .object({
-    email: z.email({ message: 'Adresse email invalide' }),
-    password: z.string().min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),
-    confirm: z.string().min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),
+    email: z
+      .email({ message: 'Adresse email invalide' }),
+    password: z
+      .string()
+      .min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),
+    confirm: z
+      .string()
+      .min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),
   })
   .refine(data => data.password === data.confirm, {
     message: 'Les mots de passe ne correspondent pas',
