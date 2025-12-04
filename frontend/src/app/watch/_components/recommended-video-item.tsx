@@ -4,12 +4,13 @@ import { Video } from '@/types/video';
 import { formatRelativeTime } from '@/utils/format-relative-time';
 import { formatViews } from '@/utils/format-views';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function RecommendedVideoItem({ video }: { video: Video }) {
   const viewsFormatted = formatViews(video.count_views);
   const createdAtFormatted = formatRelativeTime(video.created_at);
   return (
-    <div className="group flex cursor-pointer gap-2">
+    <Link href={`/watch/${video.id}`} className="group flex cursor-pointer gap-2">
       <div className="bg-secondary relative h-20 w-32 flex-shrink-0 overflow-hidden rounded">
         <Image
           src={video.thumbnail || '/video-thumbnail.jpg'}
@@ -34,6 +35,6 @@ export function RecommendedVideoItem({ video }: { video: Video }) {
           {viewsFormatted} • {createdAtFormatted}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
