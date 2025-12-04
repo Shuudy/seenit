@@ -9,6 +9,7 @@ import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-
 import { Suspense } from 'react';
 import { VideoInfoSkeleton } from '@/components/skeletons/video-info-skeleton';
 import { VideoDetails } from '@/app/watch/_components/video-details';
+import { RecommendedVideoListFallback } from '@/app/watch/_components/recommended-video-list-fallback';
 
 const videoDetails = {
   id: 1,
@@ -28,45 +29,6 @@ const videoDetails = {
     'Découvrez les tendances majeures du développement web en 2025. Dans cette vidéo, nous explorons les nouvelles technologies, les frameworks émergents et les meilleures pratiques que tout développeur web doit connaître.\n\nSommet:\n• React et Next.js\n• TypeScript et les types\n• Performance web\n• Sécurité des applications\n\nAbonnez-vous pour plus de contenu sur le développement web!',
   thumbnail: '/video-thumbnail.jpg',
 };
-
-const recommendedVideos = [
-  {
-    title: 'Créer des applications incroyables avec React',
-    channel: 'Code Masters',
-    views: '1,8M vues',
-    uploadedAt: 'il y a 1 semaine',
-  },
-  {
-    title: 'Maîtriser les bases de TypeScript',
-    channel: 'Dev Education',
-    views: '945K vues',
-    uploadedAt: 'il y a 3 jours',
-  },
-  {
-    title: 'Next.js 15 : Les nouveautés',
-    channel: 'Frontend Focus',
-    views: '542K vues',
-    uploadedAt: 'il y a 5 jours',
-  },
-  {
-    title: 'CSS Grid expliqué : Tutoriel complet',
-    channel: 'Web Design Pro',
-    views: '1,2M vues',
-    uploadedAt: 'il y a 1 semaine',
-  },
-  {
-    title: 'Les meilleures pratiques du design de base de données',
-    channel: 'Backend Academy',
-    views: '832K vues',
-    uploadedAt: 'il y a 4 jours',
-  },
-  {
-    title: 'Optimisation des performances JavaScript',
-    channel: 'Dev Tips',
-    views: '723K vues',
-    uploadedAt: 'il y a 2 semaines',
-  },
-];
 
 export default function WatchPage() {
   return (
@@ -93,7 +55,9 @@ export default function WatchPage() {
 
           <div className="lg:col-span-1">
             <h3 className="text-foreground mb-4 text-sm font-bold">Recommandations</h3>
-            <RecommendedVideoList videos={recommendedVideos} />
+            <Suspense fallback={<RecommendedVideoListFallback />}>
+              <RecommendedVideoList />
+            </Suspense>
           </div>
         </div>
       </main>

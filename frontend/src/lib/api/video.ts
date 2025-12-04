@@ -11,3 +11,10 @@ export async function getVideo(videoId: string): Promise<Video> {
   const res = await apiClient<ApiResponse<Video>>(`/videos/${videoId}/`);
   return res.data;
 }
+
+export async function getRecommendedVideos(videoId: string): Promise<Video[]> {
+  const res = await apiClient<ApiResponse<Video[]>>(
+    `/videos/${videoId}/recommendations/`
+  );
+  return res.data;
+}
