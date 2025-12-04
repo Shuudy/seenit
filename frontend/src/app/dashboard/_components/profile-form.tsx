@@ -1,19 +1,33 @@
-type FormData = {
-  username: string;
-  email: string;
-  bio: string;
-};
+import { useState } from 'react';
 
-type Props = {
-  value: FormData;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onSubmit: (e: React.FormEvent) => void;
-  onReset: () => void;
-};
+export function ProfileForm() {
+  const [formData, setFormData] = useState({
+    username: 'Mon Profil',
+    email: 'user@example.com',
+    bio: 'Créateur de contenu passionné',
+  });
 
-export function ProfileForm({ value, onChange, onSubmit, onReset }: Props) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    console.log('Profile updated:', formData);
+  };
+
+  function handleReset() {
+    setFormData({
+      username: 'Mon Profil',
+      email: 'user@example.com',
+      bio: 'Créateur de contenu passionné',
+    });
+  }
+
   return (
-    <form onSubmit={onSubmit} className="border-border space-y-5 border-t pt-6">
+    <form onSubmit={handleSubmit} className="border-border space-y-5 border-t pt-6">
       <div>
         <label htmlFor="username" className="text-foreground mb-2 block text-sm font-medium">
           Nom d&apos;utilisateur
@@ -22,8 +36,8 @@ export function ProfileForm({ value, onChange, onSubmit, onReset }: Props) {
           id="username"
           type="text"
           name="username"
-          value={value.username}
-          onChange={onChange}
+          value={formData.username}
+          onChange={handleChange}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
       </div>
@@ -36,8 +50,8 @@ export function ProfileForm({ value, onChange, onSubmit, onReset }: Props) {
           id="email"
           type="email"
           name="email"
-          value={value.email}
-          onChange={onChange}
+          value={formData.email}
+          onChange={handleChange}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
       </div>
@@ -49,13 +63,13 @@ export function ProfileForm({ value, onChange, onSubmit, onReset }: Props) {
         <textarea
           id="bio"
           name="bio"
-          value={value.bio}
-          onChange={onChange}
+          value={formData.bio}
+          onChange={handleChange}
           rows={4}
           maxLength={500}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
-        <p className="text-muted-foreground mt-1 text-xs">{value.bio.length}/500</p>
+        <p className="text-muted-foreground mt-1 text-xs">{formData.bio.length}/500</p>
       </div>
 
       <div className="flex gap-3 pt-4">
@@ -67,7 +81,7 @@ export function ProfileForm({ value, onChange, onSubmit, onReset }: Props) {
         </button>
         <button
           type="button"
-          onClick={onReset}
+          onClick={handleReset}
           className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
         >
           Annuler
