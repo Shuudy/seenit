@@ -8,8 +8,8 @@
     "prettier:fix": "prettier --write .",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
-    "lint:fix": "eslint src --ext .ts,.tsx,.js,.jsx --fix"
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.11",
