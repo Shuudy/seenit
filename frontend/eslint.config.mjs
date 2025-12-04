@@ -16,6 +16,8 @@ const eslintConfig = [
     ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
     plugins: { 'unused-imports': pluginUnusedImports },
     rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+
       // automatically removes unused imports
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
