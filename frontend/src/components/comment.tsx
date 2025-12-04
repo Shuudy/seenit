@@ -1,3 +1,4 @@
+import { ChannelAvatar } from '@/app/watch/_components/channel-avatar';
 import { CommentProps } from '@/types/props';
 import { formatRelativeTime } from '@/utils/format-relative-time';
 import { useState } from 'react';
@@ -11,14 +12,11 @@ export function Comment({ comment }: CommentProps) {
     setLiked(!liked);
   };
 
-  const avatarLetter = comment.user.username.charAt(0).toUpperCase();
   const createdAtFormatted = formatRelativeTime(comment.created_at);
 
   return (
     <div className="flex gap-4">
-      <div className="bg-secondary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
-        <span className="text-foreground text-sm font-semibold">{avatarLetter}</span>
-      </div>
+      <ChannelAvatar username={comment.user.username} />
       <div className="flex-1 space-y-1">
         <div className="flex items-center gap-2">
           <p className="text-foreground text-sm font-medium">{comment.user.username}</p>
