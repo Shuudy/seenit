@@ -1,7 +1,7 @@
 import { ChannelAvatar } from '@/components/channel-avatar';
 import { CommentProps } from '@/types/props';
 import { formatRelativeTime } from '@/utils/format-relative-time';
-import { LikeButton } from '@/components/like-button';
+import { CommentActions } from '@/components/comment-actions';
 
 export function Comment({ comment }: CommentProps) {
   const createdAtFormatted = formatRelativeTime(comment.created_at);
@@ -15,12 +15,7 @@ export function Comment({ comment }: CommentProps) {
           <p className="text-muted-foreground text-xs">{createdAtFormatted}</p>
         </div>
         <p className="text-foreground/90 text-sm">{comment.content}</p>
-        <div className="flex gap-6 pt-2">
-          <LikeButton initialLikes={comment.likes_count} />
-          <button className="text-muted-foreground hover:text-foreground cursor-pointer text-xs">
-            Répondre
-          </button>
-        </div>
+        <CommentActions likes={comment.likes_count} />
       </div>
     </div>
   );
