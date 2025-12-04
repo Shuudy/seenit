@@ -1,11 +1,15 @@
 import { useState } from 'react';
 
-export function ProfileForm() {
-  const [formData, setFormData] = useState({
-    username: 'Mon Profil',
-    email: 'user@example.com',
-    bio: 'Créateur de contenu passionné',
-  });
+interface ProfileFormProps {
+  initialData: {
+    username: string;
+    email: string;
+    bio: string;
+  };
+}
+
+export function ProfileForm({ initialData }: ProfileFormProps) {
+  const [formData, setFormData] = useState(initialData);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -19,11 +23,7 @@ export function ProfileForm() {
   };
 
   function handleReset() {
-    setFormData({
-      username: 'Mon Profil',
-      email: 'user@example.com',
-      bio: 'Créateur de contenu passionné',
-    });
+    setFormData(initialData);
   }
 
   return (

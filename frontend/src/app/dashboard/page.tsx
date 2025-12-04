@@ -13,6 +13,12 @@ import { ProfileBannerPicker } from '@/app/dashboard/_components/profile-banner-
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('profile');
 
+  const profileInitialData = {
+    username: 'Mon Profil',
+    email: 'user@example.com',
+    bio: 'Créateur de contenu passionné',
+  };
+
   return (
     <div className="bg-background min-h-screen">
       <Header />
@@ -29,7 +35,7 @@ export default function Dashboard() {
 
                 <ProfileAvatarPicker initialAvatarUrl="/abstract-profile.png" />
 
-                <ProfileForm />
+                <ProfileForm initialData={profileInitialData} />
               </div>
             </div>
           )}
