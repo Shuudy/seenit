@@ -2,33 +2,13 @@
 
 import { Header } from '@/components/header';
 
-import type { User } from '@/types/user';
-import { CommentInput } from '@/app/watch/_components/comment-input';
-import { CommentList } from '@/app/watch/_components/comment-list';
 import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-list';
 import { Suspense } from 'react';
 import { VideoInfoSkeleton } from '@/components/skeletons/video-info-skeleton';
 import { VideoDetails } from '@/app/watch/_components/video-details';
 import { RecommendedVideoListFallback } from '@/app/watch/_components/recommended-video-list-fallback';
-
-const videoDetails = {
-  id: 1,
-  title: "L'avenir du développement web en 2025",
-  user: {
-    id: 1,
-    username: 'Tech Talks Daily',
-    email: 'techtalks@example.com',
-    avatarUrl: '/avatar-tech-talks.png',
-  } as User,
-  channelSubscribers: '1,2M abonnés',
-  views: '2,543,892',
-  likes: 45230,
-  comments: 1234,
-  uploadedAt: 'il y a 2 jours',
-  description:
-    'Découvrez les tendances majeures du développement web en 2025. Dans cette vidéo, nous explorons les nouvelles technologies, les frameworks émergents et les meilleures pratiques que tout développeur web doit connaître.\n\nSommet:\n• React et Next.js\n• TypeScript et les types\n• Performance web\n• Sécurité des applications\n\nAbonnez-vous pour plus de contenu sur le développement web!',
-  thumbnail: '/video-thumbnail.jpg',
-};
+import { VideoComments } from '@/app/watch/_components/video-comments';
+import { VideoCommentsFallback } from '@/app/watch/_components/video-comments-fallback';
 
 export default function WatchPage() {
   return (
@@ -43,13 +23,9 @@ export default function WatchPage() {
             </Suspense>
 
             <div className="mt-6">
-              <h2 className="text-foreground mb-4 text-base font-bold">
-                {videoDetails.comments.toLocaleString()} commentaires
-              </h2>
-
-              <CommentInput />
-
-              <CommentList />
+              <Suspense fallback={<VideoCommentsFallback />}>
+                <VideoComments />
+              </Suspense>
             </div>
           </div>
 
