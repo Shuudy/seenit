@@ -26,7 +26,6 @@ export function LoginForm() {
           {...register('email')}
           placeholder="vous@exemple.com"
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
-          required
         />
         {errors.email && <InputError message={errors.email.message} />}
       </div>
@@ -41,7 +40,6 @@ export function LoginForm() {
           {...register('password')}
           placeholder="••••••••"
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
-          required
         />
         {errors.password && <InputError message={errors.password.message} />}
       </div>
