@@ -7,8 +7,8 @@ const RegisterFormSchema = z
   .object({
     email: z
       .string()
-      .min(1, { message: 'Email requis' })
-      .pipe(z.email('Email invalide')),
+      .min(1, { message: 'Adresse Email requise' })
+      .pipe(z.email('Adresse Email invalide')),
     password: z
       .string()
       .min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),
