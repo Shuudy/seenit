@@ -139,9 +139,14 @@ class VideoController extends Controller
             $comments->each(fn ($c) => $c->is_liked_by_current_user = false);
         }
 
+        $totalComments = $video->comments()->count();
+
         return new SuccessResource([
             'message' => 'Comments retrieved',
             'data' => CommentResource::collection($comments),
+            'meta' => [
+                'comments_count' => $totalComments,
+            ],
         ]);
     }
 
