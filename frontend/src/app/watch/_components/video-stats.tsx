@@ -1,5 +1,5 @@
 interface VideoStatsProps {
-  views: string;
+  views: number;
   uploadedAt: string;
 }
 
