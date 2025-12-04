@@ -4,11 +4,11 @@ import { Header } from '@/components/header';
 
 import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-list';
 import { Suspense } from 'react';
-import { VideoInfoSkeleton } from '@/components/skeletons/video-info-skeleton';
 import { VideoDetails } from '@/app/watch/_components/video-details';
 import { RecommendedVideoListFallback } from '@/app/watch/_components/recommended-video-list-fallback';
 import { VideoComments } from '@/app/watch/_components/video-comments';
 import { VideoCommentsFallback } from '@/app/watch/_components/video-comments-fallback';
+import { VideoInfoFallback } from '@/app/watch/_components/fallbacks/video-info-fallback';
 
 export default function WatchPage() {
   return (
@@ -18,7 +18,7 @@ export default function WatchPage() {
       <main className="mt-16 w-full px-2 py-6 md:px-4">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 md:px-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <Suspense fallback={<VideoInfoSkeleton />}>
+            <Suspense fallback={<VideoInfoFallback />}>
               <VideoDetails />
             </Suspense>
 
