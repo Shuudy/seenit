@@ -1,4 +1,3 @@
-
 import { getVideo } from '@/lib/api/video';
 import { useSuspenseQuery } from '@tanstack/react-query';
 

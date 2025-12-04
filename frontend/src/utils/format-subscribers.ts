@@ -1,4 +1,3 @@
-
 export function formatSubscribers(count: number): string {
   if (!Number.isFinite(count) || count <= 0) return '0 abonné';
   if (count === 1) return '1 abonné';

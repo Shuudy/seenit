@@ -11,7 +11,7 @@ export function RecommendedVideoList() {
 
   return (
     <div className="flex flex-col space-y-3">
-      {videos.map((video) => (
+      {videos.map(video => (
         <RecommendedVideoItem key={video.id} video={video} />
       ))}
     </div>
