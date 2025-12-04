@@ -3,14 +3,12 @@
 import { Header } from '@/components/header';
 
 import type { User } from '@/types/user';
-import { VideoPlayer } from '@/app/watch/_components/video-player';
-import { VideoTitle } from '@/app/watch/_components/video-title';
-import { VideoChannelInfo } from '@/app/watch/_components/video-channel-info';
-import { LikeDislikeButtons } from '@/app/watch/_components/like-dislike-buttons';
-import { VideoDescription } from '@/app/watch/_components/video-description';
 import { CommentInput } from '@/app/watch/_components/comment-input';
 import { CommentList } from '@/app/watch/_components/comment-list';
 import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-list';
+import { Suspense } from 'react';
+import { VideoInfoSkeleton } from '@/components/skeletons/video-info-skeleton';
+import { VideoDetails } from '@/app/watch/_components/video-details';
 
 const videoDetails = {
   id: 1,
@@ -78,24 +76,9 @@ export default function WatchPage() {
       <main className="mt-16 w-full px-2 py-6 md:px-4">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 md:px-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <VideoPlayer thumbnail={videoDetails.thumbnail} title={videoDetails.title} />
-
-            <VideoTitle title={videoDetails.title} />
-
-            <div className="border-secondary flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
-              <VideoChannelInfo
-                user={videoDetails.user}
-                channelSubscribers={videoDetails.channelSubscribers}
-              />
-
-              <LikeDislikeButtons initialLikes={videoDetails.likes} />
-            </div>
-
-            <VideoDescription
-              views={videoDetails.views}
-              uploadedAt={videoDetails.uploadedAt}
-              description={videoDetails.description}
-            />
+            <Suspense fallback={<VideoInfoSkeleton />}>
+              <VideoDetails />
+            </Suspense>
 
             <div className="mt-6">
               <h2 className="text-foreground mb-4 text-base font-bold">
