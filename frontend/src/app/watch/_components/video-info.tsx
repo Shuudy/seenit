@@ -1,14 +1,20 @@
+import { formatRelativeTime } from '@/utils/format-relative-time';
+import { formatViews } from '@/utils/format-views';
+
 export function VideoInfo({
   title,
   username,
-  viewsFormatted,
-  createdAtFormatted,
+  views,
+  createdAt,
 }: {
   title: string;
   username: string;
-  viewsFormatted: string;
-  createdAtFormatted: string;
+  views: number;
+  createdAt: string;
 }) {
+  const viewsFormatted = formatViews(views);
+  const createdAtFormatted = formatRelativeTime(createdAt);
+
   return (
     <div className="min-w-0 flex-1">
       <p className="text-foreground group-hover:text-muted-foreground line-clamp-2 text-xs font-medium">
