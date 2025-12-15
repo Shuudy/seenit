@@ -1,3 +1,5 @@
+'use client';
+
 import { CommentInput } from '@/app/watch/_components/comment-input';
 import { CommentList } from '@/app/watch/_components/comment-list';
 import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';

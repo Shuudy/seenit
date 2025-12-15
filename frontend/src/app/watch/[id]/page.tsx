@@ -1,5 +1,3 @@
-'use client';
-
 import { Header } from '@/components/header';
 
 import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-list';
