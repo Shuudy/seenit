@@ -1,13 +1,16 @@
+'use client';
+
 import type { User } from '@/types/user';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface ChannelHeaderProps {
   channel: User;
-  isSubscribed: boolean;
-  onToggleSubscribe: () => void;
 }
 
-export function ChannelHeader({ channel, isSubscribed, onToggleSubscribe }: ChannelHeaderProps) {
+export function ChannelHeader({ channel }: ChannelHeaderProps) {
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
   return (
     <>
       <div className="from-accent/20 to-accent/10 relative z-0 h-40 w-full overflow-hidden bg-gradient-to-r md:h-56">
@@ -59,7 +62,7 @@ export function ChannelHeader({ channel, isSubscribed, onToggleSubscribe }: Chan
 
               <div className="flex gap-3">
                 <button
-                  onClick={onToggleSubscribe}
+                  onClick={() => setIsSubscribed(!isSubscribed)}
                   className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-all ${
                     isSubscribed
                       ? 'bg-secondary text-foreground hover:bg-secondary/80'
