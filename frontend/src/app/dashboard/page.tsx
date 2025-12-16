@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Header } from '@/components/header';
-import { Sidebar } from '@/components/sidebar';
+import { Header } from '@/components/Header';
+import { Sidebar } from '@/components/Sidebar';
 
-import { DashboardTabs } from '@/app/dashboard/_components/dashboard-tabs';
-import { ProfileForm } from '@/app/dashboard/_components/profile-form';
-import { VideoUploadForm } from '@/app/dashboard/_components/video-upload-form';
-import { ProfileAvatarPicker } from '@/app/dashboard/_components/profile-avatar-picker';
-import { ProfileBannerPicker } from '@/app/dashboard/_components/profile-banner-picker';
+import { DashboardTabs } from '@/app/dashboard/_components/DashboardTabs';
+import { ProfileForm } from '@/app/dashboard/_components/ProfileForm';
+import { VideoUploadForm } from '@/app/dashboard/_components/VideoUploadForm';
+import { ProfileAvatarPicker } from '@/app/dashboard/_components/ProfileAvatarPicker';
+import { ProfileBannerPicker } from '@/app/dashboard/_components/ProfileBannerPicker';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('profile');

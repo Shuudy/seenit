@@ -1,14 +1,14 @@
 'use client';
 
-import { Header } from '@/components/header';
-import { Sidebar } from '@/components/sidebar';
+import { Header } from '@/components/Header';
+import { Sidebar } from '@/components/Sidebar';
 import { useState } from 'react';
 
 import type { User } from '@/types/user';
-import { ChannelHeader } from '@/app/channel/_components/channel-header';
-import { ChannelTabs } from '@/app/channel/_components/channel-tabs';
-import { ChannelAbout } from '@/app/channel/_components/channel-about';
-import { ChannelVideoGrid } from '@/app/channel/_components/channel-video-grid';
+import { ChannelHeader } from '@/app/channel/_components/ChannelHeader';
+import { ChannelTabs } from '@/app/channel/_components/ChannelTabs';
+import { ChannelAbout } from '@/app/channel/_components/ChannelAbout';
+import { ChannelVideoGrid } from '@/app/channel/_components/ChannelVideoGrid';
 import mockChannelVideos from '@/data/mockChannelVideos.json';
 import { Video } from '@/types/video';
 

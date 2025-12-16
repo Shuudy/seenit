@@ -1,8 +1,8 @@
-import { VideoPlayer } from '@/app/watch/_components/video-player';
-import { VideoTitle } from '@/app/watch/_components/video-title';
-import { VideoChannelInfo } from '@/app/watch/_components/video-channel-info';
-import { LikeDislikeButtons } from '@/app/watch/_components/like-dislike-buttons';
-import { VideoDescription } from '@/app/watch/_components/video-description';
+import { VideoPlayer } from '@/app/watch/_components/VideoPlayer';
+import { VideoTitle } from '@/app/watch/_components/VideoTitle';
+import { VideoChannelInfo } from '@/app/watch/_components/VideoChannelInfo';
+import { LikeDislikeButtons } from '@/app/watch/_components/LikeDislikeButtons';
+import { VideoDescription } from '@/app/watch/_components/VideoDescription';
 import { useVideoDetailsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoDetailsSuspenseQuery';
 import { useParams } from 'next/navigation';
 

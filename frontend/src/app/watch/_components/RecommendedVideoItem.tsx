@@ -1,7 +1,7 @@
 'use client';
 
-import { VideoInfo } from '@/app/watch/_components/video-info';
-import { VideoThumbnail } from '@/app/watch/_components/video-thumbnail';
+import { VideoInfo } from '@/app/watch/_components/VideoInfo';
+import { VideoThumbnail } from '@/app/watch/_components/VideoThumbnail';
 import { Video } from '@/types/video';
 import Link from 'next/link';
 

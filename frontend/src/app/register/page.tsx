@@ -1,7 +1,7 @@
 'use client';
 
-import { AuthFooter } from '@/components/auth/auth-footer';
-import { AuthLogo } from '@/components/auth/auth-logo';
+import { AuthFooter } from '@/components/auth/AuthFooter';
+import { AuthLogo } from '@/components/auth/AuthLogo';
 import Link from 'next/link';
 import { RegisterForm } from '@/app/register/_components/RegisterForm';
 

@@ -1,6 +1,6 @@
-import { SearchBar } from '@/components/header/search-bar';
-import { NavActions } from '@/components/header/nav-actions';
-import { HeaderBrand } from '@/components/header/header-brand';
+import { SearchBar } from '@/components/header/SearchBar';
+import { NavActions } from '@/components/header/NavActions';
+import { HeaderBrand } from '@/components/header/HeaderBrand';
 
 export function Header() {
   return (

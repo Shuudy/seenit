@@ -1,4 +1,4 @@
-import { RecommendationSkeleton } from '@/components/skeletons/recommendation-skeleton';
+import { RecommendationSkeleton } from '@/components/skeletons/RecommendationSkeleton';
 
 export function RecommendedVideoListFallback() {
   return (

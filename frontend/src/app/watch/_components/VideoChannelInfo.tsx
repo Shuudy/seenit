@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import type { User } from '@/types/user';
-import { ChannelAvatar } from '@/components/channel-avatar';
+import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { formatSubscribers } from '@/utils/format-subscribers';
 
 interface VideoChannelInfoProps {

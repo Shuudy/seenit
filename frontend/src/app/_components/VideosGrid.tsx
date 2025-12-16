@@ -1,7 +1,7 @@
 'use client';
 
-import { VideoCard } from '@/components/video-card';
-import { useVideosSuspenseQuery } from '../_hooks/queries/useVideosSuspenseQuery';
+import { VideoCard } from '@/components/VideoCard';
+import { useVideosSuspenseQuery } from '@/app/_hooks/queries/useVideosSuspenseQuery';
 
 export function VideosGrid() {
   const { data: videos } = useVideosSuspenseQuery();

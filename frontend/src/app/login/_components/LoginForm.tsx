@@ -1,8 +1,8 @@
 'use client';
 
 import { SubmitHandler } from 'react-hook-form';
-import { LoginFormFields, useLoginForm } from '../_hooks/useLoginForm';
-import { InputError } from '@/components/input-error';
+import { LoginFormFields, useLoginForm } from '@/app/login/_hooks/useLoginForm';
+import { InputError } from '@/components/InputError';
 
 export function LoginForm() {
   const {

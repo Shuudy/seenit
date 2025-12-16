@@ -1,7 +1,7 @@
-import { ChannelAvatar } from '@/components/channel-avatar';
+import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { CommentProps } from '@/types/props';
 import { formatRelativeTime } from '@/utils/format-relative-time';
-import { CommentActions } from '@/components/comment-actions';
+import { CommentActions } from '@/components/CommentActions';
 
 export function Comment({ comment }: CommentProps) {
   const createdAtFormatted = formatRelativeTime(comment.created_at);

@@ -1,10 +1,10 @@
-import { Header } from '@/components/header';
-import { Sidebar } from '@/components/sidebar';
+import { Header } from '@/components/Header';
+import { Sidebar } from '@/components/Sidebar';
 
 import { Suspense } from 'react';
-import { VideosGrid } from '@/app/_components/videos-grid';
-import { VideosGridFallback } from '@/app/_components/fallbacks/videos-grid-fallback';
-import { CategoryTabs } from '@/app/_components/category-tabs';
+import { VideosGrid } from '@/app/_components/VideosGrid';
+import { VideosGridFallback } from '@/app/_components/fallbacks/VideosGridFallback';
+import { CategoryTabs } from '@/app/_components/CategoryTabs';
 
 export default function Home() {
   return (
