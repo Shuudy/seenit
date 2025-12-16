@@ -20,7 +20,7 @@ const creatorInfo: User = {
   handle: '@techtalksdaily',
   bio: "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
   subscribers: '542K',
-  subscribersRaw: 542000,
+  subscribersRaw: 542_000,
   videos: '128',
   avatarUrl: '/channel-avatar.jpg',
   banner: '/channel-banner.jpg',

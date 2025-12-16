@@ -4,13 +4,13 @@ import { useState } from 'react';
 export function ProfileBannerPicker({ initialBannerUrl }: { initialBannerUrl: string }) {
   const [preview, setPreview] = useState(initialBannerUrl);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = event => {
+      reader.addEventListener('load', event => {
         setPreview(event.target?.result as string);
-      };
+      });
       reader.readAsDataURL(file);
     }
   };

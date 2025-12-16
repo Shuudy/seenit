@@ -7,27 +7,27 @@ export function VideoUploadForm() {
   const [videoData, setVideoData] = useState<VideoData>({
     title: '',
     description: '',
-    file: null,
+    file: undefined,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
     if (name === 'file') {
-      const input = e.target as HTMLInputElement;
-      const file = input.files?.[0] ?? null;
+      const input = event.target as HTMLInputElement;
+      const file = input.files?.[0] ?? undefined;
       setVideoData(prev => ({ ...prev, file }));
     } else {
       setVideoData(prev => ({ ...prev, [name]: value }));
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     console.log('Uploading video:', videoData);
   };
 
   function handleReset() {
-    setVideoData({ title: '', description: '', file: null });
+    setVideoData({ title: '', description: '', file: undefined });
   }
 
   return (

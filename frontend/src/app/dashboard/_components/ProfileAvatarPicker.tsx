@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 export function ProfileAvatarPicker({ initialAvatarUrl }: { initialAvatarUrl: string }) {
   const [preview, setPreview] = useState(initialAvatarUrl);
-  function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
+  function handleAvatarChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
     if (!file) return;
 
     const url = URL.createObjectURL(file);
