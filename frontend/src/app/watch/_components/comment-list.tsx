@@ -1,5 +1,3 @@
-'use client';
-
 import { Comment } from '@/components/comment';
 import { CommentListProps } from '@/types/props';
 

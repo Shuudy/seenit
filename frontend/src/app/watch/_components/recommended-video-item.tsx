@@ -1,5 +1,3 @@
-'use client';
-
 import { VideoInfo } from '@/app/watch/_components/video-info';
 import { VideoThumbnail } from '@/app/watch/_components/video-thumbnail';
 import { Video } from '@/types/video';

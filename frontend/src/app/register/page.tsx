@@ -1,5 +1,3 @@
-'use client';
-
 import { AuthFooter } from '@/components/auth/auth-footer';
 import { AuthLogo } from '@/components/auth/auth-logo';
 import Link from 'next/link';
