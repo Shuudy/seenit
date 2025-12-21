@@ -1,5 +1,3 @@
-'use client';
-
 export function CommentInput() {
   return (
     <div className="flex gap-3 pb-6">
