@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { EMOJI_DATA } from '@/app/watch/_constants/emoji-data';
 
-export function useCommentSection() {
+export function useCommentSection(onAddComment?: (text: string) => void) {
   const [commentText, setCommentText] = useState('');
   const [showCommentActions, setShowCommentActions] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -38,12 +38,15 @@ export function useCommentSection() {
   const handleAddComment = useCallback(() => {
     if (!commentText.trim()) return;
 
-    // Logique d'envoi à implémenter si nécessaire, ici on réinitialise juste
+    if (onAddComment) {
+      onAddComment(commentText);
+    }
+
     setCommentText('');
     setShowCommentActions(false);
     setIsInputFocused(false);
     setShowEmojiPanel(false);
-  }, [commentText]);
+  }, [commentText, onAddComment]);
 
   const handleCancelComment = useCallback(() => {
     setCommentText('');

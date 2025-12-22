@@ -23,5 +23,6 @@ export function formatRelativeTime(iso: string): string {
   const value = Math.round(diffMs / unit.ms);
 
   const text = rtf.format(value, unit.key);
-  return text.startsWith('dans') ? text : `il y a ${text.replace('il y a ', '')}`;
+  if (text === 'maintenant' || text.startsWith('dans')) return text;
+  return `il y a ${text.replace('il y a ', '')}`;
 }

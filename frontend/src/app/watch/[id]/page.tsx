@@ -6,15 +6,10 @@ import { Suspense } from 'react';
 import { VideoDetails } from '@/app/watch/_components/video-details';
 import { RecommendedVideoListFallback } from '@/app/watch/_components/fallbacks/recommended-video-list-fallback';
 import { VideoInfoFallback } from '@/app/watch/_components/fallbacks/video-info-fallback';
-import { useParams } from 'next/navigation';
-import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
-import { CommentSection } from '@/app/watch/_components/comment-section';
+import { VideoComments } from '@/app/watch/_components/video-comments';
+import { VideoCommentsFallback } from '@/app/watch/_components/fallbacks/video-comments-fallback';
 
 export default function WatchPage() {
-  const { id: videoId } = useParams<{ id: string }>();
-  const { data } = useVideoCommentsSuspenseQuery(videoId);
-  const { comments } = data;
-
   return (
     <div className="bg-background min-h-screen">
       <Header />
@@ -26,7 +21,9 @@ export default function WatchPage() {
               <VideoDetails />
             </Suspense>
 
-            <CommentSection comments={comments} />
+            <Suspense fallback={<VideoCommentsFallback />}>
+              <VideoComments />
+            </Suspense>
           </div>
 
           <div className="lg:col-span-1">
