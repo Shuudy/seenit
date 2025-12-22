@@ -1,3 +1,5 @@
+'use client';
+
 import { VideoPlayer } from '@/app/watch/_components/VideoPlayer';
 import { VideoTitle } from '@/app/watch/_components/VideoTitle';
 import { VideoChannelInfo } from '@/app/watch/_components/VideoChannelInfo';

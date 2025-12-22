@@ -1,3 +1,5 @@
+'use client';
+
 import { RegisterFormFields, useRegisterForm } from '@/app/register/_hooks/useRegisterForm';
 import { InputError } from '@/components/InputError';
 import { SubmitHandler } from 'react-hook-form';
