@@ -33,23 +33,6 @@ export function EmojiPicker({
       className="absolute top-10 left-0 z-20 flex h-[280px] w-[460px] flex-col overflow-hidden rounded-xl border border-[#3e3e3e] bg-[#212121] shadow-2xl"
       onMouseDown={e => e.preventDefault()}
     >
-      <style>
-        {`
-          .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent; 
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #717171;
-            border-radius: 4px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
-          }
-        `}
-      </style>
       <div className="sticky top-0 z-10 border-b border-[#3e3e3e]/30 bg-[#212121] p-3">
         <div className="relative">
           <input
