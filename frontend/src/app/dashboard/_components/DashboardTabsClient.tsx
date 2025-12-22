@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 
-import { DashboardTabs } from '@/app/dashboard/_components/dashboard-tabs';
-import { ProfileForm } from '@/app/dashboard/_components/profile-form';
-import { VideoUploadForm } from '@/app/dashboard/_components/video-upload-form';
-import { ProfileAvatarPicker } from '@/app/dashboard/_components/profile-avatar-picker';
-import { ProfileBannerPicker } from '@/app/dashboard/_components/profile-banner-picker';
+import { DashboardTabs } from '@/app/dashboard/_components/DashboardTabs';
+import { ProfileForm } from '@/app/dashboard/_components/ProfileForm';
+import { VideoUploadForm } from '@/app/dashboard/_components/VideoUploadForm';
+import { ProfileAvatarPicker } from '@/app/dashboard/_components/ProfileAvatarPicker';
+import { ProfileBannerPicker } from '@/app/dashboard/_components/ProfileBannerPicker';
 
 export function DashboardTabsClient() {
   const [activeTab, setActiveTab] = useState('profile');

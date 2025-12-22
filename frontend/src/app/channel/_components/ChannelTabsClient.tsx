@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import { ChannelTabs } from '@/app/channel/_components/channel-tabs';
-import { ChannelAbout } from '@/app/channel/_components/channel-about';
-import { ChannelVideoGrid } from '@/app/channel/_components/channel-video-grid';
+import { ChannelTabs } from '@/app/channel/_components/ChannelTabs';
+import { ChannelAbout } from '@/app/channel/_components/ChannelAbout';
+import { ChannelVideoGrid } from '@/app/channel/_components/ChannelVideoGrid';
 
 import mockChannelVideos from '@/data/mockChannelVideos.json';
 
