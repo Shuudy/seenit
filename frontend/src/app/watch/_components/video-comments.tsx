@@ -20,7 +20,7 @@ export function VideoComments() {
 
   const handleAddCommentLocal = useCallback((text: string) => {
     const newComment: Comment = {
-      id: Date.now(),
+      id: Math.floor(Date.now() + Math.random() * 1000),
       content: text,
       user: {
         id: 0,
