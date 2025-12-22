@@ -11,7 +11,7 @@ interface CommentInputProps {
   isInputFocused: boolean;
   setIsInputFocused: (focused: boolean) => void;
   showEmojiPanel: boolean;
-  setShowEmojiPanel: (show: (prev: boolean) => boolean) => void;
+  setShowEmojiPanel: (show: boolean | ((prev: boolean) => boolean)) => void;
   emojiTriggerRef: React.RefObject<HTMLButtonElement | null>;
   emojiPanelRef: React.RefObject<HTMLDivElement | null>;
   searchQuery: string;
