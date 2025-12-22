@@ -21,7 +21,6 @@ interface CommentInputProps {
   filteredEmojiData: typeof EMOJI_DATA;
   categoryRefs: React.MutableRefObject<{ [key: string]: HTMLDivElement | null }>;
   handleInsertEmoji: (emoji: string) => void;
-  handleFormatText: (markdown: string) => void;
   handleAddComment: () => void;
   handleCancelComment: () => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
@@ -45,7 +44,6 @@ export function CommentInput({
   filteredEmojiData,
   categoryRefs,
   handleInsertEmoji,
-  handleFormatText,
   handleAddComment,
   handleCancelComment,
   inputRef,
@@ -98,36 +96,6 @@ export function CommentInput({
                 >
                   <path d="M12,21c4.97,0,9-4.03,9-9S16.97,3,12,3S3,7.03,3,12S7.03,21,12,21z M12,4c4.41,0,8,3.59,8,8s-3.59,8-8,8s-8-3.59-8-8 S7.59,4,12,4z M15.5,11c0.83,0,1.5-0.67,1.5-1.5S16.33,8,15.5,8S14,8.67,14,9.5S14.67,11,15.5,11z M8.5,11C9.33,11,10,10.33,10,9.5 S9.33,8,8.5,8S7,8.67,7,9.5S7.67,11,8.5,11z M12,17c2.03,0,3.8-1.11,4.75-2.75l-0.85-0.5C15.2,15.01,13.73,16,12,16 s-3.2-0.99-3.9-2.25l-0.85,0.5C8.2,15.89,9.97,17,12,17z"></path>
                 </svg>
-              </button>
-
-              <button
-                onClick={() => handleFormatText('*')}
-                onMouseDown={e => e.preventDefault()}
-                className="ml-1 flex h-6 w-6 cursor-pointer items-center justify-center rounded-[2px] bg-white text-xs font-bold text-black transition-colors hover:bg-gray-200"
-                title="Gras (*texte*)"
-              >
-                B
-              </button>
-
-              <button
-                onClick={() => handleFormatText('_')}
-                onMouseDown={e => e.preventDefault()}
-                className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-[2px] bg-white font-serif text-xs text-black italic transition-colors hover:bg-gray-200"
-                title="Italique (_texte_)"
-              >
-                I
-              </button>
-
-              <button
-                onClick={() => handleFormatText('-')}
-                onMouseDown={e => e.preventDefault()}
-                className="relative flex h-6 w-6 cursor-pointer items-center justify-center rounded-[2px] bg-white text-black transition-colors hover:bg-gray-200"
-                title="Barré (-texte-)"
-              >
-                <span className="relative text-[10px] font-semibold">
-                  S
-                  <div className="absolute top-1/2 left-0 h-[1.5px] w-full -translate-y-1/2 transform bg-black"></div>
-                </span>
               </button>
 
               <EmojiPicker

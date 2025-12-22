@@ -56,45 +56,6 @@ export function useCommentSection(onAddComment?: (text: string) => void) {
     setShowEmojiPanel(false);
   }, []);
 
-  const handleFormatText = useCallback(
-    (markdown: string) => {
-      const input = inputRef.current;
-      if (!input) return;
-
-      const start = input.selectionStart ?? commentText.length;
-      const end = input.selectionEnd ?? commentText.length;
-      const selectedText = commentText.substring(start, end);
-
-      let newText;
-      let newCursorPos;
-
-      if (start !== end) {
-        newText =
-          commentText.substring(0, start) +
-          markdown +
-          selectedText +
-          markdown +
-          commentText.substring(end);
-
-        newCursorPos = end + 2 * markdown.length;
-      } else {
-        newText =
-          commentText.substring(0, start) + markdown + markdown + commentText.substring(end);
-
-        newCursorPos = start + markdown.length;
-      }
-
-      setCommentText(newText);
-
-      setTimeout(() => {
-        input.focus();
-        input.selectionStart = newCursorPos;
-        input.selectionEnd = newCursorPos;
-      }, 0);
-    },
-    [commentText]
-  );
-
   const handleInsertEmoji = useCallback(
     (emoji: string) => {
       const input = inputRef.current;
@@ -150,7 +111,6 @@ export function useCommentSection(onAddComment?: (text: string) => void) {
     categoryRefs,
     handleAddComment,
     handleCancelComment,
-    handleFormatText,
     handleInsertEmoji,
     scrollToCategory,
     filteredEmojiData,
