@@ -13,6 +13,7 @@ export function useCommentSection(onAddComment?: (text: string) => void) {
 
   const emojiPanelRef = useRef<HTMLDivElement>(null);
   const emojiTriggerRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const categoryRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export function useCommentSection(onAddComment?: (text: string) => void) {
 
   const handleFormatText = useCallback(
     (markdown: string) => {
-      const input = document.getElementById('comment-input') as HTMLInputElement | null;
+      const input = inputRef.current;
       if (!input) return;
 
       const start = input.selectionStart ?? commentText.length;
@@ -96,7 +97,7 @@ export function useCommentSection(onAddComment?: (text: string) => void) {
 
   const handleInsertEmoji = useCallback(
     (emoji: string) => {
-      const input = document.getElementById('comment-input') as HTMLInputElement | null;
+      const input = inputRef.current;
       if (!input) return;
 
       const start = input.selectionStart ?? commentText.length;
@@ -153,5 +154,6 @@ export function useCommentSection(onAddComment?: (text: string) => void) {
     handleInsertEmoji,
     scrollToCategory,
     filteredEmojiData,
+    inputRef,
   };
 }

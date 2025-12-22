@@ -24,6 +24,7 @@ interface CommentInputProps {
   handleFormatText: (markdown: string) => void;
   handleAddComment: () => void;
   handleCancelComment: () => void;
+  inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
 export function CommentInput({
@@ -47,6 +48,7 @@ export function CommentInput({
   handleFormatText,
   handleAddComment,
   handleCancelComment,
+  inputRef,
 }: CommentInputProps) {
   return (
     <div className="flex gap-3 pb-6">
@@ -56,6 +58,7 @@ export function CommentInput({
       <div className="flex-1">
         <div className="relative">
           <input
+            ref={inputRef}
             id="comment-input"
             type="text"
             value={commentText}
