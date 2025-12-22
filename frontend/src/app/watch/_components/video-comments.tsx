@@ -23,7 +23,7 @@ export function VideoComments() {
       id: Math.floor(Date.now() + Math.random() * 1000),
       content: text,
       user: {
-        id: 0,
+        id: -1,
         username: 'Vous',
         avatarUrl: '',
       },
