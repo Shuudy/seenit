@@ -1,0 +1,61 @@
+'use client';
+
+import Link from 'next/link';
+
+export default function ErrorPage({ reset }: { reset: () => void }) {
+  return (
+    <div className="bg-background flex min-h-screen items-center justify-center px-4">
+      <div className="w-full max-w-xl text-center">
+        <div className="mb-6 flex justify-center">
+          <svg
+            aria-hidden
+            className="h-16 w-16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            style={{ color: 'var(--color-destructive)' }}
+          >
+            <circle cx="12" cy="12" r="10" strokeWidth="1.5" />
+            <path
+              d="M12 8v4m0 4h.01"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        <div className="bg-card border-border rounded-lg border p-8">
+          <h1 className="text-foreground mb-2 text-2xl font-semibold">Une erreur est survenue</h1>
+
+          <p className="text-muted-foreground mb-6 text-sm">
+            Quelque chose s&apos;est mal passé. Vous pouvez réessayer ou retourner sur la page
+            d&apos;accueil.
+          </p>
+
+          <div className="border-border bg-secondary text-muted-foreground mb-6 rounded-md border p-3 text-sm">
+            <p>
+              Si le problème persiste, contactez le support en décrivant ce qui s&apos;est passé.
+            </p>
+          </div>
+
+          <div className="flex flex-col justify-center gap-3 sm:flex-row">
+            <button
+              onClick={() => reset()}
+              className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm transition-colors"
+            >
+              Réessayer
+            </button>
+
+            <Link
+              href="/"
+              className="bg-secondary border-border text-foreground hover:bg-secondary/70 flex items-center justify-center rounded-lg border px-6 py-2 text-sm transition-colors"
+            >
+              Retour à l&apos;accueil
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
