@@ -8,7 +8,7 @@ export default function ErrorPage({ reset }: { reset: () => void }) {
       <div className="w-full max-w-xl text-center">
         <div className="mb-6 flex justify-center">
           <svg
-            aria-hidden
+            aria-hidden="true"
             className="h-16 w-16"
             viewBox="0 0 24 24"
             fill="none"
