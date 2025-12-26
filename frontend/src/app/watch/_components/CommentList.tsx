@@ -1,4 +1,4 @@
-import { Comment } from '@/components/comment';
+import { Comment } from '@/components/Comment';
 import { CommentListProps } from '@/types/props';
 
 export function CommentList({ comments }: CommentListProps) {

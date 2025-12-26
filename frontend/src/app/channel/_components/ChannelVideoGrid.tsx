@@ -1,4 +1,4 @@
-import { VideoCard } from '@/components/video-card';
+import { VideoCard } from '@/components/VideoCard';
 import { Video } from '@/types/video';
 
 type Props = {

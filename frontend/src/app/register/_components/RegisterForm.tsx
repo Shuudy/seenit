@@ -1,8 +1,12 @@
 'use client';
 
 import { RegisterFormFields, useRegisterForm } from '@/app/register/_hooks/useRegisterForm';
-import { InputError } from '@/components/input-error';
+import { InputError } from '@/components/InputError';
 import { SubmitHandler } from 'react-hook-form';
+
+const onSubmit: SubmitHandler<RegisterFormFields> = data => {
+  console.log(data);
+};
 
 export function RegisterForm() {
   const {
@@ -10,10 +14,6 @@ export function RegisterForm() {
     handleSubmit,
     register,
   } = useRegisterForm();
-
-  const onSubmit: SubmitHandler<RegisterFormFields> = data => {
-    console.log(data);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

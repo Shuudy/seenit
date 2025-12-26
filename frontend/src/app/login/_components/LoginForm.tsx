@@ -1,8 +1,12 @@
 'use client';
 
 import { SubmitHandler } from 'react-hook-form';
-import { LoginFormFields, useLoginForm } from '../_hooks/useLoginForm';
-import { InputError } from '@/components/input-error';
+import { LoginFormFields, useLoginForm } from '@/app/login/_hooks/useLoginForm';
+import { InputError } from '@/components/InputError';
+
+const onSubmit: SubmitHandler<LoginFormFields> = data => {
+  console.log(data);
+};
 
 export function LoginForm() {
   const {
@@ -11,9 +15,6 @@ export function LoginForm() {
     register,
   } = useLoginForm();
 
-  const onSubmit: SubmitHandler<LoginFormFields> = data => {
-    console.log(data);
-  };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>

@@ -1,12 +1,12 @@
-import { Header } from '@/components/header';
+import { Header } from '@/components/Header';
 
-import { RecommendedVideoList } from '@/app/watch/_components/recommended-video-list';
+import { RecommendedVideoList } from '@/app/watch/_components/RecommendedVideoList';
 import { Suspense } from 'react';
-import { VideoDetails } from '@/app/watch/_components/video-details';
-import { RecommendedVideoListFallback } from '@/app/watch/_components/fallbacks/recommended-video-list-fallback';
-import { VideoComments } from '@/app/watch/_components/video-comments';
-import { VideoCommentsFallback } from '@/app/watch/_components/fallbacks/video-comments-fallback';
-import { VideoInfoFallback } from '@/app/watch/_components/fallbacks/video-info-fallback';
+import { VideoDetails } from '@/app/watch/_components/VideoDetails';
+import { RecommendedVideoListFallback } from '@/app/watch/_components/fallbacks/RecommendedVideoListFallback';
+import { VideoComments } from '@/app/watch/_components/VideoComments';
+import { VideoCommentsFallback } from '@/app/watch/_components/fallbacks/VideoCommentsFallback';
+import { VideoInfoFallback } from '@/app/watch/_components/fallbacks/VideoInfoFallback';
 
 export default function WatchPage() {
   return (

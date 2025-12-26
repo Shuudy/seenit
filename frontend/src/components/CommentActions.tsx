@@ -1,4 +1,4 @@
-import { LikeButton } from '@/components/like-button';
+import { LikeButton } from '@/components/LikeButton';
 
 export function CommentActions({ likes }: { likes: number }) {
   return (

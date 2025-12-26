@@ -13,7 +13,7 @@ interface VideoCardProps {
 export function VideoCard({ video, showChannel = true }: VideoCardProps) {
   const viewsFormatted = formatViews(video.count_views);
   const createdAtFormatted = formatRelativeTime(video.created_at);
-  const channelUsername = showChannel ? video.user.username : null;
+  const channelUsername = showChannel ? video.user.username : undefined;
 
   return (
     <Link href={`/watch/${video.id}`} className="group flex cursor-pointer flex-col gap-2">

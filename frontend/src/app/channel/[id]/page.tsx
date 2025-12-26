@@ -1,9 +1,9 @@
-import { Header } from '@/components/header';
-import { Sidebar } from '@/components/sidebar';
+import { Header } from '@/components/Header';
+import { Sidebar } from '@/components/Sidebar';
 
 import type { User } from '@/types/user';
-import { ChannelHeader } from '@/app/channel/_components/channel-header';
-import { ChannelTabsClient } from '@/app/channel/_components/channel-tabs-client';
+import { ChannelHeader } from '@/app/channel/_components/ChannelHeader';
+import { ChannelTabsClient } from '@/app/channel/_components/ChannelTabsClient';
 
 const creatorInfo: User = {
   id: 1,
@@ -11,7 +11,7 @@ const creatorInfo: User = {
   handle: '@techtalksdaily',
   bio: "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
   subscribers: '542K',
-  subscribersRaw: 542000,
+  subscribersRaw: 542_000,
   videos: '128',
   avatarUrl: '/channel-avatar.jpg',
   banner: '/channel-banner.jpg',

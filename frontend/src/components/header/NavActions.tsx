@@ -1,5 +1,5 @@
-import { ProfileButton } from '@/components/header/profile-button';
-import { NotificationButton } from '@/components/header/notification-button';
+import { ProfileButton } from '@/components/header/ProfileButton';
+import { NotificationButton } from '@/components/header/NotificationButton';
 
 export function NavActions() {
   return (

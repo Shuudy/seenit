@@ -1,4 +1,5 @@
 export function AuthErrorMessage({ message }: { message: string | null }) {
+  // eslint-disable-next-line unicorn/no-null
   if (!message) return null;
   return (
     <div className="mb-4 flex items-center gap-2 rounded-lg border border-red-700 bg-red-700/10 px-4 py-2 text-red-700">

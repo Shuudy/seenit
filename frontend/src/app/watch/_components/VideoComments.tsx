@@ -1,7 +1,7 @@
 'use client';
 
-import { CommentInput } from '@/app/watch/_components/comment-input';
-import { CommentList } from '@/app/watch/_components/comment-list';
+import { CommentInput } from '@/app/watch/_components/CommentInput';
+import { CommentList } from '@/app/watch/_components/CommentList';
 import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
 import { useParams } from 'next/navigation';
 
