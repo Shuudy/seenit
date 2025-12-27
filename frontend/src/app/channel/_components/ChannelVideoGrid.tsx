@@ -1,16 +1,13 @@
+'use client';
+
 import { VideoCard } from '@/components/VideoCard';
-import { Video } from '@/types/video';
+import { useChannelVideoGridSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelVideoGridSuspenseQuery';
+import { useParams } from 'next/navigation';
 
-type Props = {
-  videos: Video[];
-};
+export function ChannelVideoGrid() {
+  const { id: channelId } = useParams<{ id: string }>();
 
-export function ChannelVideoGrid({ videos }: Props) {
-  return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {videos.map(video => (
-        <VideoCard key={video.id} video={video} showChannel={false} />
-      ))}
-    </div>
-  );
+  const { data: videos } = useChannelVideoGridSuspenseQuery(channelId);
+
+  return videos.map(video => <VideoCard key={video.id} video={video} showChannel={false} />);
 }
