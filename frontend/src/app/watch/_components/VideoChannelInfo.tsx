@@ -12,17 +12,19 @@ interface VideoChannelInfoProps {
 }
 
 export function VideoChannelInfo({ user, channelSubscribers }: VideoChannelInfoProps) {
+  const { username, avatar_url, id } = user;
+
   const formatSubscribers = useFormatSubscribers();
   const channelSubscribersFormatted = formatSubscribers(channelSubscribers);
   return (
     <div className="flex items-center gap-3">
-      <ChannelAvatar username={user.username} avatarUrl={user.avatar_url} large />
+      <ChannelAvatar username={username} avatarUrl={avatar_url} large />
       <div className="flex-1">
         <Link
-          href={`/channel/${user.id}`}
+          href={`/channel/${id}`}
           className="text-foreground hover:text-muted-foreground m-0 block cursor-pointer text-sm font-medium no-underline"
         >
-          {user.username}
+          {username}
         </Link>
         <p className="text-muted-foreground text-xs">{channelSubscribersFormatted}</p>
       </div>
