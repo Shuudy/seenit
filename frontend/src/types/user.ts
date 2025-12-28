@@ -2,11 +2,11 @@ export type User = {
   id: number;
   username: string;
   email?: string;
-  avatarUrl?: string;
+  avatar_url?: string;
   handle?: string;
   bio?: string;
   subscribers?: string;
   subscribersRaw?: number;
-  videos?: string;
-  banner?: string;
+  videos_count?: number;
+  banner_url?: string;
 };

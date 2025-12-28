@@ -1,17 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
 import { ChannelTabs } from '@/app/channel/_components/ChannelTabs';
 import { ChannelAbout } from '@/app/channel/_components/ChannelAbout';
 import { ChannelVideoGrid } from '@/app/channel/_components/ChannelVideoGrid';
 
-import mockChannelVideos from '@/data/mockChannelVideos.json';
-
-import { Video } from '@/types/video';
 import { User } from '@/types/user';
-
-const channelVideos = mockChannelVideos as Video[];
+import { ChannelVideoGridFallback } from '@/app/channel/_components/fallbacks/ChannelVideoGridFallback';
 
 const tabs = ['Accueil', 'Vidéos', 'À propos'];
 
@@ -25,7 +21,11 @@ export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
         {activeTab === 'Accueil' && (
           <div>
             <h2 className="mb-6 text-xl font-bold">Dernières vidéos</h2>
-            <ChannelVideoGrid videos={channelVideos} />
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <Suspense fallback={<ChannelVideoGridFallback />}>
+                <ChannelVideoGrid />
+              </Suspense>
+            </div>
           </div>
         )}
 
@@ -38,7 +38,11 @@ export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
                 <option>Plus anciens</option>
               </select>
             </div>
-            <ChannelVideoGrid videos={channelVideos} />
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <Suspense fallback={<ChannelVideoGridFallback />}>
+                <ChannelVideoGrid />
+              </Suspense>
+            </div>
           </div>
         )}
 

@@ -3,8 +3,16 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export function ProfileAvatarPicker({ initialAvatarUrl }: { initialAvatarUrl: string }) {
-  const [preview, setPreview] = useState(initialAvatarUrl);
+import { getAvatarUrl } from '@/utils/get-avatar-url';
+
+export function ProfileAvatarPicker({
+  username,
+  initialAvatarUrl,
+}: {
+  username: string;
+  initialAvatarUrl?: string;
+}) {
+  const [preview, setPreview] = useState(getAvatarUrl(username, initialAvatarUrl));
   function handleAvatarChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
