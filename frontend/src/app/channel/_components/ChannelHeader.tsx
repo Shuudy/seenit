@@ -13,13 +13,15 @@ export function ChannelHeader() {
   const { id: channelId } = useParams<{ id: string }>();
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);
-  const videosCount = user.videos_count ?? 0;
+
+  const { banner_url, avatar_url, username, videos_count, bio } = user;
+  const videosCount = videos_count ?? 0;
 
   return (
     <>
       <div className="from-accent/20 to-accent/10 relative z-0 h-40 w-full overflow-hidden bg-gradient-to-r md:h-56">
         <Image
-          src={user.banner_url ?? '/channel-banner.jpg'}
+          src={banner_url ?? '/channel-banner.jpg'}
           alt={t('channelBanner')}
           fill
           className="h-full w-full object-cover"
@@ -34,8 +36,8 @@ export function ChannelHeader() {
           <div className="-mt-12 flex flex-col gap-4 pb-4 md:-mt-16 md:flex-row md:gap-6">
             <div className="relative z-10 flex-shrink-0">
               <Image
-                src={getAvatarUrl(user.username, user.avatar_url)}
-                alt={user.username}
+                src={getAvatarUrl(username, avatar_url)}
+                alt={username}
                 width="160"
                 height="160"
                 className="border-background h-28 w-28 rounded-full border-4 object-cover shadow-lg md:h-40 md:w-40"
@@ -46,9 +48,9 @@ export function ChannelHeader() {
 
             <div className="relative z-10 flex flex-1 flex-col justify-end">
               <div className="mb-1">
-                <h1 className="text-2xl font-bold md:text-3xl">{user.username}</h1>
+                <h1 className="text-2xl font-bold md:text-3xl">{username}</h1>
               </div>
-              <p className="text-muted-foreground mb-2 text-sm">@{user.username}</p>
+              <p className="text-muted-foreground mb-2 text-sm">@{username}</p>
 
               <div className="mb-3 flex gap-4 text-sm">
                 <span className="text-muted-foreground">
@@ -61,9 +63,7 @@ export function ChannelHeader() {
                 </span>
               </div>
 
-              <p className="text-muted-foreground mb-3 line-clamp-2 max-w-3xl text-sm">
-                {user.bio}
-              </p>
+              <p className="text-muted-foreground mb-3 line-clamp-2 max-w-3xl text-sm">{bio}</p>
 
               <div className="flex gap-3">
                 <SubscribeButton />
