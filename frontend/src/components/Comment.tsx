@@ -8,7 +8,7 @@ export function Comment({ comment }: CommentProps) {
 
   return (
     <div className="flex gap-4">
-      <ChannelAvatar username={comment.user.username} />
+      <ChannelAvatar username={comment.user.username} avatarUrl={comment.user.avatar_url} />
       <div className="flex-1 space-y-1">
         <div className="flex items-center gap-2">
           <p className="text-foreground text-sm font-medium">{comment.user.username}</p>

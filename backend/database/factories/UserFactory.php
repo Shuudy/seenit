@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
             'bio' => fake()->paragraph(),
-            'avatar_url' => 'https://picsum.photos/300/200?random='.fake()->unique()->uuid(),
+            'avatar_url' => fake()->boolean(50) ? 'https://picsum.photos/300/200?random='.fake()->unique()->uuid() : null,
             'banner_url' => 'https://picsum.photos/800/200?random='.fake()->unique()->uuid(),
         ];
     }

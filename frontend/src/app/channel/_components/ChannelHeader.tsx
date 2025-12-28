@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useChannelHeaderSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelHeaderSuspenseQuery';
 import { useParams } from 'next/navigation';
+import { getAvatarUrl } from '@/utils/get-avatar-url';
 
 export function ChannelHeader() {
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -31,7 +32,7 @@ export function ChannelHeader() {
           <div className="-mt-12 flex flex-col gap-4 pb-4 md:-mt-16 md:flex-row md:gap-6">
             <div className="relative z-10 flex-shrink-0">
               <Image
-                src={user.avatar_url ?? '/channel-avatar.jpg'}
+                src={getAvatarUrl(user.username, user.avatar_url)}
                 alt={user.username}
                 width="160"
                 height="160"

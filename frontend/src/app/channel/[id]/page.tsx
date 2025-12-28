@@ -15,7 +15,6 @@ const creatorInfo: User = {
   subscribers: '542K',
   subscribersRaw: 542_000,
   videos_count: 128,
-  avatar_url: '/channel-avatar.jpg',
   banner_url: '/channel-banner.jpg',
 };
 

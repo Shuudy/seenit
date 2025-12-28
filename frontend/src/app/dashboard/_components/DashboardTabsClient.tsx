@@ -26,7 +26,7 @@ export function DashboardTabsClient() {
           <div className="space-y-6">
             <ProfileBannerPicker initialBannerUrl="/celebratory-banner.png" />
 
-            <ProfileAvatarPicker initialAvatarUrl="/abstract-profile.png" />
+            <ProfileAvatarPicker username={profileInitialData.username} />
 
             <ProfileForm initialData={profileInitialData} />
           </div>

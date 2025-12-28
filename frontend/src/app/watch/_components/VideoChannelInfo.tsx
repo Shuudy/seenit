@@ -14,7 +14,7 @@ export function VideoChannelInfo({ user, channelSubscribers }: VideoChannelInfoP
   const channelSubscribersFormatted = formatSubscribers(channelSubscribers);
   return (
     <div className="flex items-center gap-3">
-      <ChannelAvatar username={user.username} />
+      <ChannelAvatar username={user.username} avatarUrl={user.avatar_url} />
       <div className="flex-1">
         <Link
           href={`/channel/${user.id}`}
