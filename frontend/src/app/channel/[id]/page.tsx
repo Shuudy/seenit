@@ -4,6 +4,8 @@ import { Sidebar } from '@/components/Sidebar';
 import type { User } from '@/types/user';
 import { ChannelHeader } from '@/app/channel/_components/ChannelHeader';
 import { ChannelTabsClient } from '@/app/channel/_components/ChannelTabsClient';
+import { Suspense } from 'react';
+import { ChannelHeaderSkeleton } from '@/components/skeletons/ChannelHeaderSkeleton';
 
 const creatorInfo: User = {
   id: 1,
@@ -12,9 +14,9 @@ const creatorInfo: User = {
   bio: "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
   subscribers: '542K',
   subscribersRaw: 542_000,
-  videos: '128',
-  avatarUrl: '/channel-avatar.jpg',
-  banner: '/channel-banner.jpg',
+  videos_count: 128,
+  avatar_url: '/channel-avatar.jpg',
+  banner_url: '/channel-banner.jpg',
 };
 
 export default function ChannelPage() {
@@ -24,7 +26,9 @@ export default function ChannelPage() {
       <Sidebar />
 
       <main className="mt-16 md:ml-64">
-        <ChannelHeader channel={creatorInfo} />
+        <Suspense fallback={<ChannelHeaderSkeleton />}>
+          <ChannelHeader />
+        </Suspense>
 
         <ChannelTabsClient creatorInfo={creatorInfo} />
       </main>

@@ -1,21 +1,22 @@
 'use client';
 
-import type { User } from '@/types/user';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useChannelHeaderSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelHeaderSuspenseQuery';
+import { useParams } from 'next/navigation';
 
-interface ChannelHeaderProps {
-  channel: User;
-}
-
-export function ChannelHeader({ channel }: ChannelHeaderProps) {
+export function ChannelHeader() {
   const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const { id: channelId } = useParams<{ id: string }>();
+
+  const { data: user } = useChannelHeaderSuspenseQuery(channelId);
 
   return (
     <>
       <div className="from-accent/20 to-accent/10 relative z-0 h-40 w-full overflow-hidden bg-gradient-to-r md:h-56">
         <Image
-          src={channel.banner ?? '/channel-banner.jpg'}
+          src={user.banner_url ?? '/channel-banner.jpg'}
           alt="Channel banner"
           fill
           className="h-full w-full object-cover"
@@ -30,8 +31,8 @@ export function ChannelHeader({ channel }: ChannelHeaderProps) {
           <div className="-mt-12 flex flex-col gap-4 pb-4 md:-mt-16 md:flex-row md:gap-6">
             <div className="relative z-10 flex-shrink-0">
               <Image
-                src={channel.avatarUrl ?? '/channel-avatar.jpg'}
-                alt={channel.username}
+                src={user.avatar_url ?? '/channel-avatar.jpg'}
+                alt={user.username}
                 width="160"
                 height="160"
                 className="border-background h-28 w-28 rounded-full border-4 object-cover shadow-lg md:h-40 md:w-40"
@@ -42,22 +43,21 @@ export function ChannelHeader({ channel }: ChannelHeaderProps) {
 
             <div className="relative z-10 flex flex-1 flex-col justify-end">
               <div className="mb-1">
-                <h1 className="text-2xl font-bold md:text-3xl">{channel.username}</h1>
+                <h1 className="text-2xl font-bold md:text-3xl">{user.username}</h1>
               </div>
-              <p className="text-muted-foreground mb-2 text-sm">{channel.handle}</p>
+              <p className="text-muted-foreground mb-2 text-sm">@{user.username}</p>
 
               <div className="mb-3 flex gap-4 text-sm">
                 <span className="text-muted-foreground">
-                  <span className="text-foreground font-semibold">{channel.subscribers}</span>{' '}
-                  abonnés
+                  <span className="text-foreground font-semibold">54K</span> abonnés
                 </span>
                 <span className="text-muted-foreground">
-                  <span className="text-foreground font-semibold">{channel.videos}</span> vidéos
+                  <span className="text-foreground font-semibold">{user.videos_count}</span> vidéos
                 </span>
               </div>
 
               <p className="text-muted-foreground mb-3 line-clamp-2 max-w-3xl text-sm">
-                {channel.bio}
+                {user.bio}
               </p>
 
               <div className="flex gap-3">
