@@ -5,7 +5,7 @@ import type { User } from '@/types/user';
 import { ChannelHeader } from '@/app/channel/_components/ChannelHeader';
 import { ChannelTabsClient } from '@/app/channel/_components/ChannelTabsClient';
 import { Suspense } from 'react';
-import { ChannelHeaderSkeleton } from '@/components/skeletons/ChannelHeaderSkeleton';
+import { ChannelHeaderFallback } from '@/app/channel/_components/fallbacks/ChannelHeaderFallback';
 
 const creatorInfo: User = {
   id: 1,
@@ -26,7 +26,7 @@ export default function ChannelPage() {
       <Sidebar />
 
       <main className="mt-16 md:ml-64">
-        <Suspense fallback={<ChannelHeaderSkeleton />}>
+        <Suspense fallback={<ChannelHeaderFallback />}>
           <ChannelHeader />
         </Suspense>
 
