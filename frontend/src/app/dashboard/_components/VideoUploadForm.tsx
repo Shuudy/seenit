@@ -36,6 +36,8 @@ export function VideoUploadForm() {
     });
   }
 
+  const { title: titleError, description: descriptionError, file: fileError } = errors;
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
@@ -51,7 +53,7 @@ export function VideoUploadForm() {
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
         <p className="text-muted-foreground mt-1 text-xs">{watchedTitle.length}/100</p>
-        {errors.title && <InputError message={errors.title.message} />}
+        {titleError && <InputError message={titleError.message} />}
       </div>
 
       <div>
@@ -70,7 +72,7 @@ export function VideoUploadForm() {
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
         <p className="text-muted-foreground mt-1 text-xs">{watchedDescription.length}/500</p>
-        {errors.description && <InputError message={errors.description.message} />}
+        {descriptionError && <InputError message={descriptionError.message} />}
       </div>
 
       <div>
@@ -105,7 +107,7 @@ export function VideoUploadForm() {
             <p className="text-muted-foreground text-xs">{t('videoFileFormats')}</p>
           </div>
         </div>
-        {errors.file && <InputError message={errors.file.message} />}
+        {fileError && <InputError message={fileError.message} />}
       </div>
 
       <div className="flex gap-3 pt-4">
