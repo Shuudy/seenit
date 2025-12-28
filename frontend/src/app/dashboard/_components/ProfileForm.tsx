@@ -58,6 +58,8 @@ export function ProfileForm() {
     setServerError(undefined);
   };
 
+  const { username: usernameError, email: emailError, bio: bioError } = errors;
+
   return (
     <form onSubmit={handleSubmit(submitHandler)} className="border-border space-y-5 border-t pt-6">
       {serverError && (
@@ -77,7 +79,7 @@ export function ProfileForm() {
           placeholder={t('usernamePlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
-        {errors.username && <InputError message={errors.username.message} />}
+        {usernameError && <InputError message={usernameError.message} />}
       </div>
 
       <div>
@@ -91,7 +93,7 @@ export function ProfileForm() {
           placeholder={t('emailPlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
-        {errors.email && <InputError message={errors.email.message} />}
+        {emailError && <InputError message={emailError.message} />}
       </div>
 
       <div>
@@ -107,7 +109,7 @@ export function ProfileForm() {
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
         <p className="text-muted-foreground mt-1 text-xs">{watchedBio.length}/500</p>
-        {errors.bio && <InputError message={errors.bio.message} />}
+        {bioError && <InputError message={bioError.message} />}
       </div>
 
       <div className="flex gap-3 pt-4">
