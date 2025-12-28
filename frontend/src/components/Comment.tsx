@@ -5,24 +5,27 @@ import { useFormatRelativeTime } from '@/utils/format-relative-time';
 import { CommentActions } from '@/components/CommentActions';
 
 export function Comment({ comment }: CommentProps) {
+  const { user, created_at, content, likes_count } = comment;
+  const { username, avatar_url, id } = user;
+
   const formatRelativeTime = useFormatRelativeTime();
-  const createdAtFormatted = formatRelativeTime(comment.created_at);
+  const createdAtFormatted = formatRelativeTime(created_at);
 
   return (
     <div className="flex gap-4">
-      <ChannelAvatar username={comment.user.username} avatarUrl={comment.user.avatar_url} />
+      <ChannelAvatar username={username} avatarUrl={avatar_url} />
       <div className="flex-1 space-y-1">
         <div className="flex items-center gap-2">
           <Link
-            href={`/channel/${comment.user.id}`}
+            href={`/channel/${id}`}
             className="text-foreground hover:text-muted-foreground text-sm font-medium"
           >
-            {comment.user.username}
+            {username}
           </Link>
           <p className="text-muted-foreground text-xs">{createdAtFormatted}</p>
         </div>
-        <p className="text-foreground/90 text-sm">{comment.content}</p>
-        <CommentActions likes={comment.likes_count} />
+        <p className="text-foreground/90 text-sm">{content}</p>
+        <CommentActions likes={likes_count} />
       </div>
     </div>
   );
