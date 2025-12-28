@@ -13,25 +13,24 @@ export function VideoDetails() {
   const { id: videoId } = useParams<{ id: string }>();
 
   const { data: video } = useVideoDetailsSuspenseQuery(videoId);
+
+  const { thumbnail, url, title, user, likes_count, count_views, created_at, description } = video;
+
   return (
     <>
-      <VideoPlayer thumbnail={video.thumbnail} url={video.url} />
-      <VideoTitle title={video.title} />
+      <VideoPlayer thumbnail={thumbnail} url={url} />
+      <VideoTitle title={title} />
 
       <div className="border-secondary flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
-        <VideoChannelInfo user={video.user} channelSubscribers={351} />
+        <VideoChannelInfo user={user} channelSubscribers={351} />
 
         <div className="flex gap-2">
-          <LikeDislikeButtons initialLikes={video.likes_count} />
-          <ShareButton title={video.title} />
+          <LikeDislikeButtons initialLikes={likes_count} />
+          <ShareButton title={title} />
         </div>
       </div>
 
-      <VideoDescription
-        views={video.count_views}
-        uploadedAt={video.created_at}
-        description={video.description}
-      />
+      <VideoDescription views={count_views} uploadedAt={created_at} description={description} />
     </>
   );
 }
