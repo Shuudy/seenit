@@ -18,12 +18,11 @@ export function SubscribeButton({ initial = false }: SubscribeButtonProps) {
       aria-pressed={subscribed}
       onClick={handleClick}
       title={subscribed ? 'Abonné' : "S'abonner"}
-      className={
-        'flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap ' +
-        (subscribed
-          ? 'bg-background text-foreground border-muted-foreground/40 border'
-          : 'bg-foreground text-background')
-      }
+      className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-all ${
+        subscribed
+          ? 'bg-secondary text-foreground hover:bg-secondary/80'
+          : 'bg-accent text-accent-foreground hover:bg-accent/90'
+      }`}
     >
       {subscribed ? 'Abonné' : "S'abonner"}
     </button>
