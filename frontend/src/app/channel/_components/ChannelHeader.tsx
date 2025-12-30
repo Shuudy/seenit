@@ -12,6 +12,7 @@ export function ChannelHeader() {
   const { id: channelId } = useParams<{ id: string }>();
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);
+  const videosCount = Number(user.videos_count ?? 0);
 
   return (
     <>
@@ -53,7 +54,8 @@ export function ChannelHeader() {
                   <span className="text-foreground font-semibold">54K</span> abonnés
                 </span>
                 <span className="text-muted-foreground">
-                  <span className="text-foreground font-semibold">{user.videos_count}</span> vidéos
+                  <span className="text-foreground font-semibold">{videosCount}</span>{' '}
+                  {videosCount === 1 ? 'vidéo' : 'vidéos'}
                 </span>
               </div>
 
