@@ -12,7 +12,7 @@ export function ChannelHeader() {
   const { id: channelId } = useParams<{ id: string }>();
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);
-  const videosCount = Number(user.videos_count ?? 0);
+  const videosCount = user.videos_count ?? 0;
 
   return (
     <>
