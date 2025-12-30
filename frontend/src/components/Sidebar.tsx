@@ -72,6 +72,39 @@ export function Sidebar() {
           </svg>
           <span className="text-sm font-medium">Historique</span>
         </Link>
+        <Link href="#" className={linkClass('/playlists')}>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 10h16M4 14h10m-10 4h10m4-6v8m0 0l-3-3m3 3l3-3"
+            />
+          </svg>
+          <span className="text-sm font-medium">Playlists</span>
+        </Link>
+        <Link href="#" className={linkClass('/watch-later')}>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0zM5 5l2 2m12-2l-2 2"
+            />
+          </svg>
+          <span className="text-sm font-medium">À regarder plus tard</span>
+        </Link>
+        <Link href="#" className={linkClass('/liked')}>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+            />
+          </svg>
+          <span className="text-sm font-medium">Vidéos likées</span>
+        </Link>
       </nav>
     </aside>
   );
