@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Video } from '@/types/video';
 import { formatViews } from '@/utils/format-views';
 import { formatRelativeTime } from '@/utils/format-relative-time';
+import { formatDuration } from '@/utils/format-duration';
 
 interface VideoCardProps {
   video: Video;
@@ -13,6 +14,7 @@ interface VideoCardProps {
 export function VideoCard({ video, showChannel = true }: VideoCardProps) {
   const viewsFormatted = formatViews(video.count_views);
   const createdAtFormatted = formatRelativeTime(video.created_at);
+  const durationFormatted = formatDuration(video.duration);
   const channelUsername = showChannel ? video.user.username : undefined;
 
   return (
@@ -31,6 +33,9 @@ export function VideoCard({ video, showChannel = true }: VideoCardProps) {
               <path d="M8 5v14l11-7z" />
             </svg>
           </div>
+        </div>
+        <div className="absolute right-1.5 bottom-1.5 rounded bg-black/60 px-1.5 py-0.5 text-xs font-medium text-white">
+          {durationFormatted}
         </div>
       </div>
 
