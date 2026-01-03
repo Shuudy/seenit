@@ -1,27 +1,26 @@
 export function formatRelativeTime(iso: string): string {
   const date = new Date(iso);
   const now = new Date();
+  const diff = date.getTime() - now.getTime();
+  const abs = Math.abs(diff);
 
-  const diffMs = date.getTime() - now.getTime();
-  const rtf = new Intl.RelativeTimeFormat('fr', { numeric: 'auto' });
+  const rtf = new Intl.RelativeTimeFormat('fr', {
+    numeric: 'always',
+    style: 'long',
+  });
 
   const units = [
-    { ms: 1000, key: 'second' as const },
-    { ms: 60_000, key: 'minute' as const },
-    { ms: 3_600_000, key: 'hour' as const },
-    { ms: 86_400_000, key: 'day' as const },
-    { ms: 2_592_000_000, key: 'month' as const },
-    { ms: 31_536_000_000, key: 'year' as const },
+    { key: 'year' as const, val: 31_536_000_000, limit: 27_648_000_000 },
+    { key: 'month' as const, val: 2_629_800_000, limit: 2_160_000_000 },
+    { key: 'week' as const, val: 604_800_000, limit: 518_400_000 },
+    { key: 'day' as const, val: 86_400_000, limit: 79_200_000 },
+    { key: 'hour' as const, val: 3_600_000, limit: 3_000_000 },
+    { key: 'minute' as const, val: 60_000, limit: 45_000 },
+    { key: 'second' as const, val: 1000, limit: 0 },
   ];
 
-  const abs = Math.abs(diffMs);
-  let unit = units[0];
-  for (const u of units) {
-    if (abs >= u.ms) unit = u;
-  }
+  const unit = units.find(u => abs >= u.limit) || units.at(-1)!;
+  const value = Math.round(diff / unit.val);
 
-  const value = Math.round(diffMs / unit.ms);
-
-  const text = rtf.format(value, unit.key);
-  return text.startsWith('dans') ? text : `il y a ${text.replace('il y a ', '')}`;
+  return rtf.format(value, unit.key);
 }
