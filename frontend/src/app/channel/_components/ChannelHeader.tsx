@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useChannelHeaderSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelHeaderSuspenseQuery';
 import { useParams } from 'next/navigation';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
-import { SubscribeButton } from '@/app/_components/SubscribeButton';
+import { SubscribeButton } from '@/components/SubscribeButton';
 
 export function ChannelHeader() {
   const { id: channelId } = useParams<{ id: string }>();

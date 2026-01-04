@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { User } from '@/types/user';
 import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { formatSubscribers } from '@/utils/format-subscribers';
-import { SubscribeButton } from '@/app/_components/SubscribeButton';
+import { SubscribeButton } from '@/components/SubscribeButton';
 
 interface VideoChannelInfoProps {
   user: User;
