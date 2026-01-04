@@ -1,3 +1,4 @@
+import { formatDuration } from '@/utils/format-duration';
 import Image from 'next/image';
 
 export function VideoThumbnail({
@@ -7,8 +8,9 @@ export function VideoThumbnail({
 }: {
   thumbnail: string | null;
   title: string;
-  duration: string;
+  duration: number;
 }) {
+  const durationFormatted = formatDuration(duration);
   return (
     <div className="bg-secondary relative h-20 w-32 flex-shrink-0 overflow-hidden rounded">
       <Image
@@ -24,7 +26,7 @@ export function VideoThumbnail({
         </svg>
       </div>
       <div className="absolute right-1 bottom-1 rounded bg-black/60 px-1 py-0.5 text-xs font-medium text-white">
-        {duration}
+        {durationFormatted}
       </div>
     </div>
   );
