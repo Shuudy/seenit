@@ -1,6 +1,14 @@
 import Image from 'next/image';
 
-export function VideoThumbnail({ thumbnail, title }: { thumbnail: string | null; title: string }) {
+export function VideoThumbnail({
+  thumbnail,
+  title,
+  duration,
+}: {
+  thumbnail: string | null;
+  title: string;
+  duration: string;
+}) {
   return (
     <div className="bg-secondary relative h-20 w-32 flex-shrink-0 overflow-hidden rounded">
       <Image
@@ -14,6 +22,9 @@ export function VideoThumbnail({ thumbnail, title }: { thumbnail: string | null;
         <svg className="h-4 w-4 fill-white text-white" viewBox="0 0 24 24">
           <path d="M8 5v14l11-7z" />
         </svg>
+      </div>
+      <div className="absolute right-1 bottom-1 rounded bg-black/60 px-1 py-0.5 text-xs font-medium text-white">
+        {duration}
       </div>
     </div>
   );
