@@ -1,14 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
 import { useChannelHeaderSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelHeaderSuspenseQuery';
 import { useParams } from 'next/navigation';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
+import { SubscribeButton } from '@/app/_components/SubscribeButton';
 
 export function ChannelHeader() {
-  const [isSubscribed, setIsSubscribed] = useState(false);
-
   const { id: channelId } = useParams<{ id: string }>();
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);
@@ -62,16 +60,7 @@ export function ChannelHeader() {
               </p>
 
               <div className="flex gap-3">
-                <button
-                  onClick={() => setIsSubscribed(!isSubscribed)}
-                  className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-all ${
-                    isSubscribed
-                      ? 'bg-secondary text-foreground hover:bg-secondary/80'
-                      : 'bg-accent text-accent-foreground hover:bg-accent/90'
-                  }`}
-                >
-                  {isSubscribed ? 'Abonné' : "S'abonner"}
-                </button>
+                <SubscribeButton />
               </div>
             </div>
           </div>
