@@ -4,6 +4,7 @@ import Link from 'next/link';
 import type { User } from '@/types/user';
 import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { formatSubscribers } from '@/utils/format-subscribers';
+import { SubscribeButton } from '@/components/SubscribeButton';
 
 interface VideoChannelInfoProps {
   user: User;
@@ -24,9 +25,7 @@ export function VideoChannelInfo({ user, channelSubscribers }: VideoChannelInfoP
         </Link>
         <p className="text-muted-foreground text-xs">{channelSubscribersFormatted}</p>
       </div>
-      <button className="bg-foreground text-background hover:bg-muted-foreground cursor-pointer rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors">
-        S&apos;abonner
-      </button>
+      <SubscribeButton />
     </div>
   );
 }
