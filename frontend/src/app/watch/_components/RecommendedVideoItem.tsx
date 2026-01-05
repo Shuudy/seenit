@@ -6,7 +6,11 @@ import Link from 'next/link';
 export function RecommendedVideoItem({ video }: { video: Video }) {
   return (
     <Link href={`/watch/${video.id}`} className="group flex cursor-pointer gap-2">
-      <VideoThumbnail thumbnail={video.thumbnail || '/video-thumbnail.jpg'} title={video.title} />
+      <VideoThumbnail
+        thumbnail={video.thumbnail || '/video-thumbnail.jpg'}
+        title={video.title}
+        duration={video.duration}
+      />
 
       <VideoInfo
         title={video.title}
