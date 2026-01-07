@@ -14,7 +14,7 @@ export function Comment({ comment }: CommentProps) {
         <div className="flex items-center gap-2">
           <Link
             href={`/channel/${comment.user.id}`}
-            className="text-foreground text-sm font-medium"
+            className="text-foreground hover:text-muted-foreground text-sm font-medium"
           >
             {comment.user.username}
           </Link>
