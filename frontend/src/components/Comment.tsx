@@ -1,4 +1,5 @@
 import { ChannelAvatar } from '@/components/ChannelAvatar';
+import Link from 'next/link';
 import { CommentProps } from '@/types/props';
 import { formatRelativeTime } from '@/utils/format-relative-time';
 import { CommentActions } from '@/components/CommentActions';
@@ -11,7 +12,12 @@ export function Comment({ comment }: CommentProps) {
       <ChannelAvatar username={comment.user.username} avatarUrl={comment.user.avatar_url} />
       <div className="flex-1 space-y-1">
         <div className="flex items-center gap-2">
-          <p className="text-foreground text-sm font-medium">{comment.user.username}</p>
+          <Link
+            href={`/channel/${comment.user.id}`}
+            className="text-foreground text-sm font-medium"
+          >
+            {comment.user.username}
+          </Link>
           <p className="text-muted-foreground text-xs">{createdAtFormatted}</p>
         </div>
         <p className="text-foreground/90 text-sm">{comment.content}</p>
