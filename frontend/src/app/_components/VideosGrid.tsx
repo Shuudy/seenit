@@ -3,6 +3,7 @@
 import { VideoCard } from '@/components/VideoCard';
 import { useVideosSuspenseQuery } from '@/app/_hooks/queries/useVideosSuspenseQuery';
 import { useSearchParams } from 'next/navigation';
+import { VideosGridSearchEmpty } from '@/app/_components/VideosGridSearchEmpty';
 
 export function VideosGrid() {
   const { data: videos } = useVideosSuspenseQuery();
@@ -14,13 +15,7 @@ export function VideosGrid() {
     : videos;
 
   if (searchQuery && filteredVideos.length === 0) {
-    return (
-      <div className="col-span-full py-12 text-center">
-        <p className="text-muted-foreground text-lg">
-          Aucune vidéo trouvée pour &quot;{searchParameters.get('q')}&quot;
-        </p>
-      </div>
-    );
+    return <VideosGridSearchEmpty query={searchParameters.get('q')} />;
   }
 
   return filteredVideos.map(video => <VideoCard key={video.id} video={video} />);
