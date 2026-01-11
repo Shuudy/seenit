@@ -2,18 +2,28 @@
 
 import { SubmitHandler } from 'react-hook-form';
 import { LoginFormFields, useLoginForm } from '@/app/login/_hooks/useLoginForm';
+import { useLoginMutation } from '@/app/login/_hooks/mutations/useLoginMutation';
 import { InputError } from '@/components/InputError';
-
-const onSubmit: SubmitHandler<LoginFormFields> = data => {
-  console.log(data);
-};
+import { useRouter } from 'next/navigation';
 
 export function LoginForm() {
   const {
-    formState: { errors },
-    handleSubmit,
     register,
+    handleSubmit,
+    formState: { errors },
   } = useLoginForm();
+
+  const { mutate: postLogin, isPending, error } = useLoginMutation();
+
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<LoginFormFields> = data => {
+    postLogin(data, {
+      onSuccess() {
+        router.push('/');
+      },
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -47,10 +57,13 @@ export function LoginForm() {
 
       <button
         type="submit"
-        className="bg-foreground hover:bg-foreground/90 text-background mt-6 w-full cursor-pointer rounded-lg py-2 font-medium transition-colors"
+        className="bg-foreground hover:bg-foreground/90 text-background disabled:hover:bg-foreground mt-6 w-full cursor-pointer rounded-lg py-2 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+        disabled={isPending}
       >
-        Se connecter
+        {isPending ? 'Connexion…' : 'Se connecter'}
       </button>
+
+      {error && <InputError message="Adresse email ou mot de passe incorrect" />}
     </form>
   );
 }
