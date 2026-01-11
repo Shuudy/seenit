@@ -1,6 +1,26 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 export function SearchBar() {
+  const searchParameters = useSearchParams();
+  const initialQuery = searchParameters.get('q') ?? '';
+  const [query, setQuery] = useState(initialQuery);
+  const router = useRouter();
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const trimmedQuery = query.trim();
+    if (trimmedQuery) {
+      router.push(`/?q=${encodeURIComponent(trimmedQuery)}`);
+    } else {
+      router.push('/');
+    }
+  };
+
   return (
-    <div className="hidden max-w-md flex-1 sm:flex">
+    <form onSubmit={handleSubmit} className="hidden max-w-md flex-1 sm:flex">
       <div className="bg-secondary flex w-full items-center gap-2 rounded-full px-4 py-2">
         <svg
           className="text-muted-foreground h-5 w-5"
@@ -17,10 +37,12 @@ export function SearchBar() {
         </svg>
         <input
           type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
           placeholder="Rechercher"
           className="text-foreground placeholder-muted-foreground flex-1 bg-transparent text-sm outline-none"
         />
       </div>
-    </div>
+    </form>
   );
 }
