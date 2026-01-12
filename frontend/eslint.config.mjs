@@ -33,6 +33,7 @@ const eslintConfig = [
       ],
 
       'unicorn/filename-case': 'off',
+      'unicorn/no-await-expression-member': 'off',
 
       'unicorn/prevent-abbreviations': [
         'error',
