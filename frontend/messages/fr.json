@@ -1,0 +1,107 @@
+{
+  "HomePage": {
+    "noResultsFor": "Aucun résultat pour",
+    "tryAnotherSearch": "Essayez une autre recherche ou explorez nos catégories."
+  },
+  "Sidebar": {
+    "home": "Accueil",
+    "shorts": "Shorts",
+    "subscriptions": "Abonnements",
+    "you": "Vous",
+    "history": "Historique"
+  },
+  "Auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "loginButton": "Se connecter",
+    "registerButton": "Créer un compte",
+    "noAccount": "Pas de compte?",
+    "hasAccount": "Vous avez déjà un compte?",
+    "signUp": "S'inscrire",
+    "signIn": "Se connecter",
+    "or": "ou",
+    "emailPlaceholder": "vous@exemple.com",
+    "passwordPlaceholder": "••••••••",
+    "emailRequired": "Adresse email requise",
+    "emailInvalid": "Adresse email invalide",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères"
+  },
+  "Error": {
+    "title": "Une erreur est survenue",
+    "description": "Quelque chose s'est mal passé. Vous pouvez réessayer ou retourner sur la page d'accueil.",
+    "support": "Si le problème persiste, contactez le support en décrivant ce qui s'est passé.",
+    "retry": "Réessayer",
+    "backHome": "Retour à l'accueil"
+  },
+  "Watch": {
+    "recommendations": "Recommandations"
+  },
+  "Common": {
+    "subscribed": "Abonné",
+    "subscribe": "S'abonner",
+    "search": "Rechercher",
+    "view": "vue",
+    "views": "vues",
+    "thousand": "K",
+    "million": "M",
+    "billion": "G",
+    "addComment": "Ajouter un commentaire...",
+    "subscriber": "abonné",
+    "subscribers": "abonnés"
+  },
+  "Channel": {
+    "popular": "Plus populaires",
+    "oldest": "Plus anciens",
+    "usefulLinks": "Liens utiles",
+    "channelDescription": "Description de la chaîne",
+    "noDescription": "Aucune description.",
+    "website": "Site web",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "recentlyUpdated": "Récemment mis à jour",
+    "sampleBio": "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
+    "home": "Accueil",
+    "videosTab": "Vidéos",
+    "about": "À propos",
+    "latestVideos": "Dernières vidéos",
+    "video": "vidéo",
+    "videos": "vidéos",
+    "subscribers": "abonnés",
+    "channelBanner": "Bannière de chaîne"
+  },
+  "Dashboard": {
+    "edit": "Modifier",
+    "profilePicture": "Photo de profil",
+    "banner": "Bannière",
+    "profile": "Profil",
+    "uploadVideo": "Uploader une vidéo",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "bio": "Bio",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "videoTitle": "Titre de la vidéo",
+    "videoTitlePlaceholder": "Entrez le titre de votre vidéo",
+    "description": "Description",
+    "videoDescriptionPlaceholder": "Décrivez votre vidéo...",
+    "videoFile": "Fichier vidéo",
+    "videoFilePlaceholder": "Cliquez ou glissez votre vidéo ici",
+    "videoFileFormats": "MP4, WebM ou Ogg. Max 500MB",
+    "upload": "Uploader",
+    "sampleBioDashboard": "Créateur de contenu passionné",
+    "sampleUsername": "Mon Profil"
+  },
+  "Categories": {
+    "all": "Tous",
+    "gaming": "Jeux",
+    "music": "Musique",
+    "live": "En direct",
+    "mixes": "Mélanges",
+    "trending": "Tendances",
+    "recentlyUploaded": "Récemment mis en ligne"
+  }
+}

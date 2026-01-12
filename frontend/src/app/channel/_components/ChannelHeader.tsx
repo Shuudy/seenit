@@ -5,8 +5,10 @@ import { useChannelHeaderSuspenseQuery } from '@/app/channel/_hooks/queries/useC
 import { useParams } from 'next/navigation';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
 import { SubscribeButton } from '@/components/SubscribeButton';
+import { useTranslations } from 'next-intl';
 
 export function ChannelHeader() {
+  const t = useTranslations('Channel');
   const { id: channelId } = useParams<{ id: string }>();
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);
@@ -17,7 +19,7 @@ export function ChannelHeader() {
       <div className="from-accent/20 to-accent/10 relative z-0 h-40 w-full overflow-hidden bg-gradient-to-r md:h-56">
         <Image
           src={user.banner_url ?? '/channel-banner.jpg'}
-          alt="Channel banner"
+          alt={t('channelBanner')}
           fill
           className="h-full w-full object-cover"
           sizes="100vw"
@@ -49,11 +51,11 @@ export function ChannelHeader() {
 
               <div className="mb-3 flex gap-4 text-sm">
                 <span className="text-muted-foreground">
-                  <span className="text-foreground font-semibold">54K</span> abonnés
+                  <span className="text-foreground font-semibold">54K</span> {t('subscribers')}
                 </span>
                 <span className="text-muted-foreground">
                   <span className="text-foreground font-semibold">{videosCount}</span>{' '}
-                  {videosCount === 1 ? 'vidéo' : 'vidéos'}
+                  {videosCount === 1 ? t('video') : t('videos')}
                 </span>
               </div>
 

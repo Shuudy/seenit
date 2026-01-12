@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export function SearchBar() {
+  const t = useTranslations('Common');
   const searchParameters = useSearchParams();
   const initialQuery = searchParameters.get('q') ?? '';
   const [query, setQuery] = useState(initialQuery);
@@ -39,7 +41,7 @@ export function SearchBar() {
           type="text"
           value={query}
           onChange={event => setQuery(event.target.value)}
-          placeholder="Rechercher"
+          placeholder={t('search')}
           className="text-foreground placeholder-muted-foreground flex-1 bg-transparent text-sm outline-none"
         />
       </div>

@@ -1,21 +1,23 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export function CategoryTabs() {
+  const t = useTranslations('Categories');
   const categories = [
-    'Tous',
-    'Jeux',
-    'Musique',
-    'En direct',
-    'Mélanges',
-    'Tendances',
-    'Récemment mis en ligne',
+    t('all'),
+    t('gaming'),
+    t('music'),
+    t('live'),
+    t('mixes'),
+    t('trending'),
+    t('recentlyUploaded'),
   ] as const;
 
   type Category = (typeof categories)[number];
 
-  const [activeCategory, setActiveCategory] = useState<Category>('Tous');
+  const [activeCategory, setActiveCategory] = useState<Category>(t('all'));
 
   return (
     <div className="scrollbar-hide mb-4 flex gap-3 overflow-x-auto pb-2">

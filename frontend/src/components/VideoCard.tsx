@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Video } from '@/types/video';
-import { formatViews } from '@/utils/format-views';
-import { formatRelativeTime } from '@/utils/format-relative-time';
+import { useFormatViews } from '@/utils/format-views';
+import { useFormatRelativeTime } from '@/utils/format-relative-time';
 import { formatDuration } from '@/utils/format-duration';
+import type { Video } from '@/types/video';
 
 interface VideoCardProps {
   video: Video;
@@ -12,6 +12,8 @@ interface VideoCardProps {
 }
 
 export function VideoCard({ video, showChannel = true }: VideoCardProps) {
+  const formatViews = useFormatViews();
+  const formatRelativeTime = useFormatRelativeTime();
   const viewsFormatted = formatViews(video.count_views);
   const createdAtFormatted = formatRelativeTime(video.created_at);
   const durationFormatted = formatDuration(video.duration);

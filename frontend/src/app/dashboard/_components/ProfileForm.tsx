@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface ProfileFormProps {
   initialData: {
@@ -11,6 +12,7 @@ interface ProfileFormProps {
 }
 
 export function ProfileForm({ initialData }: ProfileFormProps) {
+  const t = useTranslations('Dashboard');
   const [formData, setFormData] = useState(initialData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,7 +34,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
     <form onSubmit={handleSubmit} className="border-border space-y-5 border-t pt-6">
       <div>
         <label htmlFor="username" className="text-foreground mb-2 block text-sm font-medium">
-          Nom d&apos;utilisateur
+          {t('username')}
         </label>
         <input
           id="username"
@@ -46,7 +48,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
 
       <div>
         <label htmlFor="email" className="text-foreground mb-2 block text-sm font-medium">
-          Email
+          {t('email')}
         </label>
         <input
           id="email"
@@ -60,7 +62,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
 
       <div>
         <label htmlFor="bio" className="text-foreground mb-2 block text-sm font-medium">
-          Bio
+          {t('bio')}
         </label>
         <textarea
           id="bio"
@@ -79,14 +81,14 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
           type="submit"
           className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
         >
-          Enregistrer
+          {t('save')}
         </button>
         <button
           type="button"
           onClick={handleReset}
           className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
         >
-          Annuler
+          {t('cancel')}
         </button>
       </div>
     </form>

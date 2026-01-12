@@ -7,14 +7,16 @@ import { ProfileForm } from '@/app/dashboard/_components/ProfileForm';
 import { VideoUploadForm } from '@/app/dashboard/_components/VideoUploadForm';
 import { ProfileAvatarPicker } from '@/app/dashboard/_components/ProfileAvatarPicker';
 import { ProfileBannerPicker } from '@/app/dashboard/_components/ProfileBannerPicker';
+import { useTranslations } from 'next-intl';
 
 export function DashboardTabsClient() {
+  const t = useTranslations('Dashboard');
   const [activeTab, setActiveTab] = useState('profile');
 
   const profileInitialData = {
-    username: 'Mon Profil',
+    username: t('sampleUsername'),
     email: 'user@example.com',
-    bio: 'Créateur de contenu passionné',
+    bio: t('sampleBioDashboard'),
   };
 
   return (

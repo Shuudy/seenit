@@ -6,19 +6,21 @@ import { ChannelHeader } from '@/app/channel/_components/ChannelHeader';
 import { ChannelTabsClient } from '@/app/channel/_components/ChannelTabsClient';
 import { Suspense } from 'react';
 import { ChannelHeaderFallback } from '@/app/channel/_components/fallbacks/ChannelHeaderFallback';
+import { getTranslations } from 'next-intl/server';
 
-const creatorInfo: User = {
-  id: 1,
-  username: 'Tech Talks Daily',
-  handle: '@techtalksdaily',
-  bio: "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
-  subscribers: '542K',
-  subscribersRaw: 542_000,
-  videos_count: 128,
-  banner_url: '/channel-banner.jpg',
-};
+export default async function ChannelPage() {
+  const t = await getTranslations('Channel');
 
-export default function ChannelPage() {
+  const creatorInfo: User = {
+    id: 1,
+    username: 'Tech Talks Daily',
+    handle: '@techtalksdaily',
+    bio: t('sampleBio'),
+    subscribers: '542K',
+    subscribersRaw: 542_000,
+    videos_count: 128,
+    banner_url: '/channel-banner.jpg',
+  };
   return (
     <div className="bg-background min-h-screen">
       <Header />

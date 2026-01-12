@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import { getAvatarUrl } from '@/utils/get-avatar-url';
+import { useTranslations } from 'next-intl';
 
 export function ProfileAvatarPicker({
   username,
@@ -12,6 +13,7 @@ export function ProfileAvatarPicker({
   username: string;
   initialAvatarUrl?: string;
 }) {
+  const t = useTranslations('Dashboard');
   const [preview, setPreview] = useState(getAvatarUrl(username, initialAvatarUrl));
   function handleAvatarChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -23,19 +25,19 @@ export function ProfileAvatarPicker({
 
   return (
     <div>
-      <h2 className="text-muted-foreground mb-3 text-sm font-medium">Photo de profil</h2>
+      <h2 className="text-muted-foreground mb-3 text-sm font-medium">{t('profilePicture')}</h2>
       <div className="flex items-end gap-4">
         <div className="group relative">
           <Image
             src={preview}
-            alt="Profil"
+            alt={t('profilePicture')}
             width="80"
             height="80"
             className="border-secondary h-20 w-20 rounded-full border-2 object-cover"
           />
           <label className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
             <input type="file" accept="image/*" onChange={handleAvatarChange} className="hidden" />
-            <span className="text-xs font-medium text-white">Modifier</span>
+            <span className="text-xs font-medium text-white">{t('edit')}</span>
           </label>
         </div>
         <p className="text-muted-foreground text-xs">JPG, GIF ou PNG. Taille max 2MB</p>

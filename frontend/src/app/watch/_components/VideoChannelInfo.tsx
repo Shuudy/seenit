@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import type { User } from '@/types/user';
 import { ChannelAvatar } from '@/components/ChannelAvatar';
-import { formatSubscribers } from '@/utils/format-subscribers';
+import { useFormatSubscribers } from '@/utils/format-subscribers';
 import { SubscribeButton } from '@/components/SubscribeButton';
 
 interface VideoChannelInfoProps {
@@ -12,6 +12,7 @@ interface VideoChannelInfoProps {
 }
 
 export function VideoChannelInfo({ user, channelSubscribers }: VideoChannelInfoProps) {
+  const formatSubscribers = useFormatSubscribers();
   const channelSubscribersFormatted = formatSubscribers(channelSubscribers);
   return (
     <div className="flex items-center gap-3">

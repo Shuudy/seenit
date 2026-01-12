@@ -1,5 +1,5 @@
-import { formatRelativeTime } from '@/utils/format-relative-time';
-import { formatViews } from '@/utils/format-views';
+import { useFormatRelativeTime } from '@/utils/format-relative-time';
+import { useFormatViews } from '@/utils/format-views';
 
 interface VideoStatsProps {
   views: number;
@@ -7,6 +7,8 @@ interface VideoStatsProps {
 }
 
 export function VideoStats({ views, uploadedAt }: VideoStatsProps) {
+  const formatViews = useFormatViews();
+  const formatRelativeTime = useFormatRelativeTime();
   const viewsFormatted = formatViews(views);
   const createdAtFormatted = formatRelativeTime(uploadedAt);
   return (
