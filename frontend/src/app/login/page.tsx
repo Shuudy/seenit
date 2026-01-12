@@ -3,7 +3,22 @@ import { AuthLogo } from '@/components/auth/AuthLogo';
 import Link from 'next/link';
 import { LoginForm } from '@/app/login/_components/LoginForm';
 
-export default function LoginPage() {
+type LoginPageProps = {
+  searchParams?: {
+    redirect?: string;
+  };
+};
+
+function sanitizeRedirect(redirect?: string) {
+  if (!redirect) return '/';
+  if (!redirect.startsWith('/')) return '/';
+  if (redirect.startsWith('//')) return '/';
+  return redirect;
+}
+
+export default function LoginPage({ searchParams }: LoginPageProps) {
+  const redirectTo = sanitizeRedirect(searchParams?.redirect);
+
   return (
     <div className="bg-background flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-md">
@@ -12,7 +27,7 @@ export default function LoginPage() {
         <div className="bg-card border-border rounded-lg border p-8">
           <h2 className="text-foreground mb-6 text-lg font-semibold">Connexion</h2>
 
-          <LoginForm />
+          <LoginForm redirectTo={redirectTo} />
 
           <div className="my-6 flex items-center">
             <div className="border-border flex-1 border-t" />

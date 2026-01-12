@@ -1,17 +1,11 @@
 'use client';
 
+import { useAuthUserSuspenseQuery } from '@/lib/useAuthUserSuspenseQuery';
 import { useState } from 'react';
 
-interface ProfileFormProps {
-  initialData: {
-    username: string;
-    email: string;
-    bio: string;
-  };
-}
-
-export function ProfileForm({ initialData }: ProfileFormProps) {
-  const [formData, setFormData] = useState(initialData);
+export function ProfileForm() {
+  const { data: user } = useAuthUserSuspenseQuery();
+  const [formData, setFormData] = useState(user);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -25,7 +19,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
   };
 
   function handleReset() {
-    setFormData(initialData);
+    setFormData(user);
   }
 
   return (
@@ -65,13 +59,13 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
         <textarea
           id="bio"
           name="bio"
-          value={formData.bio}
+          value={formData.bio ?? ''}
           onChange={handleChange}
           rows={4}
           maxLength={500}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
-        <p className="text-muted-foreground mt-1 text-xs">{formData.bio.length}/500</p>
+        <p className="text-muted-foreground mt-1 text-xs">{(formData.bio ?? '').length}/500</p>
       </div>
 
       <div className="flex gap-3 pt-4">

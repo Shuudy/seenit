@@ -28,7 +28,7 @@ export function DashboardTabsClient() {
 
             <ProfileAvatarPicker username={profileInitialData.username} />
 
-            <ProfileForm initialData={profileInitialData} />
+            <ProfileForm />
           </div>
         </div>
       )}

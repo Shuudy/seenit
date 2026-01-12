@@ -6,7 +6,11 @@ import { useLoginMutation } from '@/app/login/_hooks/mutations/useLoginMutation'
 import { InputError } from '@/components/InputError';
 import { useRouter } from 'next/navigation';
 
-export function LoginForm() {
+type LoginFormProps = {
+  redirectTo?: string;
+};
+
+export function LoginForm({ redirectTo = '/' }: LoginFormProps) {
   const {
     register,
     handleSubmit,
@@ -20,7 +24,7 @@ export function LoginForm() {
   const onSubmit: SubmitHandler<LoginFormFields> = data => {
     postLogin(data, {
       onSuccess() {
-        router.push('/');
+        router.push(redirectTo);
       },
     });
   };
