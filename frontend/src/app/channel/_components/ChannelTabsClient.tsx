@@ -12,14 +12,18 @@ import { useTranslations } from 'next-intl';
 
 export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
   const t = useTranslations('Channel');
-  const tabs = [t('home'), t('videosTab'), t('about')] as const;
-  const [activeTab, setActiveTab] = useState(t('home'));
+  const tabs = [
+    { id: 'home', label: t('home') },
+    { id: 'videos', label: t('videosTab') },
+    { id: 'about', label: t('about') },
+  ] as const;
+  const [activeTab, setActiveTab] = useState('home');
   return (
     <>
       <ChannelTabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
-        {activeTab === t('home') && (
+        {activeTab === 'home' && (
           <div>
             <h2 className="mb-6 text-xl font-bold">{t('latestVideos')}</h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -30,7 +34,7 @@ export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
           </div>
         )}
 
-        {activeTab === t('videosTab') && (
+        {activeTab === 'videos' && (
           <div>
             <div className="mb-6 flex gap-4">
               <select className="bg-secondary text-foreground border-border hover:bg-secondary/80 cursor-pointer rounded-lg border px-4 py-2 text-sm transition-colors">
@@ -47,7 +51,7 @@ export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
           </div>
         )}
 
-        {activeTab === t('about') && <ChannelAbout bio={creatorInfo.bio} />}
+        {activeTab === 'about' && <ChannelAbout bio={creatorInfo.bio} />}
       </div>
     </>
   );

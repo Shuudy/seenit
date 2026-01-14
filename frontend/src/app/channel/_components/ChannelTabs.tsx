@@ -1,7 +1,12 @@
+type Tab = {
+  id: string;
+  label: string;
+};
+
 type ChannelTabsProps = {
-  tabs: readonly string[];
+  tabs: readonly Tab[];
   activeTab: string;
-  setActiveTab: (tab: string) => void;
+  setActiveTab: (tabId: string) => void;
 };
 
 export function ChannelTabs({ tabs, activeTab, setActiveTab }: ChannelTabsProps) {
@@ -11,15 +16,15 @@ export function ChannelTabs({ tabs, activeTab, setActiveTab }: ChannelTabsProps)
         <div className="flex gap-8 overflow-x-auto">
           {tabs.map(tab => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
               className={`cursor-pointer border-b-2 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
-                activeTab === tab
+                activeTab === tab.id
                   ? 'border-b-foreground text-foreground'
                   : 'text-muted-foreground hover:text-foreground border-transparent'
               }`}
             >
-              {tab}
+              {tab.label}
             </button>
           ))}
         </div>
