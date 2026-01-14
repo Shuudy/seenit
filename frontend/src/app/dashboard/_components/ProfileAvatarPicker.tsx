@@ -13,7 +13,7 @@ export function ProfileAvatarPicker({
   username: string;
   initialAvatarUrl?: string;
 }) {
-  const t = useTranslations('Dashboard');
+  const t = useTranslations('dashboard');
   const [preview, setPreview] = useState(getAvatarUrl(username, initialAvatarUrl));
   function handleAvatarChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];

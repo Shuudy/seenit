@@ -10,7 +10,7 @@ import { VideoInfoFallback } from '@/app/watch/_components/fallbacks/VideoInfoFa
 import { getTranslations } from 'next-intl/server';
 
 export default async function WatchPage() {
-  const t = await getTranslations('Watch');
+  const t = await getTranslations('watch');
 
   return (
     <div className="bg-background min-h-screen">

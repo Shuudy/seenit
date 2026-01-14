@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 export function SearchBar() {
-  const t = useTranslations('Common');
+  const t = useTranslations('common');
   const searchParameters = useSearchParams();
   const initialQuery = searchParameters.get('q') ?? '';
   const [query, setQuery] = useState(initialQuery);

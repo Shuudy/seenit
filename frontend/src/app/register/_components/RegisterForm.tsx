@@ -10,7 +10,7 @@ const onSubmit: SubmitHandler<RegisterFormFields> = data => {
 };
 
 export function RegisterForm() {
-  const t = useTranslations('Auth');
+  const t = useTranslations('auth');
 
   const {
     formState: { errors },

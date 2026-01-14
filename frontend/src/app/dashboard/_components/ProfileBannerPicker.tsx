@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 export function ProfileBannerPicker({ initialBannerUrl }: { initialBannerUrl: string }) {
-  const t = useTranslations('Dashboard');
+  const t = useTranslations('dashboard');
   const [preview, setPreview] = useState(initialBannerUrl);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

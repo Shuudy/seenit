@@ -11,7 +11,7 @@ import { ChannelVideoGridFallback } from '@/app/channel/_components/fallbacks/Ch
 import { useTranslations } from 'next-intl';
 
 export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
-  const t = useTranslations('Channel');
+  const t = useTranslations('channel');
   const tabs = [
     { id: 'home', label: t('home') },
     { id: 'videos', label: t('videosTab') },

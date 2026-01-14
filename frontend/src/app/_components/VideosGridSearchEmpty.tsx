@@ -7,7 +7,7 @@ type Props = {
 };
 
 export function VideosGridSearchEmpty({ query }: Props) {
-  const t = useTranslations('HomePage');
+  const t = useTranslations('homePage');
   const display = query ? (query.length > 100 ? `${query.slice(0, 100)}…` : query) : '';
 
   return (

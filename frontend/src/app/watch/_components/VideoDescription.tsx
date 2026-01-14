@@ -11,7 +11,7 @@ interface VideoDescriptionProps {
 }
 
 export function VideoDescription({ views, uploadedAt, description }: VideoDescriptionProps) {
-  const t = useTranslations('Common');
+  const t = useTranslations('common');
   const [expanded, setExpanded] = useState(false);
 
   return (

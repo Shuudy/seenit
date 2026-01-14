@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 export function VideoUploadForm() {
-  const t = useTranslations('Dashboard');
+  const t = useTranslations('dashboard');
   const [videoData, setVideoData] = useState<VideoData>({
     title: '',
     description: '',

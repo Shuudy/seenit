@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 export function CommentInput() {
-  const t = useTranslations('Common');
+  const t = useTranslations('common');
   return (
     <div className="flex gap-3 pb-6">
       <div className="bg-secondary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">

@@ -8,7 +8,7 @@ import { SubscribeButton } from '@/components/SubscribeButton';
 import { useTranslations } from 'next-intl';
 
 export function ChannelHeader() {
-  const t = useTranslations('Channel');
+  const t = useTranslations('channel');
   const { id: channelId } = useParams<{ id: string }>();
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);

@@ -21,7 +21,7 @@ const createRegisterFormSchema = (t: (key: string) => string) =>
 export type RegisterFormFields = z.infer<ReturnType<typeof createRegisterFormSchema>>;
 
 export function useRegisterForm() {
-  const t = useTranslations('Auth');
+  const t = useTranslations('auth');
 
   const RegisterFormSchema = createRegisterFormSchema(t);
 

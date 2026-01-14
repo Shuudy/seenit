@@ -15,7 +15,7 @@ const createLoginFormSchema = (t: (key: string) => string) =>
 export type LoginFormFields = z.infer<ReturnType<typeof createLoginFormSchema>>;
 
 export function useLoginForm() {
-  const t = useTranslations('Auth');
+  const t = useTranslations('auth');
 
   const LoginFormSchema = createLoginFormSchema(t);
 

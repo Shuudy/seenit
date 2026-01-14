@@ -10,7 +10,7 @@ const onSubmit: SubmitHandler<LoginFormFields> = data => {
 };
 
 export function LoginForm() {
-  const t = useTranslations('Auth');
+  const t = useTranslations('auth');
 
   const {
     formState: { errors },

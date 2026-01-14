@@ -5,7 +5,7 @@ import { RegisterForm } from '@/app/register/_components/RegisterForm';
 import { getTranslations } from 'next-intl/server';
 
 export default async function RegisterPage() {
-  const t = await getTranslations('Auth');
+  const t = await getTranslations('auth');
 
   return (
     <div className="bg-background flex min-h-screen items-center justify-center px-4">

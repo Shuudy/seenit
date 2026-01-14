@@ -1,0 +1,22 @@
+{
+  "edit": "Edit",
+  "profilePicture": "Profile picture",
+  "banner": "Banner",
+  "profile": "Profile",
+  "uploadVideo": "Upload a video",
+  "username": "Username",
+  "email": "Email",
+  "bio": "Bio",
+  "save": "Save",
+  "cancel": "Cancel",
+  "videoTitle": "Video title",
+  "videoTitlePlaceholder": "Enter your video title",
+  "description": "Description",
+  "videoDescriptionPlaceholder": "Describe your video...",
+  "videoFile": "Video file",
+  "videoFilePlaceholder": "Click or drag your video here",
+  "videoFileFormats": "MP4, WebM or Ogg. Max 500MB",
+  "upload": "Upload",
+  "sampleBioDashboard": "Passionate content creator",
+  "sampleUsername": "My Profile"
+}

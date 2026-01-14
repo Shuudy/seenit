@@ -8,7 +8,7 @@ interface SubscribeButtonProps {
 }
 
 export function SubscribeButton({ initial = false }: SubscribeButtonProps) {
-  const t = useTranslations('Common');
+  const t = useTranslations('common');
   const [isSubscribed, setIsSubscribed] = useState(initial);
 
   return (

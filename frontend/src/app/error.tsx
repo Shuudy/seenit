@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 export default function ErrorPage({ reset }: { reset: () => void }) {
-  const t = useTranslations('Error');
+  const t = useTranslations('error');
 
   return (
     <div className="bg-background flex min-h-screen items-center justify-center px-4">

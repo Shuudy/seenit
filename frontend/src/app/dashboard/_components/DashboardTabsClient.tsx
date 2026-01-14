@@ -10,7 +10,7 @@ import { ProfileBannerPicker } from '@/app/dashboard/_components/ProfileBannerPi
 import { useTranslations } from 'next-intl';
 
 export function DashboardTabsClient() {
-  const t = useTranslations('Dashboard');
+  const t = useTranslations('dashboard');
   const [activeTab, setActiveTab] = useState('profile');
 
   const profileInitialData = {

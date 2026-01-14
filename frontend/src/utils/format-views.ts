@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 const formatter = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 });
 
 export async function formatViews(count: number): Promise<string> {
-  const t = await getTranslations('Common');
+  const t = await getTranslations('common');
 
   if (!Number.isFinite(count) || count <= 0) return `0 ${t('view')}`;
   if (count === 1) return `1 ${t('view')}`;
@@ -17,7 +17,7 @@ export async function formatViews(count: number): Promise<string> {
 import { useTranslations } from 'next-intl';
 
 export function useFormatViews() {
-  const t = useTranslations('Common');
+  const t = useTranslations('common');
 
   return (count: number): string => {
     if (!Number.isFinite(count) || count <= 0) return `0 ${t('view')}`;

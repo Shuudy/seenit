@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 
 export function VideoComments() {
-  const t = useTranslations('Common');
+  const t = useTranslations('common');
   const { id: videoId } = useParams<{ id: string }>();
   const { data } = useVideoCommentsSuspenseQuery(videoId);
 

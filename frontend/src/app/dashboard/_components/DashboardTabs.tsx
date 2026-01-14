@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function DashboardTabs({ active, onChange }: Props) {
-  const t = useTranslations('Dashboard');
+  const t = useTranslations('dashboard');
   return (
     <div className="border-border border-b px-6">
       <div className="flex gap-8">

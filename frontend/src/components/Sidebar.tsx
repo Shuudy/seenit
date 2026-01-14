@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 
 export function Sidebar() {
   const pathname = usePathname();
-  const t = useTranslations('Sidebar');
+  const t = useTranslations('sidebar');
 
   const isActive = (href: string) =>
     pathname === href || (href !== '/' && pathname?.startsWith(href));

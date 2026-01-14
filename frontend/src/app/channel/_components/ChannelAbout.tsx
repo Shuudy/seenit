@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 export function ChannelAbout({ bio }: { bio?: string }) {
-  const t = useTranslations('Channel');
+  const t = useTranslations('channel');
 
   return (
     <div className="max-w-2xl">

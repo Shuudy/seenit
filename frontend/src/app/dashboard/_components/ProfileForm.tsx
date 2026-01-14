@@ -12,7 +12,7 @@ interface ProfileFormProps {
 }
 
 export function ProfileForm({ initialData }: ProfileFormProps) {
-  const t = useTranslations('Dashboard');
+  const t = useTranslations('dashboard');
   const [formData, setFormData] = useState(initialData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

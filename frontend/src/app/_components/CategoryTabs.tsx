@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 export function CategoryTabs() {
-  const t = useTranslations('Categories');
+  const t = useTranslations('categories');
   const categories = [
     t('all'),
     t('gaming'),

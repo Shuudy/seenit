@@ -9,7 +9,7 @@ import { ChannelHeaderFallback } from '@/app/channel/_components/fallbacks/Chann
 import { getTranslations } from 'next-intl/server';
 
 export default async function ChannelPage() {
-  const t = await getTranslations('Channel');
+  const t = await getTranslations('channel');
 
   const creatorInfo: User = {
     id: 1,
