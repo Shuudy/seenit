@@ -51,6 +51,8 @@
     "million": "M",
     "billion": "B",
     "addComment": "Add a comment...",
+    "comment": "comment",
+    "comments": "comments",
     "subscriber": "subscriber",
     "subscribers": "subscribers"
   },
