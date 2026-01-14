@@ -4,7 +4,7 @@ import channel from './channel.json';
 import common from './common.json';
 import dashboard from './dashboard.json';
 import error from './error.json';
-import homepage from './home-page.json';
+import homePage from './home-page.json';
 import sidebar from './sidebar.json';
 import watch from './watch.json';
 
@@ -15,7 +15,7 @@ export const fr = {
   common,
   dashboard,
   error,
-  homepage,
+  homePage,
   sidebar,
   watch,
 };
