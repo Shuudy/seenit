@@ -14,8 +14,6 @@
   "videosTab": "Videos",
   "about": "About",
   "latestVideos": "Latest videos",
-  "video": "video",
-  "videos": "videos",
-  "subscribers": "subscribers",
+  "video": "{count, plural, =0 {videos} one {video} other {videos}}",
   "channelBanner": "Channel banner"
 }

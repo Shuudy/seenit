@@ -14,8 +14,6 @@
   "videosTab": "Vidéos",
   "about": "À propos",
   "latestVideos": "Dernières vidéos",
-  "video": "vidéo",
-  "videos": "vidéos",
-  "subscribers": "abonnés",
+  "video": "{count, plural, =0 {vidéo} one {vidéo} other {vidéos}}",
   "channelBanner": "Bannière de chaîne"
 }
