@@ -1,16 +1,22 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 export function AuthFooter() {
+  const t = useTranslations('auth');
+
   return (
     <div className="text-muted-foreground mt-6 space-x-4 text-center text-xs">
       <a href="#" className="hover:text-foreground transition-colors">
-        Aide
+        {t('help')}
       </a>
       <span>•</span>
       <a href="#" className="hover:text-foreground transition-colors">
-        Confidentialité
+        {t('privacy')}
       </a>
       <span>•</span>
       <a href="#" className="hover:text-foreground transition-colors">
-        Conditions
+        {t('terms')}
       </a>
     </div>
   );
