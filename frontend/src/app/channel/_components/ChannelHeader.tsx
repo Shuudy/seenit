@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 
 export function ChannelHeader() {
   const t = useTranslations('channel');
+  const tCommon = useTranslations('common');
   const { id: channelId } = useParams<{ id: string }>();
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);
@@ -51,11 +52,12 @@ export function ChannelHeader() {
 
               <div className="mb-3 flex gap-4 text-sm">
                 <span className="text-muted-foreground">
-                  <span className="text-foreground font-semibold">54K</span> {t('subscribers')}
+                  <span className="text-foreground font-semibold">54K</span>{' '}
+                  {tCommon('subscriber', { count: 54_000 })}
                 </span>
                 <span className="text-muted-foreground">
                   <span className="text-foreground font-semibold">{videosCount}</span>{' '}
-                  {videosCount === 1 ? t('video') : t('videos')}
+                  {t('video', { count: videosCount })}
                 </span>
               </div>
 

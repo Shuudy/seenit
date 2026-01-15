@@ -16,7 +16,7 @@ export function VideoComments() {
   return (
     <>
       <h2 className="text-foreground mb-4 text-base font-bold">
-        {meta.comments_count} {meta.comments_count === 1 ? t('comment') : t('comments')}
+        {meta.comments_count} {t('comment', { count: meta.comments_count })}
       </h2>
 
       <CommentInput />
