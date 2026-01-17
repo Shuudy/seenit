@@ -27,7 +27,7 @@ export function VideosGridSearchEmpty({ query }: Props) {
           </svg>
         </div>
         <h2 className="text-foreground mb-2 text-lg font-medium">
-          {t('noResultsFor')} &quot;{display}&quot;
+          {t('noResultsForQuery', { query: display })}
         </h2>
         <p className="text-muted-foreground mb-6 text-sm">{t('tryAnotherSearch')}</p>
       </div>
