@@ -1,5 +1,3 @@
-'use client';
-
 import { LikeButton } from '@/components/LikeButton';
 import { useTranslations } from 'next-intl';
 
