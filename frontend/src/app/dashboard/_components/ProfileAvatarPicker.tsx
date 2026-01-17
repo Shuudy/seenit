@@ -40,7 +40,7 @@ export function ProfileAvatarPicker({
             <span className="text-xs font-medium text-white">{t('edit')}</span>
           </label>
         </div>
-        <p className="text-muted-foreground text-xs">JPG, GIF ou PNG. Taille max 2MB</p>
+        <p className="text-muted-foreground text-xs">{t('validImageFormats')}</p>
       </div>
     </div>
   );

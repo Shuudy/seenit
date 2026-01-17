@@ -18,5 +18,6 @@
   "videoFileFormats": "MP4, WebM or Ogg. Max 500MB",
   "upload": "Upload",
   "sampleBioDashboard": "Passionate content creator",
-  "sampleUsername": "My Profile"
+  "sampleUsername": "My Profile",
+  "validImageFormats": "JPG, GIF or PNG. Max size 2MB"
 }
