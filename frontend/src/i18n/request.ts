@@ -9,6 +9,7 @@ export default getRequestConfig(async () => {
     cookieValue && LOCALES.includes(cookieValue as Locale) ? (cookieValue as Locale) : 'en';
   return {
     locale,
+    // eslint-disable-next-line unicorn/no-await-expression-member
     messages: (await import(`../messages`))[locale],
   };
 });
