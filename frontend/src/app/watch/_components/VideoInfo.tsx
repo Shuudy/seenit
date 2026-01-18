@@ -1,5 +1,5 @@
-import { formatRelativeTime } from '@/utils/format-relative-time';
-import { formatViews } from '@/utils/format-views';
+import { useFormatRelativeTime } from '@/utils/format-relative-time';
+import { useFormatViews } from '@/utils/format-views';
 
 export function VideoInfo({
   title,
@@ -12,6 +12,8 @@ export function VideoInfo({
   views: number;
   createdAt: string;
 }) {
+  const formatViews = useFormatViews();
+  const formatRelativeTime = useFormatRelativeTime();
   const viewsFormatted = formatViews(views);
   const createdAtFormatted = formatRelativeTime(createdAt);
 

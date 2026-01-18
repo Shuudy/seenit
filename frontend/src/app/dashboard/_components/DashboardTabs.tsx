@@ -1,9 +1,12 @@
+import { useTranslations } from 'next-intl';
+
 type Props = {
   active: 'profile' | 'upload';
   onChange: (tab: 'profile' | 'upload') => void;
 };
 
 export function DashboardTabs({ active, onChange }: Props) {
+  const t = useTranslations('dashboard');
   return (
     <div className="border-border border-b px-6">
       <div className="flex gap-8">
@@ -15,7 +18,7 @@ export function DashboardTabs({ active, onChange }: Props) {
               : 'text-muted-foreground hover:text-foreground border-b-transparent'
           }`}
         >
-          Profil
+          {t('profile')}
         </button>
         <button
           onClick={() => onChange('upload')}
@@ -25,7 +28,7 @@ export function DashboardTabs({ active, onChange }: Props) {
               : 'text-muted-foreground hover:text-foreground border-b-transparent'
           }`}
         >
-          Uploader une vidéo
+          {t('uploadVideo')}
         </button>
       </div>
     </div>

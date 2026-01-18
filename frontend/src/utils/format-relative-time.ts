@@ -1,10 +1,12 @@
-export function formatRelativeTime(iso: string): string {
+import { useLocale } from 'next-intl';
+
+function formatRelativeTimeInternal(iso: string, locale: string): string {
   const date = new Date(iso);
   const now = new Date();
   const diff = date.getTime() - now.getTime();
   const abs = Math.abs(diff);
 
-  const rtf = new Intl.RelativeTimeFormat('fr', {
+  const rtf = new Intl.RelativeTimeFormat(locale, {
     numeric: 'always',
     style: 'long',
   });
@@ -23,4 +25,16 @@ export function formatRelativeTime(iso: string): string {
   const value = Math.round(diff / unit.val);
 
   return rtf.format(value, unit.key);
+}
+
+export function formatRelativeTime(iso: string): string {
+  return formatRelativeTimeInternal(iso, 'fr');
+}
+
+export function useFormatRelativeTime() {
+  const locale = useLocale();
+
+  return (iso: string): string => {
+    return formatRelativeTimeInternal(iso, locale);
+  };
 }

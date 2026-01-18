@@ -1,21 +1,25 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useTranslations } from 'next-intl';
 
-// prettier-ignore
-const LoginFormSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Adresse email requise' })
-    .pipe(z.email('Adresse email invalide')),
-  password: z
-    .string()
-    .min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' }),
-});
+const createLoginFormSchema = (t: (key: string) => string) =>
+  z.object({
+    email: z
+      .string()
+      .min(1, { message: t('emailRequired') })
+      .pipe(z.email(t('emailInvalid'))),
+    password: z.string().min(6, { message: t('passwordMinLength') }),
+  });
 
-export type LoginFormFields = z.infer<typeof LoginFormSchema>;
+export type LoginFormFields = z.infer<ReturnType<typeof createLoginFormSchema>>;
+
 export function useLoginForm() {
-  return useForm({
+  const t = useTranslations('auth');
+
+  const LoginFormSchema = createLoginFormSchema(t);
+
+  return useForm<LoginFormFields>({
     resolver: zodResolver(LoginFormSchema),
   });
 }

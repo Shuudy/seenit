@@ -1,0 +1,19 @@
+{
+  "popular": "Plus populaires",
+  "oldest": "Plus anciens",
+  "usefulLinks": "Liens utiles",
+  "channelDescription": "Description de la chaîne",
+  "noDescription": "Aucune description.",
+  "website": "Site web",
+  "twitter": "Twitter",
+  "linkedin": "LinkedIn",
+  "github": "GitHub",
+  "recentlyUpdated": "Récemment mis à jour",
+  "sampleBio": "Explorez l'avenir de la technologie et du développement web avec nous. Nous couvrons les dernières tendances, tutoriels pratiques et interviews d'experts.",
+  "home": "Accueil",
+  "videosTab": "Vidéos",
+  "about": "À propos",
+  "latestVideos": "Dernières vidéos",
+  "video": "{count, plural, =0 {vidéo} one {vidéo} other {vidéos}}",
+  "channelBanner": "Bannière de chaîne"
+}

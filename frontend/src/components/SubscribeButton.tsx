@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface SubscribeButtonProps {
   initial?: boolean;
 }
 
 export function SubscribeButton({ initial = false }: SubscribeButtonProps) {
+  const t = useTranslations('common');
   const [isSubscribed, setIsSubscribed] = useState(initial);
 
   return (
@@ -18,7 +20,7 @@ export function SubscribeButton({ initial = false }: SubscribeButtonProps) {
           : 'bg-foreground text-background hover:bg-muted-foreground'
       }`}
     >
-      {isSubscribed ? 'Abonné' : "S'abonner"}
+      {isSubscribed ? t('subscribed') : t('subscribe')}
     </button>
   );
 }

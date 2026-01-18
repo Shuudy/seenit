@@ -7,8 +7,11 @@ import { RecommendedVideoListFallback } from '@/app/watch/_components/fallbacks/
 import { VideoComments } from '@/app/watch/_components/VideoComments';
 import { VideoCommentsFallback } from '@/app/watch/_components/fallbacks/VideoCommentsFallback';
 import { VideoInfoFallback } from '@/app/watch/_components/fallbacks/VideoInfoFallback';
+import { getTranslations } from 'next-intl/server';
 
-export default function WatchPage() {
+export default async function WatchPage() {
+  const t = await getTranslations('watch');
+
   return (
     <div className="bg-background min-h-screen">
       <Header />
@@ -28,7 +31,7 @@ export default function WatchPage() {
           </div>
 
           <div className="lg:col-span-1">
-            <h3 className="text-foreground mb-4 text-sm font-bold">Recommandations</h3>
+            <h3 className="text-foreground mb-4 text-sm font-bold">{t('recommendations')}</h3>
             <Suspense fallback={<RecommendedVideoListFallback />}>
               <RecommendedVideoList />
             </Suspense>
