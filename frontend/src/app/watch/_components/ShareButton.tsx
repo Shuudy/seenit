@@ -52,7 +52,7 @@ export function ShareButton({ title }: ShareButtonProps) {
     <button
       className="bg-secondary hover:bg-secondary-foreground/20 flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 transition-colors"
       onClick={handleShare}
-      aria-label="Share video"
+      aria-label="Partager la vidéo"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ export function ShareButton({ title }: ShareButtonProps) {
         <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
       </svg>
       <span className="hidden text-sm font-medium sm:inline">
-        {copied ? 'Link copied!' : 'Share'}
+        {copied ? 'Lien copié !' : 'Partager'}
       </span>
     </button>
   );
