@@ -17,7 +17,7 @@ export function VideoComments() {
         {meta.comments_count} {meta.comments_count === 1 ? 'commentaire' : 'commentaires'}
       </h2>
 
-      <CommentInput />
+      <CommentInput videoId={videoId} />
 
       <CommentList comments={comments} />
     </>

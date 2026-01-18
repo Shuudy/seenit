@@ -27,3 +27,11 @@ export async function getVideoComments(
     meta: response.meta ?? {},
   };
 }
+
+export async function postComment(videoId: string, content: string): Promise<Comment> {
+  const response = await apiClient<ApiResponse<Comment>>(`/videos/${videoId}/comments`, {
+    method: 'POST',
+    body: JSON.stringify({ content }),
+  });
+  return response.data;
+}
