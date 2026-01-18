@@ -5,6 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState, FormEvent } from 'react';
 
 interface CommentInputProps {
+  /** The ID of the video to post the comment on */
   videoId: string;
 }
 
