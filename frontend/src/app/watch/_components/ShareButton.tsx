@@ -8,7 +8,7 @@ interface ShareButtonProps {
 
 export function ShareButton({ title }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
-  const timeoutReference = useRef<NodeJS.Timeout>();
+  const timeoutReference = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     return () => {
