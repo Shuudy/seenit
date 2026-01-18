@@ -3,11 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 
 interface ShareButtonProps {
-  url: string;
   title: string;
 }
 
-export function ShareButton({ url, title }: ShareButtonProps) {
+export function ShareButton({ title }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const timeoutReference = useRef<NodeJS.Timeout>();
 
@@ -20,6 +19,9 @@ export function ShareButton({ url, title }: ShareButtonProps) {
   }, []);
 
   const handleShare = async () => {
+    // Get the current URL from the browser (client-side only)
+    const url = globalThis.location.href;
+
     // Try to use Web Share API if available
     if (navigator.share) {
       try {
