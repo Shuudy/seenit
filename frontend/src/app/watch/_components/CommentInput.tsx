@@ -15,7 +15,7 @@ export function CommentInput({ videoId }: CommentInputProps) {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    
+
     const trimmedContent = content.trim();
     if (!trimmedContent || isSubmitting) {
       return;
@@ -24,10 +24,10 @@ export function CommentInput({ videoId }: CommentInputProps) {
     try {
       setIsSubmitting(true);
       await postComment(videoId, trimmedContent);
-      
+
       // Clear the input
       setContent('');
-      
+
       // Invalidate and refetch comments
       await queryClient.invalidateQueries({
         queryKey: ['video-comments', videoId],
