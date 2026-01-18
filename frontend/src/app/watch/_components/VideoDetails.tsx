@@ -13,6 +13,7 @@ export function VideoDetails() {
   const { id: videoId } = useParams<{ id: string }>();
 
   const { data: video } = useVideoDetailsSuspenseQuery(videoId);
+  const videoUrl = `${globalThis.location.origin}/watch/${videoId}`;
   return (
     <>
       <VideoPlayer thumbnail={video.thumbnail} title={video.title} />
@@ -23,7 +24,7 @@ export function VideoDetails() {
 
         <div className="flex gap-2">
           <LikeDislikeButtons initialLikes={video.likes_count} />
-          <ShareButton />
+          <ShareButton url={videoUrl} title={video.title} />
         </div>
       </div>
 

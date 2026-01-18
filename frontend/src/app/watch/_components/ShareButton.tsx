@@ -1,14 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export function ShareButton() {
+interface ShareButtonProps {
+  url: string;
+  title: string;
+}
+
+export function ShareButton({ url, title }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
+  const timeoutReference = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    return () => {
+      if (timeoutReference.current) {
+        clearTimeout(timeoutReference.current);
+      }
+    };
+  }, []);
 
   const handleShare = async () => {
-    const url = globalThis.location.href;
-    const title = document.title;
-
     // Try to use Web Share API if available
     if (navigator.share) {
       try {
@@ -29,7 +40,7 @@ export function ShareButton() {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      timeoutReference.current = setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Failed to copy link:', error);
     }
