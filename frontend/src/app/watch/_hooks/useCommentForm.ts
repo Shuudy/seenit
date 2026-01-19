@@ -14,7 +14,7 @@ const createCommentFormSchema = (t: (key: string) => string) =>
 export type CommentFormFields = z.infer<ReturnType<typeof createCommentFormSchema>>;
 
 export function useCommentForm() {
-  const t = useTranslations('common');
+  const t = useTranslations('comment');
 
   const CommentFormSchema = createCommentFormSchema(t);
 
