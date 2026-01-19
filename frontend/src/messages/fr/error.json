@@ -1,0 +1,7 @@
+{
+  "title": "Une erreur est survenue",
+  "description": "Quelque chose s'est mal passé. Vous pouvez réessayer ou retourner sur la page d'accueil.",
+  "support": "Si le problème persiste, contactez le support en décrivant ce qui s'est passé.",
+  "retry": "Réessayer",
+  "backHome": "Retour à l'accueil"
+}

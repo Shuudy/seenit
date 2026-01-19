@@ -1,8 +1,11 @@
+import { useTranslations } from 'next-intl';
+
 type Props = {
   query?: string | null;
 };
 
 export function VideosGridSearchEmpty({ query }: Props) {
+  const t = useTranslations('homePage');
   const display = query ? (query.length > 100 ? `${query.slice(0, 100)}…` : query) : '';
 
   return (
@@ -24,11 +27,9 @@ export function VideosGridSearchEmpty({ query }: Props) {
           </svg>
         </div>
         <h2 className="text-foreground mb-2 text-lg font-medium">
-          Aucun résultat pour &quot;{display}&quot;
+          {t('noResultsForQuery', { query: display })}
         </h2>
-        <p className="text-muted-foreground mb-6 text-sm">
-          Essayez une autre recherche ou explorez nos catégories.
-        </p>
+        <p className="text-muted-foreground mb-6 text-sm">{t('tryAnotherSearch')}</p>
       </div>
     </div>
   );

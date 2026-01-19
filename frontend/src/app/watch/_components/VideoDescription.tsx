@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { VideoStats } from '@/app/watch/_components/VideoStats';
+import { useTranslations } from 'next-intl';
 
 interface VideoDescriptionProps {
   views: number;
@@ -10,6 +11,7 @@ interface VideoDescriptionProps {
 }
 
 export function VideoDescription({ views, uploadedAt, description }: VideoDescriptionProps) {
+  const t = useTranslations('common');
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -31,7 +33,7 @@ export function VideoDescription({ views, uploadedAt, description }: VideoDescri
         onClick={() => setExpanded(s => !s)}
         aria-controls="video-description"
       >
-        {expanded ? 'Afficher moins' : 'Afficher plus'}
+        {expanded ? t('showLess') : t('showMore')}
       </button>
     </div>
   );

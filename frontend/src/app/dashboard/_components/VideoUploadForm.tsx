@@ -2,8 +2,10 @@
 
 import type { VideoData } from '@/types/video';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export function VideoUploadForm() {
+  const t = useTranslations('dashboard');
   const [videoData, setVideoData] = useState<VideoData>({
     title: '',
     description: '',
@@ -34,7 +36,7 @@ export function VideoUploadForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label htmlFor="video-title" className="text-foreground mb-2 block text-sm font-medium">
-          Titre de la vidéo
+          {t('videoTitle')}
         </label>
         <input
           id="video-title"
@@ -42,7 +44,7 @@ export function VideoUploadForm() {
           name="title"
           value={videoData.title}
           onChange={handleChange}
-          placeholder="Entrez le titre de votre vidéo"
+          placeholder={t('videoTitlePlaceholder')}
           maxLength={100}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
@@ -54,14 +56,14 @@ export function VideoUploadForm() {
           htmlFor="video-description"
           className="text-foreground mb-2 block text-sm font-medium"
         >
-          Description
+          {t('description')}
         </label>
         <textarea
           id="video-description"
           name="description"
           value={videoData.description}
           onChange={handleChange}
-          placeholder="Décrivez votre vidéo..."
+          placeholder={t('videoDescriptionPlaceholder')}
           rows={5}
           maxLength={5000}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
@@ -71,7 +73,7 @@ export function VideoUploadForm() {
 
       <div>
         <label htmlFor="video-file" className="text-foreground mb-3 block text-sm font-medium">
-          Fichier vidéo
+          {t('videoFile')}
         </label>
         <div className="border-border hover:border-foreground hover:bg-secondary/50 group relative cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors">
           <input
@@ -97,9 +99,9 @@ export function VideoUploadForm() {
               />
             </svg>
             <p className="text-foreground text-sm">
-              {videoData.file ? videoData.file.name : 'Cliquez ou glissez votre vidéo ici'}
+              {videoData.file ? videoData.file.name : t('videoFilePlaceholder')}
             </p>
-            <p className="text-muted-foreground text-xs">MP4, WebM ou Ogg. Max 500MB</p>
+            <p className="text-muted-foreground text-xs">{t('videoFileFormats')}</p>
           </div>
         </div>
       </div>
@@ -109,14 +111,14 @@ export function VideoUploadForm() {
           type="submit"
           className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors"
         >
-          Uploader
+          {t('upload')}
         </button>
         <button
           type="button"
           onClick={handleReset}
           className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors"
         >
-          Annuler
+          {t('cancel')}
         </button>
       </div>
     </form>
