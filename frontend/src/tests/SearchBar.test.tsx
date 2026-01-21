@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
@@ -17,6 +17,7 @@ import { useVideosSuspenseQuery } from '@/app/_hooks/queries/useVideosSuspenseQu
 import { SearchBar } from '@/components/header/SearchBar';
 import { VideosGrid } from '@/app/_components/VideosGrid';
 import { VideosGridSearchEmpty } from '@/app/_components/VideosGridSearchEmpty';
+import { renderWithProviders } from '@/tests/Utilities';
 
 const mockVideos = [
   { id: 1, title: 'Next.js tutorial' },
@@ -34,9 +35,9 @@ describe('SearchBar / VideosGrid / VideosGridSearchEmpty', () => {
       get: () => '',
     } as Partial<ReturnType<typeof useSearchParams>> as ReturnType<typeof useSearchParams>);
 
-    render(<SearchBar />);
+    renderWithProviders(<SearchBar />);
 
-    const input = screen.getByPlaceholderText('Rechercher');
+    const input = screen.getByPlaceholderText('Search');
 
     fireEvent.change(input, { target: { value: 'nextjs' } });
     fireEvent.submit(input.closest('form')!);
@@ -55,17 +56,17 @@ describe('SearchBar / VideosGrid / VideosGridSearchEmpty', () => {
       typeof useVideosSuspenseQuery
     >);
 
-    render(<VideosGrid />);
+    renderWithProviders(<VideosGrid />);
 
-    expect(screen.getByText('Aucun résultat pour "react"')).toBeInTheDocument();
+    expect(screen.getByText('No results for "react"')).toBeInTheDocument();
   });
 
   it('VideosGridSearchEmpty tronque une query trop longue', () => {
     const longQuery = 'a'.repeat(150);
     const truncated = `${'a'.repeat(100)}…`;
 
-    render(<VideosGridSearchEmpty query={longQuery} />);
+    renderWithProviders(<VideosGridSearchEmpty query={longQuery} />);
 
-    expect(screen.getByText(`Aucun résultat pour "${truncated}"`)).toBeInTheDocument();
+    expect(screen.getByText(`No results for "${truncated}"`)).toBeInTheDocument();
   });
 });
