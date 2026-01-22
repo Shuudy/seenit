@@ -2,7 +2,7 @@ import { AuthResponse, LoginCredentials, RegisterCredentials } from '@/types/aut
 import { apiClient } from '@/lib/api-client';
 import { ApiResponse } from '@/types/api';
 
-const BASE_API_URL = process.env.NEXT_BASE_API_URL || 'http://localhost:8000';
+const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export async function getCsrfCookie(): Promise<void> {
   await fetch(`${BASE_API_URL}/sanctum/csrf-cookie`, {

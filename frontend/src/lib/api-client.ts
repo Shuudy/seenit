@@ -1,6 +1,6 @@
 import { getXsrfToken } from '@/utils/csrf';
 
-const BASE_API_URL = process.env.NEXT_BASE_API_URL || 'http://localhost:8000';
+const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export async function apiClient<T>(path: string, config: RequestInit = {}): Promise<T> {
   const url = `${BASE_API_URL}/api${path}`;
