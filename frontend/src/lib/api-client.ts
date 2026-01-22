@@ -19,6 +19,7 @@ export async function apiClient<T>(path: string, config: RequestInit = {}): Prom
   }
 
   const options: RequestInit = {
+    ...config,
     headers,
     cache: 'no-store',
     credentials: 'include', // Needed for Sanctum SPA authentication
