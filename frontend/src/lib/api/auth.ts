@@ -1,4 +1,4 @@
-import { AuthResponse, LoginCredentials, RegisterCredentials } from '@/types/auth';
+import { AuthResponse, LoginCredentials, RegisterCredentials, User } from '@/types/auth';
 import { apiClient } from '@/lib/api-client';
 import { ApiResponse } from '@/types/api';
 
@@ -42,7 +42,7 @@ export async function logout(): Promise<void> {
   });
 }
 
-export async function getCurrentUser(): Promise<AuthResponse> {
-  const response = await apiClient<ApiResponse<AuthResponse>>('/me');
+export async function getCurrentUser(): Promise<User> {
+  const response = await apiClient<ApiResponse<User>>('/me');
   return response.data;
 }

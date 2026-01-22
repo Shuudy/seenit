@@ -1,13 +1,11 @@
 import { getCurrentUser } from '@/lib/api/auth';
-import { useQuery } from '@tanstack/react-query';
+import { User } from '@/types/auth';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-export function useCurrentUser() {
-  return useQuery({
+export function useCurrentUser(): UseQueryResult<User, Error> {
+  return useQuery<User, Error>({
     queryKey: ['currentUser'],
-    queryFn: async () => {
-      const response = await getCurrentUser();
-      return response.user;
-    },
+    queryFn: getCurrentUser,
     staleTime: 1000 * 60 * 5, // 5 minutes
     retry: false,
   });
