@@ -24,7 +24,7 @@ export function LoginForm() {
   } = useLoginMutation({
     onSuccess: data => {
       console.log('Login successful:', data);
-      //router.push('/');
+      router.push('/');
     },
     onError: error => {
       console.error('Login failed:', error);
