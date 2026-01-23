@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-const SESSION_COOKIE_NAME = process.env.SESSION_COOKIE_NAME ?? 'laravel-session';
+const SESSION_COOKIE_NAME = process.env.SESSION_COOKIE_NAME ?? 'seenit-session';
 
 export async function fetchMeIfAuthenticated() {
   const cookieStore = await cookies();
