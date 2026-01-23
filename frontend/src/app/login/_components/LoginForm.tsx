@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import { LoginFormFields, useLoginForm } from '@/app/login/_hooks/useLoginForm';
 import { InputError } from '@/components/InputError';
@@ -10,6 +11,7 @@ import { useRouter } from 'next/navigation';
 export function LoginForm() {
   const t = useTranslations('auth');
   const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
 
   const {
     formState: { errors },
@@ -17,27 +19,32 @@ export function LoginForm() {
     register,
   } = useLoginForm();
 
-  const {
-    mutate: postLogin,
-    isPending,
-    error,
-  } = useLoginMutation({
-    onSuccess: data => {
-      console.log('Login successful:', data);
-      router.push('/');
-    },
-    onError: error => {
-      console.error('Login failed:', error);
-    },
-  });
+  const { mutate: postLogin, isPending } = useLoginMutation();
 
   const onSubmit: SubmitHandler<LoginFormFields> = data => {
-    postLogin(data);
+    setErrorMessage(undefined);
+    postLogin(data, {
+      onSuccess: () => {
+        setErrorMessage(undefined);
+        router.push('/');
+      },
+      onError: error => {
+        if (error.message === 'Network response was not ok') {
+          setErrorMessage(t('invalidCredentials'));
+        } else {
+          setErrorMessage(t('loginError'));
+        }
+      },
+    });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      {error && <p>{error.message}</p>}
+      {errorMessage && (
+        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
+          {errorMessage}
+        </div>
+      )}
       <div>
         <label htmlFor="email" className="text-foreground mb-2 block text-sm font-medium">
           {t('email')}
