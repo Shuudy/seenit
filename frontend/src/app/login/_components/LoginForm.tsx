@@ -7,11 +7,14 @@ import { InputError } from '@/components/InputError';
 import { useTranslations } from 'next-intl';
 import { useLoginMutation } from '@/app/login/_hooks/mutations/useLoginMutation';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/providers/AuthProvider';
 
 export function LoginForm() {
   const t = useTranslations('auth');
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
+
+  const { setUser } = useAuth();
 
   const {
     formState: { errors },
@@ -24,8 +27,15 @@ export function LoginForm() {
   const onSubmit: SubmitHandler<LoginFormFields> = data => {
     setErrorMessage(undefined);
     postLogin(data, {
-      onSuccess: () => {
+      onSuccess: user => {
         setErrorMessage(undefined);
+        setUser({
+          ...user,
+          avatar_url: user.avatar_url ?? undefined,
+          bio: user.bio ?? undefined,
+          banner_url: user.banner_url ?? undefined,
+          email: user.email ?? undefined,
+        });
         router.push('/');
       },
       onError: error => {

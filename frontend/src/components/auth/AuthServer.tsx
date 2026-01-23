@@ -4,5 +4,5 @@ import { ReactNode } from 'react';
 
 export default async function AuthServer({ children }: { children: ReactNode }) {
   const me = await fetchMeIfAuthenticated();
-  return <AuthProvider user={me}>{children}</AuthProvider>;
+  return <AuthProvider initialUser={me}>{children}</AuthProvider>;
 }
