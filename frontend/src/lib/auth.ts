@@ -11,11 +11,13 @@ export async function fetchMeIfAuthenticated() {
 
   const cookieHeader = `${SESSION_COOKIE_NAME}=${apiSession}`;
 
+  const origin = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/me`, {
     headers: {
       Cookie: cookieHeader,
       Accept: 'application/json',
-      Origin: 'http://127.0.0.1:3000',
+      Origin: origin,
     },
     cache: 'no-store',
   });
