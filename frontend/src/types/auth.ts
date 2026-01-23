@@ -2,7 +2,6 @@ export type User = {
   id: number;
   username: string;
   email: string;
-  email_verified_at: string | null;
   bio: string | null;
   avatar_url: string | null;
   banner_url: string | null;
@@ -20,8 +19,4 @@ export type RegisterCredentials = {
   email: string;
   password: string;
   password_confirmation: string;
-};
-
-export type AuthResponse = {
-  user: User;
 };

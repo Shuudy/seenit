@@ -1,4 +1,4 @@
-import { AuthResponse, LoginCredentials, RegisterCredentials, User } from '@/types/auth';
+import { LoginCredentials, RegisterCredentials, User } from '@/types/auth';
 import { apiClient } from '@/lib/api-client';
 import { ApiResponse } from '@/types/api';
 
@@ -14,10 +14,10 @@ export async function getCsrfCookie(): Promise<void> {
   });
 }
 
-export async function login(credentials: LoginCredentials): Promise<AuthResponse> {
+export async function login(credentials: LoginCredentials): Promise<User> {
   await getCsrfCookie();
 
-  const response = await apiClient<ApiResponse<AuthResponse>>('/login', {
+  const response = await apiClient<ApiResponse<User>>('/login', {
     method: 'POST',
     body: JSON.stringify(credentials),
   });
@@ -25,10 +25,10 @@ export async function login(credentials: LoginCredentials): Promise<AuthResponse
   return response.data;
 }
 
-export async function register(credentials: RegisterCredentials): Promise<AuthResponse> {
+export async function register(credentials: RegisterCredentials): Promise<User> {
   await getCsrfCookie();
 
-  const response = await apiClient<ApiResponse<AuthResponse>>('/register', {
+  const response = await apiClient<ApiResponse<User>>('/register', {
     method: 'POST',
     body: JSON.stringify(credentials),
   });

@@ -1,14 +1,9 @@
 import { login } from '@/lib/api/auth';
-import { AuthResponse, LoginCredentials } from '@/types/auth';
-import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
+import { LoginCredentials, User } from '@/types/auth';
+import { useMutation, UseMutationResult } from '@tanstack/react-query';
 
-export function useLoginMutation(): UseMutationResult<AuthResponse, Error, LoginCredentials> {
-  const queryClient = useQueryClient();
+export function useLoginMutation(): UseMutationResult<User, Error, LoginCredentials> {
   return useMutation({
     mutationFn: login,
-    onSuccess: () => {
-      // Invalidate current user query to refetch authenticated user data
-      queryClient.invalidateQueries({ queryKey: ['currentUser'] });
-    },
   });
 }
