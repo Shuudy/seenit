@@ -8,7 +8,6 @@
   "thousand": "K",
   "million": "M",
   "billion": "B",
-  "addComment": "Add a comment...",
   "comment": "{count, plural, =0 {comments} one {comment} other {comments}}",
   "subscriber": "{count, plural, =0 {subscribers} one {subscriber} other {subscribers}}",
   "reply": "Reply"
