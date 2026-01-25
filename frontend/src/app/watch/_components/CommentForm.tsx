@@ -6,11 +6,11 @@ import { CommentFormFields, useCommentForm } from '@/app/watch/_hooks/useComment
 import { SubmitHandler } from 'react-hook-form';
 import { InputError } from '@/components/InputError';
 
-const onSubmit: SubmitHandler<CommentFormFields> = data => {
-  console.log(data);
-};
+interface CommentFormProps {
+  onAddComment: (content: string) => void;
+}
 
-export function CommentForm() {
+export function CommentForm({ onAddComment }: CommentFormProps) {
   const t = useTranslations('comment');
 
   const {
@@ -19,13 +19,21 @@ export function CommentForm() {
     register,
     watch,
     clearErrors,
+    reset,
   } = useCommentForm();
 
   const [isFocused, setIsFocused] = useState(false);
   const commentText = watch('comment', '');
 
+  const onSubmit: SubmitHandler<CommentFormFields> = data => {
+    onAddComment(data.comment);
+    reset();
+    setIsFocused(false);
+  };
+
   const handleCancel = () => {
     clearErrors();
+    reset();
     setIsFocused(false);
   };
 
