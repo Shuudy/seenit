@@ -6,11 +6,10 @@ import { ChannelTabs } from '@/app/channel/_components/ChannelTabs';
 import { ChannelAbout } from '@/app/channel/_components/ChannelAbout';
 import { ChannelVideoGrid } from '@/app/channel/_components/ChannelVideoGrid';
 
-import { User } from '@/types/user';
 import { ChannelVideoGridFallback } from '@/app/channel/_components/fallbacks/ChannelVideoGridFallback';
 import { useTranslations } from 'next-intl';
 
-export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
+export function ChannelTabsClient() {
   const t = useTranslations('channel');
   const tabs = [
     { id: 'home', label: t('home') },
@@ -51,7 +50,7 @@ export function ChannelTabsClient({ creatorInfo }: { creatorInfo: User }) {
           </div>
         )}
 
-        {activeTab === 'about' && <ChannelAbout bio={creatorInfo.bio} />}
+        {activeTab === 'about' && <ChannelAbout />}
       </div>
     </>
   );
