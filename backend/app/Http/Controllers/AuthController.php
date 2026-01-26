@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterUserRequest;
-use App\Http\Resources\AuthResource;
 use App\Http\Resources\ErrorResource;
 use App\Http\Resources\SuccessResource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     /**
-     * Handle a registration request.
+     * Handle a registration request for SPA.
      */
-    public function register(RegisterUserRequest $request)
+    public function register(RegisterUserRequest $request): UserResource|ErrorResource
     {
         $validated = $request->validated();
 
@@ -26,21 +26,15 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        auth()->login($user);
 
-        $authData = [
-            'user' => $user,
-            'token' => $token,
-            'token_type' => 'Bearer',
-        ];
-
-        return new AuthResource($authData);
+        return new UserResource($user);
     }
 
     /**
-     * Handle an authentication attempt.
+     * Handle an authentication attempt for SPA.
      */
-    public function login(LoginUserRequest $request): AuthResource|ErrorResource
+    public function login(LoginUserRequest $request): UserResource|ErrorResource
     {
         $validated = $request->validated();
 
@@ -53,23 +47,19 @@ class AuthController extends Controller
             ]);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        auth()->login($user);
 
-        $authData = [
-            'user' => $user,
-            'token' => $token,
-            'token_type' => 'Bearer',
-        ];
-
-        return new AuthResource($authData);
+        return new UserResource($user);
     }
 
     /**
-     * Log the user out (Revoke the token).
+     * Log the user out (Invalidate the session).
      */
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return new SuccessResource([
             'message' => 'Logged out successfully',

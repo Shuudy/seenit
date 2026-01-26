@@ -1,16 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import { LoginFormFields, useLoginForm } from '@/app/login/_hooks/useLoginForm';
 import { InputError } from '@/components/InputError';
 import { useTranslations } from 'next-intl';
-
-const onSubmit: SubmitHandler<LoginFormFields> = data => {
-  console.log(data);
-};
+import { useLoginMutation } from '@/app/login/_hooks/mutations/useLoginMutation';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/providers/AuthProvider';
 
 export function LoginForm() {
   const t = useTranslations('auth');
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+
+  const { setUser } = useAuth();
 
   const {
     formState: { errors },
@@ -18,8 +22,39 @@ export function LoginForm() {
     register,
   } = useLoginForm();
 
+  const { mutate: postLogin, isPending } = useLoginMutation();
+
+  const onSubmit: SubmitHandler<LoginFormFields> = data => {
+    setErrorMessage(undefined);
+    postLogin(data, {
+      onSuccess: user => {
+        setErrorMessage(undefined);
+        setUser({
+          ...user,
+          avatar_url: user.avatar_url ?? undefined,
+          bio: user.bio ?? undefined,
+          banner_url: user.banner_url ?? undefined,
+          email: user.email ?? undefined,
+        });
+        router.push('/');
+      },
+      onError: error => {
+        if (error.message === 'Network response was not ok') {
+          setErrorMessage(t('invalidCredentials'));
+        } else {
+          setErrorMessage(t('loginError'));
+        }
+      },
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      {errorMessage && (
+        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
+          {errorMessage}
+        </div>
+      )}
       <div>
         <label htmlFor="email" className="text-foreground mb-2 block text-sm font-medium">
           {t('email')}
@@ -50,9 +85,10 @@ export function LoginForm() {
 
       <button
         type="submit"
-        className="bg-foreground hover:bg-foreground/90 text-background mt-6 w-full cursor-pointer rounded-lg py-2 font-medium transition-colors"
+        className="bg-foreground hover:bg-foreground/90 text-background mt-6 w-full cursor-pointer rounded-lg py-2 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={isPending}
       >
-        {t('loginButton')}
+        {isPending ? t('loggingIn') : t('loginButton')}
       </button>
     </form>
   );
