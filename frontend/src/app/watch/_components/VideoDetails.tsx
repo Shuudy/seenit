@@ -15,7 +15,7 @@ export function VideoDetails() {
   const { data: video } = useVideoDetailsSuspenseQuery(videoId);
   return (
     <>
-      <VideoPlayer thumbnail={video.thumbnail} title={video.title} />
+      <VideoPlayer thumbnail={video.thumbnail} url={video.url} />
       <VideoTitle title={video.title} />
 
       <div className="border-secondary flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
