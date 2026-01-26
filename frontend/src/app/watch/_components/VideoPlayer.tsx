@@ -11,7 +11,7 @@ export function VideoPlayer({ thumbnail, url }: VideoPlayerProps) {
         poster={thumbnail}
         controls
         autoPlay={false}
-        className="h-full w-full bg-black object-contain"
+        className="h-full w-full object-contain"
         controlsList="nodownload"
         playsInline
       ></video>
