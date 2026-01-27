@@ -73,6 +73,7 @@ export function CommentForm() {
               handleSubmit(onSubmit)();
             }
           }}
+          autoComplete="off"
           className="text-foreground border-secondary focus:border-foreground placeholder-muted-foreground w-full flex-1 border-b bg-transparent px-2 py-2 text-sm transition-colors focus:outline-none"
         />
         {errors.comment && <InputError message={errors.comment.message} />}
