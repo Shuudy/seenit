@@ -8,13 +8,12 @@ import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
 import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { UserDefaultAvatar } from '@/components/UserDefaultAvatar';
-
-const onSubmit: SubmitHandler<CommentFormFields> = data => {
-  console.log(data);
-};
+import { usePostCommentMutation } from '@/app/watch/_hooks/mutations/usePostCommentMutation';
+import { useParams } from 'next/navigation';
 
 export function CommentForm() {
   const t = useTranslations('comment');
+  const { id: videoId } = useParams<{ id: string }>();
 
   const { user } = useAuth();
   const isAuthenticated = !!user;
@@ -27,6 +26,22 @@ export function CommentForm() {
     clearErrors,
     reset,
   } = useCommentForm();
+
+  const { mutate: postComment, isPending } = usePostCommentMutation();
+
+  const onSubmit: SubmitHandler<CommentFormFields> = data => {
+    if (!isAuthenticated || !videoId) return;
+
+    postComment(
+      { videoId, content: data.comment },
+      {
+        onSuccess: () => {
+          reset();
+          setIsFocused(false);
+        },
+      }
+    );
+  };
 
   const [isFocused, setIsFocused] = useState(false);
   const commentText = watch('comment', '');
@@ -50,7 +65,7 @@ export function CommentForm() {
           type="text"
           placeholder={t('addComment')}
           {...register('comment')}
-          disabled={!isAuthenticated}
+          disabled={!isAuthenticated || isPending}
           onFocus={() => setIsFocused(true)}
           onKeyDown={event => {
             if (event.key === 'Enter') {
@@ -71,14 +86,14 @@ export function CommentForm() {
             </button>
             <button
               type="submit"
-              disabled={!commentText.trim()}
+              disabled={isPending || !commentText.trim()}
               className={`cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-                commentText.trim()
+                !isPending && commentText.trim()
                   ? 'bg-foreground text-background hover:bg-muted-foreground'
                   : 'bg-secondary text-muted-foreground hover:cursor-not-allowed'
               }`}
             >
-              {t('comment')}
+              {isPending ? t('commenting') : t('comment')}
             </button>
           </div>
         )}
