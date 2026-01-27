@@ -5,6 +5,9 @@ import { useTranslations } from 'next-intl';
 import { CommentFormFields, useCommentForm } from '@/app/watch/_hooks/useCommentForm';
 import { SubmitHandler } from 'react-hook-form';
 import { InputError } from '@/components/InputError';
+import { useAuth } from '@/providers/AuthProvider';
+import { ChannelAvatar } from '@/components/ChannelAvatar';
+import { UserDefaultAvatar } from '@/components/UserDefaultAvatar';
 
 const onSubmit: SubmitHandler<CommentFormFields> = data => {
   console.log(data);
@@ -12,6 +15,9 @@ const onSubmit: SubmitHandler<CommentFormFields> = data => {
 
 export function CommentForm() {
   const t = useTranslations('comment');
+
+  const { user } = useAuth();
+  const isAuthenticated = !!user;
 
   const {
     formState: { errors },
@@ -31,15 +37,18 @@ export function CommentForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex gap-3 pb-6">
-      <div className="bg-secondary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
-        <span className="text-foreground text-sm font-semibold">V</span>
-      </div>
+      {isAuthenticated ? (
+        <ChannelAvatar username={user.username} avatarUrl={user.avatar_url} large />
+      ) : (
+        <UserDefaultAvatar />
+      )}
 
       <div className="flex-1">
         <input
           type="text"
           placeholder={t('addComment')}
           {...register('comment')}
+          disabled={!isAuthenticated}
           onFocus={() => setIsFocused(true)}
           onKeyDown={event => {
             if (event.key === 'Enter') {
