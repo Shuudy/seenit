@@ -25,6 +25,7 @@ export function CommentForm() {
     register,
     watch,
     clearErrors,
+    reset,
   } = useCommentForm();
 
   const [isFocused, setIsFocused] = useState(false);
@@ -32,6 +33,7 @@ export function CommentForm() {
 
   const handleCancel = () => {
     clearErrors();
+    reset();
     setIsFocused(false);
   };
 
