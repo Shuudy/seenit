@@ -133,6 +133,7 @@ class VideoController extends Controller
             ->withExists([
                 'likedBy as is_liked_by_current_user' => fn ($q) => $q->where('user_id', $user?->id),
             ])
+            ->latest()
             ->get();
 
         if (! $user) {
