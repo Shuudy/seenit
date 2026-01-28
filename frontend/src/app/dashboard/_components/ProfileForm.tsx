@@ -43,6 +43,7 @@ export function ProfileForm() {
           id="username"
           type="text"
           {...register('username')}
+          placeholder={t('usernamePlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
         {errors.username && <InputError message={errors.username.message} />}
@@ -56,6 +57,7 @@ export function ProfileForm() {
           id="email"
           type="email"
           {...register('email')}
+          placeholder={t('emailPlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
         {errors.email && <InputError message={errors.email.message} />}
@@ -70,6 +72,7 @@ export function ProfileForm() {
           {...register('bio')}
           rows={4}
           maxLength={500}
+          placeholder={t('bioPlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
         <p className="text-muted-foreground mt-1 text-xs">{watchedBio.length}/500</p>
