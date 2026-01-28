@@ -3,6 +3,7 @@
   "profilePicture": "Profile picture",
   "banner": "Banner",
   "profile": "Profile",
+  "bannerPhoto": "Banner photo",
   "uploadVideo": "Upload a video",
   "username": "Username",
   "email": "Email",
@@ -19,5 +20,6 @@
   "upload": "Upload",
   "sampleBioDashboard": "Passionate content creator",
   "sampleUsername": "My Profile",
-  "validImageFormats": "JPG, GIF or PNG. Max size 2MB"
+  "validImageFormats": "JPG, GIF or PNG. Max size 2MB",
+  "InvalidImage": "Invalid image file"
 }

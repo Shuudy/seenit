@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { DashboardTabs } from '@/app/dashboard/_components/DashboardTabs';
 import { ProfileForm } from '@/app/dashboard/_components/ProfileForm';
 import { VideoUploadForm } from '@/app/dashboard/_components/VideoUploadForm';
-import { ProfileAvatarPicker } from '@/app/dashboard/_components/ProfileAvatarPicker';
-import { ProfileBannerPicker } from '@/app/dashboard/_components/ProfileBannerPicker';
+import { ProfileImagesForm } from '@/app/dashboard/_components/ProfileImagesForm';
 import { useTranslations } from 'next-intl';
 
 export function DashboardTabsClient() {
@@ -26,9 +25,7 @@ export function DashboardTabsClient() {
       {activeTab === 'profile' && (
         <div className="p-6">
           <div className="space-y-6">
-            <ProfileBannerPicker initialBannerUrl="/celebratory-banner.png" />
-
-            <ProfileAvatarPicker username={profileInitialData.username} />
+            <ProfileImagesForm />
 
             <ProfileForm initialData={profileInitialData} />
           </div>
