@@ -21,5 +21,5 @@
   "sampleBioDashboard": "Créateur de contenu passionné",
   "sampleUsername": "Mon Profil",
   "validImageFormats": "JPG, GIF ou PNG. Taille max 2MB",
-  "InvalidImage": "Fichier image invalide"
+  "invalidImage": "Fichier image invalide"
 }

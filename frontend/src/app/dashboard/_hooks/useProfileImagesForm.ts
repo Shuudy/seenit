@@ -20,7 +20,7 @@ const createProfileImagesFormSchema = (t: (key: string) => string) =>
 
           return [...files].every(file => file.type.startsWith('image/'));
         },
-        { message: t('InvalidImage') }
+        { message: t('invalidImage') }
       ),
 
     avatar: z
@@ -38,7 +38,7 @@ const createProfileImagesFormSchema = (t: (key: string) => string) =>
 
           return [...files].every(file => file.type.startsWith('image/'));
         },
-        { message: t('InvalidImage') }
+        { message: t('invalidImage') }
       ),
   });
 
