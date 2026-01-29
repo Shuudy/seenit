@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 const createRegisterFormSchema = (t: (key: string) => string) =>
   z
     .object({
+      username: z.string().min(1, { message: t('usernameRequired') }),
       email: z
         .string()
         .min(1, { message: t('emailRequired') })
