@@ -28,5 +28,11 @@
   "upload": "Upload",
   "sampleBioDashboard": "Passionate content creator",
   "sampleUsername": "My Profile",
-  "validImageFormats": "JPG, GIF or PNG. Max size 2MB"
+  "validImageFormats": "JPG, GIF or PNG. Max size 2MB",
+  "videoTitleRequired": "Video title is required",
+  "videoTitleTooLong": "Video title is too long",
+  "videoDescriptionRequired": "Video description is required",
+  "videoDescriptionTooLong": "Video description is too long",
+  "videoFileRequired": "Video file is required",
+  "videoFileMustBeVideo": "File must be a video"
 }
