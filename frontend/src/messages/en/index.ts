@@ -8,6 +8,7 @@ import homePage from './home-page.json';
 import sidebar from './sidebar.json';
 import watch from './watch.json';
 import comment from './comment.json';
+import header from './header.json';
 
 export const en = {
   auth,
@@ -20,4 +21,5 @@ export const en = {
   sidebar,
   watch,
   comment,
+  header,
 };
