@@ -1,9 +1,10 @@
-import { cookies } from 'next/headers';
-import { LanguageSwitcherClient } from './LanguageSwitcherClient';
+import { getLocale } from 'next-intl/server';
+import { LanguageSwitcherClient } from '@/components/LanguageSwitcherClient';
+import { Locale } from '@/messages';
 
 export async function LanguageSwitcher() {
-  const cookieStore = await cookies();
-  const locale = cookieStore.get('locale')?.value === 'fr' ? 'fr' : 'en';
+  // Get the locale from the request
+  const locale = await getLocale();
 
-  return <LanguageSwitcherClient locale={locale} />;
+  return <LanguageSwitcherClient locale={locale as Locale} />;
 }
