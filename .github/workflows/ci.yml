@@ -84,10 +84,15 @@ jobs:
         run: npm run test
 
   frontend-playwright:
+    name: Frontend / Playwright Tests (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./frontend
+    strategy:
+      matrix:
+        node: [22]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -95,7 +100,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node }}
 
       - name: Install Dependencies
         run: npm ci
