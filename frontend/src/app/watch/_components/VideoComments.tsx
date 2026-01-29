@@ -1,6 +1,6 @@
 'use client';
 
-import { CommentInput } from '@/app/watch/_components/CommentInput';
+import { CommentForm } from '@/app/watch/_components/CommentForm';
 import { CommentList } from '@/app/watch/_components/CommentList';
 import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
 import { useTranslations } from 'next-intl';
@@ -19,7 +19,7 @@ export function VideoComments() {
         {meta.comments_count} {t('comment', { count: meta.comments_count })}
       </h2>
 
-      <CommentInput />
+      <CommentForm />
 
       <CommentList comments={comments} />
     </>

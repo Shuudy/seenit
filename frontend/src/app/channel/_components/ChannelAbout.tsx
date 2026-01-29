@@ -1,7 +1,9 @@
 import { useTranslations } from 'next-intl';
 
-export function ChannelAbout({ bio }: { bio?: string }) {
+export function ChannelAbout() {
   const t = useTranslations('channel');
+
+  const bio = t('sampleBio');
 
   return (
     <div className="max-w-2xl">

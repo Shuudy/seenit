@@ -1,8 +1,9 @@
 'use client';
 
+import { Locale } from '@/messages';
 import { useRouter } from 'next/navigation';
 
-export function LanguageSwitcherClient({ locale }: { locale: 'en' | 'fr' }) {
+export function LanguageSwitcherClient({ locale }: { locale: Locale }) {
   const router = useRouter();
 
   const toggleLanguage = () => {
@@ -15,7 +16,7 @@ export function LanguageSwitcherClient({ locale }: { locale: 'en' | 'fr' }) {
   return (
     <button
       onClick={toggleLanguage}
-      className="bg-secondary text-foreground hover:bg-muted cursor-pointer rounded-full px-3 py-1.5 text-sm font-medium transition-colors"
+      className="bg-secondary text-foreground hover:bg-secondary/90 cursor-pointer rounded-full px-3 py-1.5 text-sm font-medium transition-colors"
     >
       {locale.toUpperCase()}
     </button>

@@ -7,16 +7,17 @@ on:
   pull_request:
   workflow_dispatch:
 
-env:
-  NODE_VERSION: 22
-  PHP_VERSION: "8.4"
-
 jobs:
   frontend-eslint:
+    name: Frontend / ESLint (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./frontend
+    strategy:
+      matrix:
+        node: [22]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node }}
 
       - name: Install Dependencies
         run: npm ci
@@ -33,10 +34,15 @@ jobs:
         run: npm run lint
 
   frontend-prettier:
+    name: Frontend / Prettier (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./frontend
+    strategy:
+      matrix:
+        node: [22]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -44,7 +50,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node }}
 
       - name: Install Dependencies
         run: npm ci
@@ -70,10 +76,15 @@ jobs:
         run: npm run test
 
   frontend-build:
+    name: Frontend / Build (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./frontend
+    strategy:
+      matrix:
+        node: [22]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -81,7 +92,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node }}
 
       - name: Install Dependencies
         run: npm ci
@@ -90,10 +101,15 @@ jobs:
         run: npm run build
 
   backend-pint:
+    name: Backend / Laravel Pint (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./backend
+    strategy:
+      matrix:
+        php: [8.4]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -101,7 +117,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ env.PHP_VERSION }}
+          php-version: ${{ matrix.php }}
 
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
@@ -110,10 +126,15 @@ jobs:
         run: vendor/bin/pint --test
 
   backend-checks:
+    name: Backend / Laravel Checks (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./backend
+    strategy:
+      matrix:
+        php: [8.4]
+
     services:
       mysql:
         image: mysql:8.0
@@ -130,7 +151,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ env.PHP_VERSION }}
+          php-version: ${{ matrix.php }}
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
