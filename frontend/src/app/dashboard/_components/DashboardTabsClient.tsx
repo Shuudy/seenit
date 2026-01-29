@@ -27,7 +27,7 @@ export function DashboardTabsClient() {
           <div className="space-y-6">
             <ProfileImagesForm />
 
-            <ProfileForm initialData={profileInitialData} />
+            <ProfileForm />
           </div>
         </div>
       )}

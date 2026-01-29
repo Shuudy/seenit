@@ -1,8 +1,9 @@
 'use client';
 
+import { Locale } from '@/messages';
 import { useRouter } from 'next/navigation';
 
-export function LanguageSwitcherClient({ locale }: { locale: 'en' | 'fr' }) {
+export function LanguageSwitcherClient({ locale }: { locale: Locale }) {
   const router = useRouter();
 
   const toggleLanguage = () => {

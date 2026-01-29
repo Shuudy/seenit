@@ -1,37 +1,40 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { ProfileFormFields, useProfileForm } from '@/app/dashboard/_hooks/useProfileForm';
+import { SubmitHandler } from 'react-hook-form';
+import { InputError } from '@/components/InputError';
+import { useAuth } from '@/providers/AuthProvider';
 
-interface ProfileFormProps {
-  initialData: {
-    username: string;
-    email: string;
-    bio: string;
-  };
-}
+const onSubmit: SubmitHandler<ProfileFormFields> = data => {
+  console.log('Profile data submitted:', data);
+};
 
-export function ProfileForm({ initialData }: ProfileFormProps) {
+export function ProfileForm() {
   const t = useTranslations('dashboard');
-  const [formData, setFormData] = useState(initialData);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const { user } = useAuth();
+
+  const initialData = {
+    username: user?.username,
+    email: user?.email,
+    bio: user?.bio,
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+    watch,
+  } = useProfileForm(initialData);
 
-    console.log('Profile updated:', formData);
-  };
+  const watchedBio = watch('bio') ?? '';
 
-  function handleReset() {
-    setFormData(initialData);
-  }
+  const handleReset = () => reset(initialData);
 
   return (
-    <form onSubmit={handleSubmit} className="border-border space-y-5 border-t pt-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="border-border space-y-5 border-t pt-6">
       <div>
         <label htmlFor="username" className="text-foreground mb-2 block text-sm font-medium">
           {t('username')}
@@ -39,11 +42,11 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
         <input
           id="username"
           type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
+          {...register('username')}
+          placeholder={t('usernamePlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
+        {errors.username && <InputError message={errors.username.message} />}
       </div>
 
       <div>
@@ -53,11 +56,11 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
         <input
           id="email"
           type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
+          {...register('email')}
+          placeholder={t('emailPlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
+        {errors.email && <InputError message={errors.email.message} />}
       </div>
 
       <div>
@@ -66,14 +69,14 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
         </label>
         <textarea
           id="bio"
-          name="bio"
-          value={formData.bio}
-          onChange={handleChange}
+          {...register('bio')}
           rows={4}
           maxLength={500}
+          placeholder={t('bioPlaceholder')}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
-        <p className="text-muted-foreground mt-1 text-xs">{formData.bio.length}/500</p>
+        <p className="text-muted-foreground mt-1 text-xs">{watchedBio.length}/500</p>
+        {errors.bio && <InputError message={errors.bio.message} />}
       </div>
 
       <div className="flex gap-3 pt-4">

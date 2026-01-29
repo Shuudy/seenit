@@ -1,39 +1,43 @@
 'use client';
 
-import type { VideoData } from '@/types/video';
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import {
+  useVideoUploadForm,
+  VideoUploadFormFields,
+} from '@/app/dashboard/_hooks/useVideoUploadForm';
+import { SubmitHandler } from 'react-hook-form';
+import { InputError } from '@/components/InputError';
+
+const onSubmit: SubmitHandler<VideoUploadFormFields> = data => {
+  console.log(data);
+};
 
 export function VideoUploadForm() {
   const t = useTranslations('dashboard');
-  const [videoData, setVideoData] = useState<VideoData>({
-    title: '',
-    description: '',
-    file: undefined,
-  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    if (name === 'file') {
-      const input = event.target as HTMLInputElement;
-      const file = input.files?.[0] ?? undefined;
-      setVideoData(prev => ({ ...prev, file }));
-    } else {
-      setVideoData(prev => ({ ...prev, [name]: value }));
-    }
-  };
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    watch,
+    reset,
+  } = useVideoUploadForm();
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log('Uploading video:', videoData);
-  };
+  const watchedTitle = watch('title') ?? '';
+  const watchedDescription = watch('description') ?? '';
+  const watchedFileList = watch('file');
+  const watchedFileName =
+    watchedFileList && watchedFileList.length > 0 ? watchedFileList[0]?.name : undefined;
 
   function handleReset() {
-    setVideoData({ title: '', description: '', file: undefined });
+    reset({
+      title: '',
+      description: '',
+    });
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
         <label htmlFor="video-title" className="text-foreground mb-2 block text-sm font-medium">
           {t('videoTitle')}
@@ -41,14 +45,13 @@ export function VideoUploadForm() {
         <input
           id="video-title"
           type="text"
-          name="title"
-          value={videoData.title}
-          onChange={handleChange}
+          {...register('title')}
           placeholder={t('videoTitlePlaceholder')}
           maxLength={100}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
-        <p className="text-muted-foreground mt-1 text-xs">{videoData.title.length}/100</p>
+        <p className="text-muted-foreground mt-1 text-xs">{watchedTitle.length}/100</p>
+        {errors.title && <InputError message={errors.title.message} />}
       </div>
 
       <div>
@@ -60,15 +63,14 @@ export function VideoUploadForm() {
         </label>
         <textarea
           id="video-description"
-          name="description"
-          value={videoData.description}
-          onChange={handleChange}
+          {...register('description')}
           placeholder={t('videoDescriptionPlaceholder')}
           rows={5}
-          maxLength={5000}
+          maxLength={500}
           className="bg-secondary border-border text-foreground focus:ring-foreground focus:border-foreground w-full resize-none rounded-lg border px-4 py-2 text-sm focus:outline-none"
         />
-        <p className="text-muted-foreground mt-1 text-xs">{videoData.description.length}/5000</p>
+        <p className="text-muted-foreground mt-1 text-xs">{watchedDescription.length}/500</p>
+        {errors.description && <InputError message={errors.description.message} />}
       </div>
 
       <div>
@@ -79,9 +81,8 @@ export function VideoUploadForm() {
           <input
             id="video-file"
             type="file"
-            name="file"
             accept="video/*"
-            onChange={handleChange}
+            {...register('file')}
             className="absolute inset-0 cursor-pointer opacity-0"
           />
           <div className="space-y-2">
@@ -99,11 +100,12 @@ export function VideoUploadForm() {
               />
             </svg>
             <p className="text-foreground text-sm">
-              {videoData.file ? videoData.file.name : t('videoFilePlaceholder')}
+              {watchedFileName ?? t('videoFilePlaceholder')}
             </p>
             <p className="text-muted-foreground text-xs">{t('videoFileFormats')}</p>
           </div>
         </div>
+        {errors.file && <InputError message={errors.file.message} />}
       </div>
 
       <div className="flex gap-3 pt-4">
