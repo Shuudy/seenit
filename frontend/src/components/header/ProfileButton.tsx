@@ -1,6 +1,23 @@
+'use client';
+
+import { useAuth } from '@/providers/AuthProvider';
+import { useRouter } from 'next/navigation';
+import { ChannelAvatar } from '@/components/ChannelAvatar';
+
 export function ProfileButton() {
-  return (
-    <button className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors">
+  const { user } = useAuth();
+  const router = useRouter();
+  const handleClick = () => router.push('/login');
+
+  return user ? (
+    <button className="cursor-pointer">
+      <ChannelAvatar username={user.username} avatarUrl={user.avatar_url} header />
+    </button>
+  ) : (
+    <button
+      onClick={handleClick}
+      className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors"
+    >
       <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
