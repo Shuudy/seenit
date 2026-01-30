@@ -149,10 +149,13 @@ jobs:
           echo "DB_PASSWORD=" >> .env
 
       - name: Install Dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress
+        run: composer install --prefer-dist --no-interaction --no-progress --no-scripts
 
       - name: Generate key
         run: php artisan key:generate
+
+      - name: Run Composer Scripts
+        run: composer run-script post-autoload-dump --no-interaction
 
       - name: Set Permissions
         run: chmod -R 777 storage bootstrap/cache
