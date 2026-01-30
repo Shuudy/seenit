@@ -8,3 +8,8 @@ export type Comment = {
   is_liked_by_current_user: boolean;
   created_at: string;
 };
+
+export type PostVideoCommentPayload = {
+  videoId: string;
+  content: string;
+};

@@ -1,7 +1,7 @@
 import { ApiResponse, MetaAPI } from '@/types/api';
 import { apiClient } from '@/lib/api-client';
 import { Video } from '@/types/video';
-import { Comment } from '@/types/comment';
+import { Comment, PostVideoCommentPayload } from '@/types/comment';
 
 export async function getVideos(): Promise<Video[]> {
   const response = await apiClient<ApiResponse<Video[]>>('/videos');
@@ -26,4 +26,16 @@ export async function getVideoComments(
     comments: response.data ?? [],
     meta: response.meta ?? {},
   };
+}
+
+export async function postVideoComment({
+  videoId,
+  content,
+}: PostVideoCommentPayload): Promise<Comment> {
+  const response = await apiClient<ApiResponse<Comment>>(`/videos/${videoId}/comments`, {
+    method: 'POST',
+    body: JSON.stringify({ content }),
+  });
+
+  return response.data;
 }
