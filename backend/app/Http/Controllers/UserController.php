@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -58,6 +59,29 @@ class UserController extends Controller
         return new SuccessResource([
             'message' => 'User liked comments retrieved successfully.',
             'data' => $likedComments,
+        ]);
+    }
+
+    /**
+     * Update the authenticated user's profile.
+     */
+    public function update(UpdateProfileRequest $request): SuccessResource
+    {
+        $user = $request->user();
+
+        $validated = $request->validated();
+
+        $user->fill([
+            'username' => $validated['username'],
+            'email' => $validated['email'],
+            'bio' => $validated['bio'] ?? null,
+        ]);
+
+        $user->save();
+
+        return new SuccessResource([
+            'message' => 'Profile updated successfully.',
+            'data' => new UserResource($user),
         ]);
     }
 }
