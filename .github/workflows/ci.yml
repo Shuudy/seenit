@@ -154,7 +154,7 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
 
-      - name: Run post-autoload scripts
+      - name: Regenerate autoloader
         run: composer dump-autoload
 
       - name: Set Permissions
