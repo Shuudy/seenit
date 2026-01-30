@@ -16,6 +16,7 @@
   "bio": "Bio",
   "bioPlaceholder": "Parlez-nous de vous",
   "bioMaxLength": "La bio doit comporter au maximum 500 caractères",
+  "profileUpdateError": "Une erreur est survenue lors de la mise à jour de votre profil. Veuillez réessayer.",
   "save": "Enregistrer",
   "saving": "Enregistrement...",
   "cancel": "Annuler",

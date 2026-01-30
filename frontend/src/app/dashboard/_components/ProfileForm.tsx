@@ -7,6 +7,7 @@ import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
 import { useProfileMutation } from '@/app/dashboard/_hooks/mutations/useProfileMutation';
 import { User } from '@/types/user';
+import { useState } from 'react';
 
 export function ProfileForm() {
   const t = useTranslations('dashboard');
@@ -31,6 +32,8 @@ export function ProfileForm() {
 
   const { mutate: profileMutation, isPending } = useProfileMutation();
 
+  const [serverError, setServerError] = useState<string | undefined>();
+
   const submitHandler: SubmitHandler<ProfileFormFields> = data => {
     profileMutation(data, {
       onSuccess: updatedUser => {
@@ -42,15 +45,27 @@ export function ProfileForm() {
           bio: updatedUser.bio ?? '',
         });
       },
+      onError: () => {
+        setServerError(t('profileUpdateError'));
+      },
     });
   };
 
   const watchedBio = watch('bio') ?? '';
 
-  const handleReset = () => reset(initialData);
+  const handleReset = () => {
+    reset(initialData);
+    setServerError(undefined);
+  };
 
   return (
     <form onSubmit={handleSubmit(submitHandler)} className="border-border space-y-5 border-t pt-6">
+      {serverError && (
+        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
+          {serverError}
+        </div>
+      )}
+
       <div>
         <label htmlFor="username" className="text-foreground mb-2 block text-sm font-medium">
           {t('username')}
