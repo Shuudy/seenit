@@ -155,7 +155,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Run post-autoload scripts
-        run: php artisan package:discover --ansi
+        run: composer dump-autoload
 
       - name: Set Permissions
         run: chmod -R 777 storage bootstrap/cache
