@@ -9,6 +9,7 @@ use App\Http\Resources\SuccessResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -26,7 +27,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        auth()->login($user);
+        Auth::login($user);
 
         return new UserResource($user);
     }
@@ -47,7 +48,7 @@ class AuthController extends Controller
             ]);
         }
 
-        auth()->login($user);
+        Auth::login($user);
 
         return new UserResource($user);
     }
@@ -57,7 +58,7 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        auth()->logout();
+        Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

@@ -1,14 +1,40 @@
+'use client';
+
+import { useAuth } from '@/providers/AuthProvider';
+import { ChannelAvatar } from '@/components/ChannelAvatar';
+import { useState } from 'react';
+import { ProfileDropdown } from '@/components/header/ProfileDropdown';
+import { ProfileDefaultUser } from '@/components/header/ProfileDefaultUser';
+
 export function ProfileButton() {
+  const { user } = useAuth();
+
+  const [open, setOpen] = useState(false);
+
+  // If no user, show generic profile icon that links to login
+  if (!user) {
+    return <ProfileDefaultUser />;
+  }
+
+  // If user is logged in, show avatar with dropdown menu
   return (
-    <button className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors">
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-        />
-      </svg>
-    </button>
+    <div
+      className="relative inline-flex items-center"
+      onBlur={event => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
+    >
+      <button
+        className="cursor-pointer"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        onKeyDown={event => event.key === 'Escape' && setOpen(false)}
+      >
+        <ChannelAvatar username={user.username} avatarUrl={user.avatar_url} header />
+      </button>
+
+      {open && <ProfileDropdown />}
+    </div>
   );
 }
