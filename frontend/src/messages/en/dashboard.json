@@ -17,6 +17,7 @@
   "bioPlaceholder": "Tell us about yourself",
   "bioMaxLength": "Bio must be at most 500 characters",
   "save": "Save",
+  "saving": "Saving...",
   "cancel": "Cancel",
   "videoTitle": "Video title",
   "videoTitlePlaceholder": "Enter your video title",

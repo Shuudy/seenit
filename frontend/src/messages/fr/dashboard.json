@@ -17,6 +17,7 @@
   "bioPlaceholder": "Parlez-nous de vous",
   "bioMaxLength": "La bio doit comporter au maximum 500 caractères",
   "save": "Enregistrer",
+  "saving": "Enregistrement...",
   "cancel": "Annuler",
   "videoTitle": "Titre de la vidéo",
   "videoTitlePlaceholder": "Entrez le titre de votre vidéo",
