@@ -5,10 +5,9 @@ import { ProfileFormFields, useProfileForm } from '@/app/dashboard/_hooks/usePro
 import { SubmitHandler } from 'react-hook-form';
 import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
-
-const onSubmit: SubmitHandler<ProfileFormFields> = data => {
-  console.log('Profile data submitted:', data);
-};
+import { useProfileMutation } from '@/app/dashboard/_hooks/mutations/useProfileMutation';
+import { User } from '@/types/user';
+import { useState } from 'react';
 
 export function ProfileForm() {
   const t = useTranslations('dashboard');
@@ -29,12 +28,44 @@ export function ProfileForm() {
     watch,
   } = useProfileForm(initialData);
 
+  const { setUser } = useAuth();
+
+  const { mutate: profileMutation, isPending } = useProfileMutation();
+
+  const [serverError, setServerError] = useState<string | undefined>();
+
+  const submitHandler: SubmitHandler<ProfileFormFields> = data => {
+    profileMutation(data, {
+      onSuccess: updatedUser => {
+        // Update the user in AuthContext
+        setUser(updatedUser as User);
+        reset({
+          username: updatedUser.username,
+          email: updatedUser.email || '',
+          bio: updatedUser.bio ?? '',
+        });
+      },
+      onError: () => {
+        setServerError(t('profileUpdateError'));
+      },
+    });
+  };
+
   const watchedBio = watch('bio') ?? '';
 
-  const handleReset = () => reset(initialData);
+  const handleReset = () => {
+    reset(initialData);
+    setServerError(undefined);
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="border-border space-y-5 border-t pt-6">
+    <form onSubmit={handleSubmit(submitHandler)} className="border-border space-y-5 border-t pt-6">
+      {serverError && (
+        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
+          {serverError}
+        </div>
+      )}
+
       <div>
         <label htmlFor="username" className="text-foreground mb-2 block text-sm font-medium">
           {t('username')}
@@ -82,9 +113,10 @@ export function ProfileForm() {
       <div className="flex gap-3 pt-4">
         <button
           type="submit"
-          className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
+          disabled={isPending}
+          className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {t('save')}
+          {isPending ? t('saving') : t('save')}
         </button>
         <button
           type="button"

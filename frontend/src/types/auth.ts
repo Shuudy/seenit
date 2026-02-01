@@ -20,3 +20,9 @@ export type RegisterCredentials = {
   password: string;
   password_confirmation: string;
 };
+
+export type ProfileUpdate = {
+  username?: string;
+  email?: string;
+  bio?: string | null;
+};

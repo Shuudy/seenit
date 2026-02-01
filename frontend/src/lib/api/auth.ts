@@ -1,4 +1,4 @@
-import { LoginCredentials, RegisterCredentials, User } from '@/types/auth';
+import { LoginCredentials, ProfileUpdate, RegisterCredentials, User } from '@/types/auth';
 import { apiClient } from '@/lib/api-client';
 import { ApiResponse } from '@/types/api';
 
@@ -40,6 +40,17 @@ export async function logout(): Promise<void> {
   await apiClient('/logout', {
     method: 'DELETE',
   });
+}
+
+export async function updateProfile(data: ProfileUpdate): Promise<User> {
+  await getCsrfCookie();
+
+  const response = await apiClient<ApiResponse<User>>('/me', {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+  });
+
+  return response.data;
 }
 
 export async function getCurrentUser(): Promise<User> {
