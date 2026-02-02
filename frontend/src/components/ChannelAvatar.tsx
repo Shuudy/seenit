@@ -8,7 +8,7 @@ export function ChannelAvatar({
   header = false,
 }: {
   username: string;
-  avatarUrl?: string;
+  avatarUrl?: string | null;
   large?: boolean;
   header?: boolean;
 }) {

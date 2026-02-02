@@ -17,7 +17,8 @@ const createProfileFormSchema = (t: (key: string) => string) =>
     bio: z
       .string()
       .max(500, { message: t('bioMaxLength') })
-      .optional(),
+      .optional()
+      .nullable(),
   });
 
 export type ProfileFormFields = z.infer<ReturnType<typeof createProfileFormSchema>>;
