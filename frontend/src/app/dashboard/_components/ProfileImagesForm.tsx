@@ -36,6 +36,8 @@ export function ProfileImagesForm() {
   const [bannerPreview, setBannerPreview] = useState<string | undefined>(initialImages.bannerSrc);
   const [avatarPreview, setAvatarPreview] = useState<string | undefined>(initialImages.avatarSrc);
 
+  const { banner: bannerError, avatar: avatarError } = errors;
+
   const onSubmit: SubmitHandler<ProfileImagesFormFields> = data => {
     const avatar = data.avatar?.[0];
     const banner = data.banner?.[0];
@@ -86,7 +88,7 @@ export function ProfileImagesForm() {
             <span className="text-sm font-medium text-white">{t('edit')}</span>
           </label>
         </div>
-        {errors.banner && <InputError message={errors.banner.message} />}
+        {bannerError && <InputError message={bannerError.message} />}
       </div>
 
       <div>
@@ -114,7 +116,7 @@ export function ProfileImagesForm() {
           </div>
           <p className="text-muted-foreground text-xs">{t('validImageFormats')}</p>
         </div>
-        {errors.avatar && <InputError message={errors.avatar.message} />}
+        {avatarError && <InputError message={avatarError.message} />}
       </div>
 
       <div className="flex gap-3 pt-4">
