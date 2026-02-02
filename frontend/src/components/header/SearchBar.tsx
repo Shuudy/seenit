@@ -42,6 +42,7 @@ export function SearchBar() {
           value={query}
           onChange={event => setQuery(event.target.value)}
           placeholder={t('search')}
+          aria-label={t('search')}
           className="text-foreground placeholder-muted-foreground flex-1 bg-transparent text-sm outline-none"
         />
       </div>

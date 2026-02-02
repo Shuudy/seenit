@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { NextIntlClientProvider } from 'next-intl';
-import { ReactNode } from 'react';
-import { en as messages } from '@/messages/en';
 import { render, RenderOptions } from '@testing-library/react';
+import { NextIntlClientProvider } from 'next-intl';
+import { ReactNode, Suspense } from 'react';
+
+import { en as messages } from '@/messages/en';
 
 function createTestingQueryClient() {
   return new QueryClient({
@@ -20,7 +21,7 @@ function AllProviders({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={testingQueryClient}>
       <NextIntlClientProvider locale="en" messages={messages}>
-        {children}
+        <Suspense fallback={undefined}>{children}</Suspense>
       </NextIntlClientProvider>
     </QueryClientProvider>
   );
