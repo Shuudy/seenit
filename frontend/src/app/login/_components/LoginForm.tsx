@@ -24,6 +24,8 @@ export function LoginForm() {
 
   const { mutate: postLogin, isPending } = useLoginMutation();
 
+  const { email: emailError, password: passwordError } = errors;
+
   const onSubmit: SubmitHandler<LoginFormFields> = data => {
     setErrorMessage(undefined);
     postLogin(data, {
@@ -66,7 +68,7 @@ export function LoginForm() {
           placeholder={t('emailPlaceholder')}
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
         />
-        {errors.email && <InputError message={errors.email.message} />}
+        {emailError && <InputError message={emailError.message} />}
       </div>
 
       <div>
@@ -80,7 +82,7 @@ export function LoginForm() {
           placeholder={t('passwordPlaceholder')}
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
         />
-        {errors.password && <InputError message={errors.password.message} />}
+        {passwordError && <InputError message={passwordError.message} />}
       </div>
 
       <button
