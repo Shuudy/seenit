@@ -16,6 +16,9 @@ Route::middleware('auth:sanctum')->prefix('/me')->group(function () {
 
     // Update authenticated user profile
     Route::patch('/', [UserController::class, 'update']);
+
+    // Update authenticated user profile images
+    Route::post('/images', [UserController::class, 'updateImages']);
 });
 
 Route::post('login', [AuthController::class, 'login']);
