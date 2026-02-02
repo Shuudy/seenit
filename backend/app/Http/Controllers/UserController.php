@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileImagesRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -72,15 +74,42 @@ class UserController extends Controller
         $validated = $request->validated();
 
         $user->fill([
-            'username' => $validated['username'],
-            'email' => $validated['email'],
-            'bio' => $validated['bio'] ?? null,
+            'username' => $validated['username'] ?? $user->username,
+            'email' => $validated['email'] ?? $user->email,
+            'bio' => $validated['bio'] ?? $user->bio,
         ]);
 
         $user->save();
 
         return new SuccessResource([
             'message' => 'Profile updated successfully.',
+            'data' => new UserResource($user),
+        ]);
+    }
+
+    /**
+     * Update the authenticated user's profile images.
+     */
+    public function updateImages(UpdateProfileImagesRequest $request): SuccessResource
+    {
+        $user = $request->user();
+
+        // Handle avatar upload
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar_url = url(Storage::url($avatarPath));
+        }
+
+        // Handle banner upload
+        if ($request->hasFile('banner')) {
+            $bannerPath = $request->file('banner')->store('banners', 'public');
+            $user->banner_url = url(Storage::url($bannerPath));
+        }
+
+        $user->save();
+
+        return new SuccessResource([
+            'message' => 'Profile images updated successfully.',
             'data' => new UserResource($user),
         ]);
     }

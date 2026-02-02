@@ -12,15 +12,14 @@ import { handleImageChange } from '@/app/dashboard/_utils/handleImageChange';
 import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
-
-const onSubmit: SubmitHandler<ProfileImagesFormFields> = data => {
-  console.log(data);
-};
+import { useProfileImagesMutation } from '@/app/dashboard/_hooks/mutations/useProfileImagesMutation';
 
 export function ProfileImagesForm() {
   const t = useTranslations('dashboard');
 
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+
+  const { mutate: updateProfileImages, isPending } = useProfileImagesMutation();
 
   const initialImages = {
     bannerSrc: user?.banner_url ?? '/celebratory-banner.png',
@@ -36,6 +35,26 @@ export function ProfileImagesForm() {
 
   const [bannerPreview, setBannerPreview] = useState<string | undefined>(initialImages.bannerSrc);
   const [avatarPreview, setAvatarPreview] = useState<string | undefined>(initialImages.avatarSrc);
+
+  const onSubmit: SubmitHandler<ProfileImagesFormFields> = data => {
+    const avatar = data.avatar?.[0];
+    const banner = data.banner?.[0];
+
+    updateProfileImages(
+      { avatar, banner },
+      {
+        onSuccess: updatedUser => {
+          setUser(updatedUser);
+          reset();
+          setBannerPreview(updatedUser.banner_url ?? '/celebratory-banner.png');
+          setAvatarPreview(getAvatarUrl(updatedUser.username, updatedUser.avatar_url));
+        },
+        onError: error => {
+          console.error('Failed to update profile images:', error);
+        },
+      }
+    );
+  };
 
   const handleCancel = () => [
     reset(),
@@ -101,14 +120,16 @@ export function ProfileImagesForm() {
       <div className="flex gap-3 pt-4">
         <button
           type="submit"
-          className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
+          disabled={isPending}
+          className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {t('save')}
+          {isPending ? t('saving') : t('save')}
         </button>
         <button
           type="button"
           onClick={handleCancel}
-          className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
+          disabled={isPending}
+          className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
           {t('cancel')}
         </button>

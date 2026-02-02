@@ -53,6 +53,25 @@ export async function updateProfile(data: ProfileUpdate): Promise<User> {
   return response.data;
 }
 
+export async function updateProfileImages(data: { avatar?: File; banner?: File }): Promise<User> {
+  await getCsrfCookie();
+
+  const formData = new FormData();
+  if (data.avatar) {
+    formData.append('avatar', data.avatar);
+  }
+  if (data.banner) {
+    formData.append('banner', data.banner);
+  }
+
+  const response = await apiClient<ApiResponse<User>>('/me/images', {
+    method: 'POST',
+    body: formData,
+  });
+
+  return response.data;
+}
+
 export async function getCurrentUser(): Promise<User> {
   const response = await apiClient<ApiResponse<User>>('/me');
   return response.data;
