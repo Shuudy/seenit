@@ -24,6 +24,13 @@ export function RegisterForm() {
 
   const { mutate: postUser, isPending } = useRegisterMutation();
 
+  const {
+    username: usernameError,
+    email: emailError,
+    password: passwordError,
+    confirm: confirmError,
+  } = errors;
+
   const onSubmit: SubmitHandler<RegisterFormFields> = data => {
     setErrorMessage(undefined);
 
@@ -74,7 +81,7 @@ export function RegisterForm() {
           placeholder={t('username')}
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
         />
-        {errors.username && <InputError message={errors.username.message} />}
+        {usernameError && <InputError message={usernameError.message} />}
       </div>
 
       <div>
@@ -88,7 +95,7 @@ export function RegisterForm() {
           placeholder={t('emailPlaceholder')}
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
         />
-        {errors.email && <InputError message={errors.email.message} />}
+        {emailError && <InputError message={emailError.message} />}
       </div>
 
       <div>
@@ -102,7 +109,7 @@ export function RegisterForm() {
           placeholder={t('passwordPlaceholder')}
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
         />
-        {errors.password && <InputError message={errors.password.message} />}
+        {passwordError && <InputError message={passwordError.message} />}
       </div>
 
       <div>
@@ -115,9 +122,9 @@ export function RegisterForm() {
           {...register('confirm')}
           placeholder={t('passwordPlaceholder')}
           className="bg-secondary border-border text-foreground placeholder-muted-foreground focus:ring-foreground focus:border-foreground w-full rounded-lg border px-4 py-2 focus:outline-none"
-          aria-invalid={!!errors.confirm}
+          aria-invalid={!!confirmError}
         />
-        {errors.confirm && <InputError message={errors.confirm.message} />}
+        {confirmError && <InputError message={confirmError.message} />}
       </div>
 
       <button
