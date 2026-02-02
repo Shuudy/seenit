@@ -9,7 +9,7 @@ const createLoginFormSchema = (t: (key: string) => string) =>
       .string()
       .min(1, { message: t('emailRequired') })
       .pipe(z.email(t('emailInvalid'))),
-    password: z.string().min(6, { message: t('passwordMinLength') }),
+    password: z.string().min(8, { message: t('passwordMinLength') }),
   });
 
 export type LoginFormFields = z.infer<ReturnType<typeof createLoginFormSchema>>;

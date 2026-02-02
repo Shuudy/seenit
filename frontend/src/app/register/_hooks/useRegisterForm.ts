@@ -6,12 +6,13 @@ import { useTranslations } from 'next-intl';
 const createRegisterFormSchema = (t: (key: string) => string) =>
   z
     .object({
+      username: z.string().min(1, { message: t('usernameRequired') }),
       email: z
         .string()
         .min(1, { message: t('emailRequired') })
         .pipe(z.email(t('emailInvalid'))),
-      password: z.string().min(6, { message: t('passwordMinLength') }),
-      confirm: z.string().min(6, { message: t('passwordMinLength') }),
+      password: z.string().min(8, { message: t('passwordMinLength') }),
+      confirm: z.string().min(8, { message: t('passwordMinLength') }),
     })
     .refine(data => data.password === data.confirm, {
       message: t('passwordMismatch'),
