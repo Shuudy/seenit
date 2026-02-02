@@ -46,6 +46,8 @@ export function CommentForm() {
   const [isFocused, setIsFocused] = useState(false);
   const commentText = watch('comment', '');
 
+  const { comment: commentError } = errors;
+
   const handleCancel = () => {
     clearErrors();
     reset();
@@ -76,7 +78,7 @@ export function CommentForm() {
           autoComplete="off"
           className="text-foreground border-secondary focus:border-foreground placeholder-muted-foreground w-full flex-1 border-b bg-transparent px-2 py-2 text-sm transition-colors focus:outline-none"
         />
-        {errors.comment && <InputError message={errors.comment.message} />}
+        {commentError && <InputError message={commentError.message} />}
         {isFocused && (
           <div className="mt-3 flex justify-end gap-2">
             <button
