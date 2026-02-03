@@ -29,7 +29,7 @@ test.describe('Watch Video - Critical User Journey', () => {
     });
 
     await test.step('verify video metadata is displayed', async () => {
-      await expect(page.getByText(/views|likes|published|created/i).first()).toBeVisible();
+      await expect(page.getByText(/views/i).first()).toBeVisible();
 
       await expect(page.locator('a[href^="/channel/"]').first()).toBeVisible();
     });
@@ -45,7 +45,7 @@ test.describe('Watch Video - Critical User Journey', () => {
     await test.step('verify related videos are displayed', async () => {
       await expect(page).toHaveURL(/\/watch\/\d+/);
 
-      const recommendationsHeading = page.getByText(/recommendations|recommended|related/i);
+      const recommendationsHeading = page.getByText(/recommendations/i);
       await expect(recommendationsHeading).toBeVisible();
     });
   });
@@ -62,7 +62,7 @@ test.describe('Watch Video - Critical User Journey', () => {
 
       await page.waitForTimeout(2000);
 
-      await expect(page.getByText(/views|\d+[.,]\d*\s*[KM]?\s*•/i).first()).toBeVisible();
+      await expect(page.getByText(/views/i).first()).toBeVisible();
     });
   });
 });
