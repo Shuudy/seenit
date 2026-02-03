@@ -21,7 +21,7 @@ test.describe('User Login Flow', () => {
     await test.step('verify successful login', async () => {
       await page.waitForLoadState('networkidle');
 
-      await expect(page).toHaveURL(/login/);
+      await expect(page).not.toHaveURL(/login/);
     });
   });
 
