@@ -1,27 +1,15 @@
-'use client';
-
 import { CommentForm } from '@/app/watch/_components/CommentForm';
 import { CommentList } from '@/app/watch/_components/CommentList';
-import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
-import { useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
+import { CommentCount } from '@/app/watch/_components/CommentCount';
 
 export function VideoComments() {
-  const t = useTranslations('common');
-  const { id: videoId } = useParams<{ id: string }>();
-  const { data } = useVideoCommentsSuspenseQuery(videoId);
-
-  const { meta, comments } = data;
-
   return (
     <>
-      <h2 className="text-foreground mb-4 text-base font-bold">
-        {meta.comments_count} {t('comment', { count: meta.comments_count })}
-      </h2>
+      <CommentCount />
 
       <CommentForm />
 
-      <CommentList comments={comments} />
+      <CommentList />
     </>
   );
 }
