@@ -45,5 +45,9 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.0.17"
+  },
+  "overrides": {
+    "@swc/helpers": "0.5.18",
+    "picomatch": "4.0.3"
   }
 }
