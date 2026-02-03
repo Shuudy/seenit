@@ -83,6 +83,97 @@ jobs:
       - name: Run Vitest
         run: npm run test
 
+  frontend-playwright:
+    name: Frontend / Playwright Tests (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    strategy:
+      matrix:
+        node: [22]
+        php: [8.4]
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Copy Laravel .env
+        working-directory: ./backend
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Set up .env for MySQL
+        working-directory: ./backend
+        run: |
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=laravel" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=" >> .env
+
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Generate Laravel key
+        working-directory: ./backend
+        run: php artisan key:generate
+
+      - name: Set Permissions
+        working-directory: ./backend
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Run migrations and seeders
+        working-directory: ./backend
+        run: php artisan migrate:fresh --seed --force
+
+      - name: Start Laravel backend
+        working-directory: ./backend
+        run: php artisan serve --host=0.0.0.0 --port=8000 &
+
+      - name: Wait for backend to start
+        run: |
+          for i in {1..30}; do
+            if curl -f http://localhost:8000 > /dev/null 2>&1; then
+              echo "Backend is ready"
+              exit 0
+            fi
+            echo "Waiting for backend... ($i/30)"
+            sleep 1
+          done
+          echo "Backend failed to start"
+          exit 1
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test
+
   frontend-build:
     name: Frontend / Build (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
