@@ -1,19 +1,16 @@
 'use client';
 
-import { Comment } from '@/components/Comment';
 import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
+import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 
-export function CommentList() {
+export function CommentCount() {
+  const t = useTranslations('common');
   const { id: videoId } = useParams<{ id: string }>();
   const { data } = useVideoCommentsSuspenseQuery(videoId);
-
-  const { comments } = data;
   return (
-    <div className="space-y-7">
-      {comments.map(comment => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
-    </div>
+    <h2 className="text-foreground mb-4 text-base font-bold">
+      {data.meta.comments_count} {t('comment', { count: data.meta.comments_count })}
+    </h2>
   );
 }
