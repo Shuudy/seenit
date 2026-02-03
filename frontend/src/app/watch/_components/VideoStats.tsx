@@ -12,7 +12,7 @@ export function VideoStats({ views, uploadedAt }: VideoStatsProps) {
   const viewsFormatted = formatViews(views);
   const createdAtFormatted = formatRelativeTime(uploadedAt);
   return (
-    <p className="text-muted-foreground mb-2 text-xs">
+    <p className="text-muted-foreground mb-2 text-xs" suppressHydrationWarning>
       {viewsFormatted} • {createdAtFormatted}
     </p>
   );

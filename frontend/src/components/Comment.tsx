@@ -19,7 +19,9 @@ export function Comment({ comment }: CommentProps) {
           >
             {comment.user.username}
           </Link>
-          <p className="text-muted-foreground text-xs">{createdAtFormatted}</p>
+          <p className="text-muted-foreground text-xs" suppressHydrationWarning>
+            {createdAtFormatted}
+          </p>
         </div>
         <p className="text-foreground/90 text-sm">{comment.content}</p>
         <CommentActions likes={comment.likes_count} />

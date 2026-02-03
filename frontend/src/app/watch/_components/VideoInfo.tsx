@@ -23,7 +23,7 @@ export function VideoInfo({
         {title}
       </p>
       <p className="text-muted-foreground mt-1 text-xs">{username}</p>
-      <p className="text-muted-foreground text-xs">
+      <p className="text-muted-foreground text-xs" suppressHydrationWarning>
         {viewsFormatted} • {createdAtFormatted}
       </p>
     </div>
