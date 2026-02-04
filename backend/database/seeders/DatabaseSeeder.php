@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,13 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'username' => 'testuser',
-            'email' => 'test@test.com',
-            'password' => Hash::make('password'),
-            'bio' => 'Test user for e2e testing',
-        ]);
-
         $users = User::factory(10)->create();
         $videos = Video::factory(30)->make()->each(function ($video) use ($users) {
             $video->user_id = $users->random()->id;
