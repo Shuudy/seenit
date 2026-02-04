@@ -3,13 +3,14 @@
 import { Locale } from '@/messages';
 import { useRouter } from 'next/navigation';
 
+import Cookies from 'js-cookie';
+
 export function LanguageSwitcherClient({ locale }: { locale: Locale }) {
   const router = useRouter();
 
   const toggleLanguage = () => {
     const nextLocale = locale === 'en' ? 'fr' : 'en';
-    // eslint-disable-next-line unicorn/no-document-cookie
-    document.cookie = `locale=${nextLocale};path=/;max-age=31536000`;
+    Cookies.set('locale', nextLocale, { path: '/', expires: 365 });
     router.refresh();
   };
 
