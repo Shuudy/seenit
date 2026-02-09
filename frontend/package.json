@@ -17,6 +17,7 @@
     "js-cookie": "^3.0.5",
     "next": "15.5.10",
     "next-intl": "^4.7.0",
+    "nuqs": "^2.8.8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.68.0",
