@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
 import pluginUnusedImports from 'eslint-plugin-unused-imports';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
+import perfectionist from 'eslint-plugin-perfectionist';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,9 +17,17 @@ const eslintConfig = [
   eslintPluginUnicorn.configs.recommended,
   {
     ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
-    plugins: { 'unused-imports': pluginUnusedImports },
+    plugins: { 'unused-imports': pluginUnusedImports, perfectionist },
     rules: {
+      'perfectionist/sort-imports': 'error',
       '@typescript-eslint/no-unused-vars': 'off',
+
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['.*'],
+        },
+      ],
 
       // automatically removes unused imports
       'unused-imports/no-unused-imports': 'error',
