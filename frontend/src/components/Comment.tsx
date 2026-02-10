@@ -6,7 +6,6 @@ import { CommentActions } from '@/components/CommentActions';
 
 export function Comment({ comment }: CommentProps) {
   const formatRelativeTime = useFormatRelativeTime();
-  const createdAtFormatted = formatRelativeTime(comment.created_at);
 
   return (
     <div className="flex gap-4">
@@ -20,7 +19,7 @@ export function Comment({ comment }: CommentProps) {
             {comment.user.username}
           </Link>
           <p className="text-muted-foreground text-xs" suppressHydrationWarning>
-            {createdAtFormatted}
+            {formatRelativeTime(comment.created_at)}
           </p>
         </div>
         <p className="text-foreground/90 text-sm">{comment.content}</p>

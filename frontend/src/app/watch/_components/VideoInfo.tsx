@@ -14,8 +14,6 @@ export function VideoInfo({
 }) {
   const formatViews = useFormatViews();
   const formatRelativeTime = useFormatRelativeTime();
-  const viewsFormatted = formatViews(views);
-  const createdAtFormatted = formatRelativeTime(createdAt);
 
   return (
     <div className="min-w-0 flex-1">
@@ -24,7 +22,7 @@ export function VideoInfo({
       </p>
       <p className="text-muted-foreground mt-1 text-xs">{username}</p>
       <p className="text-muted-foreground text-xs" suppressHydrationWarning>
-        {viewsFormatted} • {createdAtFormatted}
+        {formatViews(views)} • {formatRelativeTime(createdAt)}
       </p>
     </div>
   );
