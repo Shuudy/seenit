@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from 'react';
 
-import { ChannelTabs } from '@/app/channel/_components/ChannelTabs';
+import { ChannelTabId, ChannelTabs, Tab } from '@/app/channel/_components/ChannelTabs';
 import { ChannelAbout } from '@/app/channel/_components/ChannelAbout';
 import { ChannelVideoGrid } from '@/app/channel/_components/ChannelVideoGrid';
 
@@ -11,12 +11,14 @@ import { useTranslations } from 'next-intl';
 
 export function ChannelTabsClient() {
   const t = useTranslations('channel');
-  const tabs = [
+
+  const tabs: readonly Tab[] = [
     { id: 'home', label: t('home') },
     { id: 'videos', label: t('videosTab') },
     { id: 'about', label: t('about') },
   ] as const;
-  const [activeTab, setActiveTab] = useState('home');
+
+  const [activeTab, setActiveTab] = useState<ChannelTabId>('home');
   return (
     <>
       <ChannelTabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
