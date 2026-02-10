@@ -3,21 +3,20 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+const categories = [
+  'all',
+  'gaming',
+  'music',
+  'live',
+  'mixes',
+  'trending',
+  'recentlyUploaded',
+] as const;
+
+type CategoryId = (typeof categories)[number];
+
 export function CategoryTabs() {
   const t = useTranslations('categories');
-
-  const categories = [
-    'all',
-    'gaming',
-    'music',
-    'live',
-    'mixes',
-    'trending',
-    'recentlyUploaded',
-  ] as const;
-
-  type CategoryId = (typeof categories)[number];
-
   const [activeCategory, setActiveCategory] = useState<CategoryId>('all');
 
   return (

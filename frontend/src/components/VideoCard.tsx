@@ -6,12 +6,7 @@ import { useFormatRelativeTime } from '@/utils/format-relative-time';
 import { formatDuration } from '@/utils/format-duration';
 import type { Video } from '@/types/video';
 
-interface VideoCardProps {
-  video: Video;
-  showChannel?: boolean;
-}
-
-export function VideoCard({ video, showChannel = true }: VideoCardProps) {
+export function VideoCard({ video, showChannel = true }: { video: Video; showChannel?: boolean }) {
   const formatViews = useFormatViews();
   const formatRelativeTime = useFormatRelativeTime();
   const viewsFormatted = formatViews(video.count_views);
