@@ -2,13 +2,10 @@
   "subscribed": "Subscribed",
   "subscribe": "Subscribe",
   "search": "Search",
-  "view": "{count, plural, =0 {views} one {view} other {views}}",
+  "view_count": "{count, plural, =0 {0 views} one {1 view} other {{formattedNumber} views}}",
   "showMore": "Show more",
   "showLess": "Show less",
-  "thousand": "K",
-  "million": "M",
-  "billion": "B",
   "comment": "{count, plural, =0 {comments} one {comment} other {comments}}",
-  "subscriber": "{count, plural, =0 {subscribers} one {subscriber} other {subscribers}}",
+  "subscriber_count": "{count, plural, =0 {0 subscribers} one {1 subscriber} other {{formattedNumber} subscribers}}",
   "reply": "Reply"
 }

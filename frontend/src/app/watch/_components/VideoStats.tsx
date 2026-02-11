@@ -9,11 +9,9 @@ interface VideoStatsProps {
 export function VideoStats({ views, uploadedAt }: VideoStatsProps) {
   const formatViews = useFormatViews();
   const formatRelativeTime = useFormatRelativeTime();
-  const viewsFormatted = formatViews(views);
-  const createdAtFormatted = formatRelativeTime(uploadedAt);
   return (
     <p className="text-muted-foreground mb-2 text-xs" suppressHydrationWarning>
-      {viewsFormatted} • {createdAtFormatted}
+      {formatViews(views)} • {formatRelativeTime(uploadedAt)}
     </p>
   );
 }
