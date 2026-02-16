@@ -1,7 +1,7 @@
 export default {
-  "frontend/**/*.{ts,tsx}": [
-    "npm --prefix frontend run lint",
-    "npm --prefix frontend run prettier:check",
+  "apps/frontend/**/*.{ts,tsx}": [
+    "pnpm --filter frontend run lint",
+    "pnpm --filter frontend run prettier:check",
   ],
-  "backend/**/*.php": ["php backend/vendor/bin/pint --test"],
+  "apps/backend/**/*.php": ["php apps/backend/vendor/bin/pint --test"],
 };
