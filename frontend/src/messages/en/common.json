@@ -7,5 +7,6 @@
   "showLess": "Show less",
   "comment": "{count, plural, =0 {comments} one {comment} other {comments}}",
   "subscriber_count": "{count, plural, =0 {0 subscribers} one {1 subscriber} other {{formattedNumber} subscribers}}",
+  "subscriber": "{count, plural, =0 {subscribers} one {subscriber} other {subscribers}}",
   "reply": "Reply"
 }
