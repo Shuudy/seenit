@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./apps/frontend
     strategy:
       matrix:
         node: [22]
@@ -28,17 +28,17 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run ESLint
-        run: npm run lint
+        run: pnpm run lint
 
   frontend-prettier:
     name: Frontend / Prettier (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./apps/frontend
     strategy:
       matrix:
         node: [22]
@@ -53,17 +53,17 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run Prettier check
-        run: npm run prettier:check
+        run: pnpm run prettier:check
 
   frontend-build:
     name: Frontend / Build (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./apps/frontend
     strategy:
       matrix:
         node: [22]
@@ -78,17 +78,17 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build Next.js App
-        run: npm run build
+        run: pnpm run build
 
   backend-pint:
     name: Backend / Laravel Pint (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./backend
+        working-directory: ./apps/backend
     strategy:
       matrix:
         php: [8.4]
@@ -113,7 +113,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./backend
+        working-directory: ./apps/backend
     strategy:
       matrix:
         php: [8.4]
