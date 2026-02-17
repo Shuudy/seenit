@@ -1,12 +1,15 @@
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
 export function ProfileDefaultUser() {
+  const t = useTranslations('auth');
   const router = useRouter();
 
   return (
     <button
       onClick={() => router.push('/login')}
       className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors"
+      aria-label={t('signIn')}
     >
       <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path

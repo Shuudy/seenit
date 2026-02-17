@@ -22,12 +22,15 @@ test('should allow a new user to complete full auth flow', async ({ page }) => {
 
   await test.step('user is logged in and can log out', async () => {
     // Click profile button to open dropdown
-    await page.getByRole('button', { name: username }).click();
+    const profileButton = page.getByRole('button', { name: username });
+    await profileButton.click();
 
     await expect(page.getByRole('link', { name: 'Dashboard' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible();
 
     await page.getByRole('button', { name: 'Logout' }).click();
+    await expect(profileButton).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Sign in' })).toBeVisible();
   });
 
   await test.step('user can log back in with the new account', async () => {
