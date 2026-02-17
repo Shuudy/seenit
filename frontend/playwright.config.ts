@@ -28,6 +28,9 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
 
+    /* Set a default locale for all tests. */
+    locale: 'en-US',
+
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
   },
