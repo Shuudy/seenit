@@ -10,10 +10,12 @@ export function CommentList() {
 
   const { comments } = data;
   return (
-    <div className="space-y-7">
+    <ul className="space-y-7">
       {comments.map(comment => (
-        <Comment key={comment.id} comment={comment} />
+        <li key={comment.id}>
+          <Comment comment={comment} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
