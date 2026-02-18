@@ -7,7 +7,7 @@ test('toggles language and updates page translations', async ({ page }) => {
     await expect(page.getByRole('button', { name: 'EN', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'All' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Trending' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Home' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Home', exact: true })).toBeVisible();
   });
 
   await test.step('switches to French and updates the UI', async () => {
@@ -16,7 +16,7 @@ test('toggles language and updates page translations', async ({ page }) => {
     await expect(page.getByRole('button', { name: 'FR', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Tous' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Tendances' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Accueil' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Accueil', exact: true })).toBeVisible();
   });
 
   await test.step('persists the selected language across reloads', async () => {
@@ -24,6 +24,6 @@ test('toggles language and updates page translations', async ({ page }) => {
 
     await expect(page.getByRole('button', { name: 'FR', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Tous' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Accueil' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Accueil', exact: true })).toBeVisible();
   });
 });
