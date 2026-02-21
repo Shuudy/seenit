@@ -1,4 +1,5 @@
 import { ToastType } from '@/components/toast/ToastProvider';
+import { useTranslations } from 'next-intl';
 
 interface ToastMessageProps {
   message: string;
@@ -7,6 +8,8 @@ interface ToastMessageProps {
 }
 
 export function ToastMessage({ message, type, onClose }: ToastMessageProps) {
+  const t = useTranslations('toast');
+
   return (
     <div
       className={`toast-enter flex max-w-md min-w-72 items-center gap-3 rounded-lg px-4 py-3 shadow-lg ${type === 'success' ? 'bg-green-900/90 text-green-100' : ''} ${type === 'error' ? 'bg-red-900/90 text-red-100' : ''} ${type === 'info' ? 'bg-card border-border text-foreground border' : ''}`}
@@ -54,7 +57,7 @@ export function ToastMessage({ message, type, onClose }: ToastMessageProps) {
       <span className="flex-1 text-sm font-medium">{message}</span>
       <button
         className="cursor-pointer rounded p-1 transition-colors hover:bg-white/10"
-        aria-label="Fermer"
+        aria-label={t('close')}
         onClick={onClose}
       >
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
