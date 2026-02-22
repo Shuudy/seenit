@@ -5,6 +5,7 @@ import { Providers } from '@/components/Providers';
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import AuthServer from '@/components/auth/AuthServer';
+import { ToastProvider } from '@/components/toast/ToastProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,9 +35,11 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}>
         <NextIntlClientProvider>
-          <Providers>
-            <AuthServer>{children}</AuthServer>
-          </Providers>
+          <ToastProvider>
+            <Providers>
+              <AuthServer>{children}</AuthServer>
+            </Providers>
+          </ToastProvider>
         </NextIntlClientProvider>
       </body>
     </html>
