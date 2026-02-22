@@ -2,11 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-interface ShareButtonProps {
-  title: string;
-}
-
-export function ShareButton({ title }: ShareButtonProps) {
+export function ShareButton({ title }: { title: string }) {
   const t = useTranslations('watch');
 
   const handleShare = async () => {

@@ -6,12 +6,13 @@ import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { useFormatSubscribers } from '@/utils/format-subscribers';
 import { SubscribeButton } from '@/components/SubscribeButton';
 
-interface VideoChannelInfoProps {
+export function VideoChannelInfo({
+  user,
+  channelSubscribers,
+}: {
   user: User;
   channelSubscribers: number;
-}
-
-export function VideoChannelInfo({ user, channelSubscribers }: VideoChannelInfoProps) {
+}) {
   const formatSubscribers = useFormatSubscribers();
 
   return (

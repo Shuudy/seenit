@@ -1,12 +1,8 @@
 import { useTranslations } from 'next-intl';
 
-type Props = {
-  query?: string | null;
-};
-
-export function VideosGridSearchEmpty({ query }: Props) {
+export function VideosGridSearchEmpty({ query }: { query?: string | null }) {
   const t = useTranslations('homePage');
-  const display = query ? (query.length > 100 ? `${query.slice(0, 100)}…` : query) : '';
+  const displayQuery = query ? (query.length > 100 ? `${query.slice(0, 100)}…` : query) : '';
 
   return (
     <div className="col-span-full flex min-h-96 items-center justify-center">
@@ -27,7 +23,7 @@ export function VideosGridSearchEmpty({ query }: Props) {
           </svg>
         </div>
         <h2 className="text-foreground mb-2 text-lg font-medium">
-          {t('noResultsForQuery', { query: display })}
+          {t('noResultsForQuery', { query: displayQuery })}
         </h2>
         <p className="text-muted-foreground mb-6 text-sm">{t('tryAnotherSearch')}</p>
       </div>
