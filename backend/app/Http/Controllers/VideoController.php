@@ -10,9 +10,11 @@ use App\Http\Resources\ErrorResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\VideoResource;
 use App\Models\Video;
+use getID3;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use RuntimeException;
 use Throwable;
 
 class VideoController extends Controller
@@ -57,13 +59,26 @@ class VideoController extends Controller
         try {
             $file = $request->file('video');
 
+            // Read video duration using getID3 library
+            $analyzer = new getID3;
+            $analyzer->option_md5_data = false;
+            $analyzer->option_md5_data_source = false;
+            $info = $analyzer->analyze($file->getRealPath());
+
+            $duration = $info['playtime_seconds'] ?? null;
+
+            if (! is_finite($duration) || $duration <= 0) {
+                throw new RuntimeException('Unable to read video duration');
+            }
+
             $storedPath = $file->store('videos', 'public');
+            $publicUrl = url(Storage::url($storedPath));
 
             $video = Video::create([
                 'title' => $validated['title'],
                 'description' => $validated['description'] ?? null,
-                'url' => $storedPath,
-                'duration' => 2000,
+                'url' => $publicUrl,
+                'duration' => (int) round($duration),
                 'user_id' => $request->user()->id,
             ]);
 
@@ -109,7 +124,18 @@ class VideoController extends Controller
         Gate::authorize('delete', $video);
 
         $videoPath = $video->url;
-        if (Storage::disk('public')->exists($videoPath)) {
+
+        // Handle both stored public URLs and relative storage paths
+        if (str_starts_with($videoPath, 'http')) {
+            $parsed = parse_url($videoPath, PHP_URL_PATH) ?: '';
+            $relative = ltrim($parsed, '/');
+            if (str_starts_with($relative, 'storage/')) {
+                $relative = substr($relative, 8);
+            }
+            $videoPath = $relative;
+        }
+
+        if ($videoPath && Storage::disk('public')->exists($videoPath)) {
             Storage::disk('public')->delete($videoPath);
         }
 
