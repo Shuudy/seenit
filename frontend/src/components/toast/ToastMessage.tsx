@@ -12,6 +12,7 @@ export function ToastMessage({ message, type, onClose }: ToastMessageProps) {
 
   return (
     <div
+      role="alert"
       className={`toast-enter flex max-w-md min-w-72 items-center gap-3 rounded-lg px-4 py-3 shadow-lg ${type === 'success' ? 'bg-green-900/90 text-green-100' : ''} ${type === 'error' ? 'bg-red-900/90 text-red-100' : ''} ${type === 'info' ? 'bg-card border-border text-foreground border' : ''}`}
     >
       {type === 'success' && (
