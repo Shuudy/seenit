@@ -13,6 +13,7 @@ import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
 import { useProfileImagesMutation } from '@/app/dashboard/_hooks/mutations/useProfileImagesMutation';
+import { useToast } from '@/components/toast/ToastProvider';
 
 export function ProfileImagesForm() {
   const t = useTranslations('dashboard');
@@ -20,6 +21,8 @@ export function ProfileImagesForm() {
   const { user, setUser } = useAuth();
 
   const { mutate: updateProfileImages, isPending } = useProfileImagesMutation();
+
+  const { addToast } = useToast();
 
   const initialImages = {
     bannerSrc: user?.banner_url ?? '/celebratory-banner.png',
@@ -48,6 +51,7 @@ export function ProfileImagesForm() {
           reset();
           setBannerPreview(updatedUser.banner_url ?? '/celebratory-banner.png');
           setAvatarPreview(getAvatarUrl(updatedUser.username, updatedUser.avatar_url));
+          addToast(t('profileUpdateSuccess'), 'success');
         },
         onError: error => {
           console.error('Failed to update profile images:', error);
