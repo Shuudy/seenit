@@ -8,6 +8,7 @@ import { useAuth } from '@/providers/AuthProvider';
 import { useProfileMutation } from '@/app/dashboard/_hooks/mutations/useProfileMutation';
 import { User } from '@/types/user';
 import { useState } from 'react';
+import { useToast } from '@/components/toast/ToastProvider';
 
 export function ProfileForm() {
   const t = useTranslations('dashboard');
@@ -32,6 +33,8 @@ export function ProfileForm() {
 
   const { mutate: profileMutation, isPending } = useProfileMutation();
 
+  const { addToast } = useToast();
+
   const [serverError, setServerError] = useState<string | undefined>();
 
   const submitHandler: SubmitHandler<ProfileFormFields> = data => {
@@ -44,6 +47,7 @@ export function ProfileForm() {
           email: updatedUser.email || '',
           bio: updatedUser.bio ?? '',
         });
+        addToast(t('profileUpdateSuccess'), 'success');
       },
       onError: () => {
         setServerError(t('profileUpdateError'));
