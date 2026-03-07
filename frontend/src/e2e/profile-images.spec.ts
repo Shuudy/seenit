@@ -14,6 +14,8 @@ test('user can register and update profile images', async ({ page }) => {
   const username = `e2euser${ts}`;
   const email = `e2e+${ts}@example.com`;
   const password = 'Password123!';
+  let initialBannerSource: string | undefined;
+  let initialAvatarSource: string | undefined;
 
   await test.step('user registers a new account', async () => {
     await page.goto('/register');
@@ -40,8 +42,8 @@ test('user can register and update profile images', async ({ page }) => {
     const bannerImg = page.getByRole('img', { name: 'Banner' });
     const avatarImg = page.getByRole('img', { name: 'Profile picture' });
 
-    const initialBannerSource = await bannerImg.getAttribute('src');
-    const initialAvatarSource = await avatarImg.getAttribute('src');
+    initialBannerSource = (await bannerImg.getAttribute('src')) ?? undefined;
+    initialAvatarSource = (await avatarImg.getAttribute('src')) ?? undefined;
 
     await page.getByLabel('Edit').nth(0).setInputFiles(tinyPng);
     await expect(bannerImg).not.toHaveAttribute('src', initialBannerSource ?? '');
@@ -51,9 +53,15 @@ test('user can register and update profile images', async ({ page }) => {
 
     const saveButton = page.getByRole('button', { name: 'Save' }).first();
     await saveButton.click();
-    await expect(saveButton).toHaveText('Save');
 
-    await page.waitForTimeout(1000);
+    await expect(
+      page.getByRole('alert').filter({ hasText: 'Your profile has been updated successfully.' })
+    ).toBeVisible();
+  });
+
+  await test.step('verify profile images persist after reload', async () => {
+    const bannerImg = page.getByRole('img', { name: 'Banner' });
+    const avatarImg = page.getByRole('img', { name: 'Profile picture' });
 
     await page.reload();
 
