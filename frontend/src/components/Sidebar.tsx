@@ -13,7 +13,7 @@ export function Sidebar() {
   const youHref = user ? `/channel/${user.id}` : '/login';
 
   const isActive = (href: string) =>
-    pathname === href || (href !== '/' && pathname?.startsWith(href));
+    pathname === href || (href !== '/' && pathname?.startsWith(href + '/'));
 
   const linkClass = (href: string) =>
     `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
