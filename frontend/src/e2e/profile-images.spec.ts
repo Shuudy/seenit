@@ -51,7 +51,7 @@ test('user can register and update profile images', async ({ page }) => {
     await page.getByLabel('Edit').nth(1).setInputFiles(tinyPng);
     await expect(avatarImg).not.toHaveAttribute('src', initialAvatarSource ?? '');
 
-    const saveButton = page.getByRole('button', { name: 'Save profile images' });
+    const saveButton = page.getByRole('button', { name: 'Save profile images', exact: true });
     await saveButton.click();
 
     await expect(saveButton).toBeEnabled();

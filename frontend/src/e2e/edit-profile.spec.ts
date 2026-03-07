@@ -34,7 +34,7 @@ test('user can register, update profile, and see changes persist', async ({ page
     await page.getByRole('textbox', { name: 'Email' }).fill(updatedEmail);
     await page.getByRole('textbox', { name: 'Bio' }).fill(updatedBio);
 
-    const saveButton = page.getByRole('button', { name: 'Save profile' });
+    const saveButton = page.getByRole('button', { name: 'Save profile', exact: true });
     await saveButton.click();
 
     // Wait for the UI to settle: the button is disabled while saving
