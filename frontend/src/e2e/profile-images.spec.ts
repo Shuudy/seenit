@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { uniqueId } from '@/e2e/utilities';
 
 const tinyPng = {
   name: 'tiny.png',
@@ -10,9 +11,9 @@ const tinyPng = {
 };
 
 test('user can register and update profile images', async ({ page }) => {
-  const ts = Date.now();
-  const username = `e2euser${ts}`;
-  const email = `e2e+${ts}@example.com`;
+  const id = uniqueId();
+  const username = `e2euser_${id}`;
+  const email = `e2e+${id}@example.com`;
   const password = 'Password123!';
   let initialBannerSource: string | undefined;
   let initialAvatarSource: string | undefined;

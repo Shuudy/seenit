@@ -1,14 +1,15 @@
 import { test, expect } from '@playwright/test';
+import { uniqueId } from '@/e2e/utilities';
 
 test('user can register, update profile, and see changes persist', async ({ page }) => {
-  const ts = Date.now();
-  const username = `e2euser${ts}`;
-  const email = `e2e+${ts}@example.com`;
+  const id = uniqueId();
+  const username = `e2euser_${id}`;
+  const email = `e2e+${id}@example.com`;
   const password = 'Password123!';
 
-  const updatedUsername = `e2e_updated_${ts}`;
-  const updatedEmail = `e2e+${ts}@example.com`;
-  const updatedBio = `Updated bio ${ts}`;
+  const updatedUsername = `e2e_updated_${id}`;
+  const updatedEmail = `e2e_updated+${id}@example.com`;
+  const updatedBio = `Updated bio ${id}`;
 
   await test.step('user registers a new account', async () => {
     await page.goto('/register');

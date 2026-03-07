@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { uniqueId } from '@/e2e/utilities';
 
 test('should allow a new user to complete full auth flow', async ({ page }) => {
-  const ts = Date.now();
-  const username = `e2euser${ts}`;
-  const email = `e2e+${ts}@example.com`;
+  const id = uniqueId();
+  const username = `e2euser_${id}`;
+  const email = `e2e+${id}@example.com`;
   const password = 'Password123!';
 
   await test.step('user registers a new account', async () => {
