@@ -1,9 +1,4 @@
-interface VideoPlayerProps {
-  thumbnail?: string;
-  url: string;
-}
-
-export function VideoPlayer({ thumbnail, url }: VideoPlayerProps) {
+export function VideoPlayer({ thumbnail, url }: { thumbnail?: string; url: string }) {
   return (
     <div className="mb-3 aspect-video w-full overflow-hidden rounded-lg bg-black">
       <video

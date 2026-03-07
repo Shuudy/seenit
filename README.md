@@ -25,7 +25,7 @@ The application is containerized with **Docker** for easy development and deploy
 - REST API implemented in **Laravel**
 
 ## Technologies
-- [Next.js](https://nextjs.org) - v15 (React-based frontend)
+- [Next.js](https://nextjs.org) - v16 (React-based frontend)
 - [Laravel](https://laravel.com) - v12 (PHP-based backend API)
 - [Tailwind CSS](https://tailwindcss.com) - v4 (styling)
 - [Docker](https://www.docker.com) - (containerized development)

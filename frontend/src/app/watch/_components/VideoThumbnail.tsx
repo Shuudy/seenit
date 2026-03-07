@@ -1,15 +1,13 @@
 import { formatDuration } from '@/utils/format-duration';
 import Image from 'next/image';
 
-export function VideoThumbnail({
-  thumbnail,
-  title,
-  duration,
-}: {
+interface VideoThumbnailProps {
   thumbnail: string | null;
   title: string;
   duration: number;
-}) {
+}
+
+export function VideoThumbnail({ thumbnail, title, duration }: VideoThumbnailProps) {
   const durationFormatted = formatDuration(duration);
   return (
     <div className="bg-secondary relative h-20 w-32 flex-shrink-0 overflow-hidden rounded">

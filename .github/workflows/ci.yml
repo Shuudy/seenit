@@ -16,7 +16,7 @@ jobs:
         working-directory: ./frontend
     strategy:
       matrix:
-        node: [22]
+        node: [24]
 
     steps:
       - name: Checkout code
@@ -41,7 +41,7 @@ jobs:
         working-directory: ./frontend
     strategy:
       matrix:
-        node: [22]
+        node: [24]
 
     steps:
       - name: Checkout code
@@ -160,7 +160,7 @@ jobs:
         working-directory: ./frontend
     strategy:
       matrix:
-        node: [22]
+        node: [24]
 
     steps:
       - name: Checkout code
@@ -185,7 +185,7 @@ jobs:
         working-directory: ./backend
     strategy:
       matrix:
-        php: [8.4]
+        php: [8.5]
 
     steps:
       - name: Checkout code
@@ -210,7 +210,7 @@ jobs:
         working-directory: ./backend
     strategy:
       matrix:
-        php: [8.4]
+        php: [8.5]
 
     services:
       mysql:

@@ -1,13 +1,15 @@
-type Tab = {
-  id: string;
-  label: string;
-};
+export type ChannelTabId = 'home' | 'videos' | 'about';
 
-type ChannelTabsProps = {
+export interface Tab {
+  id: ChannelTabId;
+  label: string;
+}
+
+interface ChannelTabsProps {
   tabs: readonly Tab[];
-  activeTab: string;
-  setActiveTab: (tabId: string) => void;
-};
+  activeTab: ChannelTabId;
+  setActiveTab: (tabId: ChannelTabId) => void;
+}
 
 export function ChannelTabs({ tabs, activeTab, setActiveTab }: ChannelTabsProps) {
   return (
