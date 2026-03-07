@@ -66,8 +66,8 @@ jobs:
         working-directory: ./frontend
     strategy:
       matrix:
-        node: [22]
-        php: [8.4]
+        node: [24]
+        php: [8.5]
 
     services:
       mysql:
