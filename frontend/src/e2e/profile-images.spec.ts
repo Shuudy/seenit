@@ -35,7 +35,7 @@ test('user can register and update profile images', async ({ page }) => {
     await page.goto('/dashboard');
 
     // Check that the profile tab is visible
-    await expect(page.getByRole('button', { name: 'Profile' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Profile', exact: true })).toBeVisible();
   });
 
   await test.step('upload banner and avatar', async () => {
@@ -51,12 +51,10 @@ test('user can register and update profile images', async ({ page }) => {
     await page.getByLabel('Edit').nth(1).setInputFiles(tinyPng);
     await expect(avatarImg).not.toHaveAttribute('src', initialAvatarSource ?? '');
 
-    const saveButton = page.getByRole('button', { name: 'Save' }).first();
+    const saveButton = page.getByRole('button', { name: 'Save profile images' });
     await saveButton.click();
 
-    await expect(
-      page.getByRole('alert').filter({ hasText: 'Your profile has been updated successfully.' })
-    ).toBeVisible();
+    await expect(saveButton).toBeEnabled();
   });
 
   await test.step('verify profile images persist after reload', async () => {

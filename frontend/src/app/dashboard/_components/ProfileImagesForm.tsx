@@ -121,6 +121,7 @@ export function ProfileImagesForm() {
         <button
           type="submit"
           disabled={isPending}
+          aria-label={t('saveProfileImages')}
           className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isPending ? t('saving') : t('save')}

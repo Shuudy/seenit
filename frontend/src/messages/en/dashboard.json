@@ -38,5 +38,7 @@
   "videoDescriptionRequired": "Video description is required",
   "videoDescriptionTooLong": "Video description is too long",
   "videoFileRequired": "Video file is required",
-  "videoFileMustBeVideo": "File must be a video"
+  "videoFileMustBeVideo": "File must be a video",
+  "saveProfileImages": "Save profile images",
+  "saveProfile": "Save profile"
 }

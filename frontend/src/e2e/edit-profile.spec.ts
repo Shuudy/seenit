@@ -27,11 +27,14 @@ test('user can register, update profile, and see changes persist', async ({ page
   await test.step('user updates profile', async () => {
     await page.goto('/dashboard');
 
+    // Check that the profile tab is visible
+    await expect(page.getByRole('button', { name: 'Profile', exact: true })).toBeVisible();
+
     await page.getByRole('textbox', { name: 'Username' }).fill(updatedUsername);
     await page.getByRole('textbox', { name: 'Email' }).fill(updatedEmail);
     await page.getByRole('textbox', { name: 'Bio' }).fill(updatedBio);
 
-    const saveButton = page.getByRole('button', { name: 'Save' }).nth(1);
+    const saveButton = page.getByRole('button', { name: 'Save profile' });
     await saveButton.click();
 
     // Wait for the UI to settle: the button is disabled while saving
