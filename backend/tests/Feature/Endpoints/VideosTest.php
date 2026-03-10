@@ -265,8 +265,69 @@ class VideosTest extends TestCase
         if ($videoUrl) {
             $videoPath = str_replace(url(Storage::url('')), '', $videoUrl);
             $videoPath = ltrim($videoPath, '/');
-
             Storage::disk('public')->assertExists($videoPath);
         }
+    }
+
+    /**
+     * Test that validation errors are returned when uploading a video with missing required fields.
+     */
+    public function test_upload_video_validation_errors(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user, 'sanctum')->postJson('/api/videos', [])
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['title', 'video']);
+    }
+
+    public function test_upload_requires_valid_video_file(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user, 'sanctum')->postJson('/api/videos', [
+            'title' => 'Invalid Video',
+            'video' => UploadedFile::fake()->create('document.pdf', 100, 'application/pdf'),
+        ])->assertStatus(422)
+            ->assertJsonValidationErrors(['video']);
+    }
+
+    /**
+     * Test that an authenticated user cannot update a video they do not own.
+     */
+    public function test_user_cannot_update_others_video(): void
+    {
+        $owner = User::factory()->create();
+        $stranger = User::factory()->create();
+
+        $video = Video::factory()->create(['user_id' => $owner->id]);
+
+        $payload = [
+            'title' => 'Hacked Title',
+            'description' => 'Hacked description',
+        ];
+
+        $response = $this->actingAs($stranger, 'sanctum')->putJson("/api/videos/{$video->id}", $payload);
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseHas('videos', ['id' => $video->id, 'title' => $video->title, 'description' => $video->description]);
+    }
+
+    /**
+     * Test that an authenticated user cannot delete a video they do not own.
+     */
+    public function test_user_cannot_delete_others_video(): void
+    {
+        $owner = User::factory()->create();
+        $stranger = User::factory()->create();
+
+        $video = Video::factory()->create(['user_id' => $owner->id]);
+
+        $response = $this->actingAs($stranger, 'sanctum')->deleteJson("/api/videos/{$video->id}");
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseHas('videos', ['id' => $video->id]);
     }
 }
