@@ -3,6 +3,7 @@
 namespace Tests\Feature\Endpoints;
 
 use App\Models\Comment;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -133,5 +134,88 @@ class VideosTest extends TestCase
             $this->assertNotEquals($video->id, $item['id']);
             $this->assertEquals($userId, $item['user']['id']);
         }
+    }
+
+    /**
+     * Test that an authenticated owner can update their video.
+     */
+    public function test_authenticated_user_can_update_video(): void
+    {
+        $video = Video::factory()->create(['title' => 'Old title', 'description' => 'Old description']);
+
+        $user = $video->user;
+
+        $payload = ['title' => 'Updated Title', 'description' => 'Updated description'];
+
+        $response = $this->actingAs($user, 'sanctum')->putJson("/api/videos/{$video->id}", $payload);
+
+        $response->assertOk()
+            ->assertJsonPath('data.title', 'Updated Title')
+            ->assertJsonPath('data.description', 'Updated description');
+
+        $this->assertDatabaseHas('videos', ['id' => $video->id, 'title' => 'Updated Title', 'description' => 'Updated description']);
+    }
+
+    /**
+     * Test that an authenticated user can like a video.
+     */
+    public function test_authenticated_user_can_like_video(): void
+    {
+        $video = Video::factory()->create();
+        $liker = User::factory()->create();
+
+        $this->assertEquals(0, $video->likes_count);
+
+        $response = $this->actingAs($liker, 'sanctum')->postJson("/api/videos/{$video->id}/like");
+
+        $response->assertOk()
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => ['likes_count'],
+            ])
+            ->assertJsonPath('data.likes_count', 1);
+
+        $this->assertEquals(1, $video->likes_count);
+        $this->assertDatabaseHas('user_video', ['video_id' => $video->id, 'user_id' => $liker->id]);
+    }
+
+    /**
+     * Test that an authenticated owner can delete their video.
+     */
+    public function test_authenticated_user_can_delete_video(): void
+    {
+        $video = Video::factory()->create();
+        $owner = $video->user;
+
+        $response = $this->actingAs($owner, 'sanctum')->deleteJson("/api/videos/{$video->id}");
+
+        $response->assertOk();
+
+        $this->assertDatabaseMissing('videos', ['id' => $video->id]);
+    }
+
+    /**
+     * Test that an authenticated user can create a comment on a video.
+     */
+    public function test_authenticated_user_can_create_comment(): void
+    {
+        $video = Video::factory()->create();
+        $commenter = User::factory()->create();
+
+        $payload = ['content' => 'Nice video!'];
+
+        $response = $this->actingAs($commenter, 'sanctum')->postJson("/api/videos/{$video->id}/comments", $payload);
+
+        $response->assertOk()
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => ['id', 'content', 'user' => ['id', 'username', 'avatar_url']],
+            ])
+            ->assertJsonPath('data.content', 'Nice video!')
+            ->assertJsonPath('data.user.id', $commenter->id);
+
+        $this->assertDatabaseHas('comments', ['video_id' => $video->id, 'content' => 'Nice video!', 'user_id' => $commenter->id]);
     }
 }
