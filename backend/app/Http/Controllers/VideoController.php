@@ -89,7 +89,7 @@ class VideoController extends Controller
                 Storage::disk('public')->delete($storedPath);
             }
 
-            return new ErrorResource('Video upload failed', 500);
+            return new ErrorResource(['message' => 'Video upload failed', 'status_code' => 500]);
         }
     }
 
