@@ -262,11 +262,9 @@ class VideosTest extends TestCase
 
         // Verify the video file was stored
         $videoUrl = $response->json('data.url');
-        if ($videoUrl) {
-            $videoPath = str_replace(url(Storage::url('')), '', $videoUrl);
-            $videoPath = ltrim($videoPath, '/');
-            Storage::disk('public')->assertExists($videoPath);
-        }
+        $videoPath = str_replace(url(Storage::url('')), '', $videoUrl);
+        $videoPath = ltrim($videoPath, '/');
+        Storage::disk('public')->assertExists($videoPath);
     }
 
     /**
