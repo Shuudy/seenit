@@ -10,7 +10,7 @@ use App\Http\Resources\ErrorResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\VideoResource;
 use App\Models\Video;
-use getID3;
+use App\Services\VideoAnalyzer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -49,7 +49,7 @@ class VideoController extends Controller
     /**
      * Store a newly uploaded video in storage.
      */
-    public function store(UploadVideoRequest $request): SuccessResource|ErrorResource
+    public function store(UploadVideoRequest $request, VideoAnalyzer $analyzer): SuccessResource|ErrorResource
     {
         $validated = $request->validated();
 
@@ -59,15 +59,9 @@ class VideoController extends Controller
         try {
             $file = $request->file('video');
 
-            // Read video duration using getID3 library
-            $analyzer = new getID3;
-            $analyzer->option_md5_data = false;
-            $analyzer->option_md5_data_source = false;
-            $info = $analyzer->analyze($file->getRealPath());
+            $duration = $analyzer->getDuration($file->getRealPath());
 
-            $duration = $info['playtime_seconds'] ?? null;
-
-            if (! is_finite($duration) || $duration <= 0) {
+            if (! $duration || ! is_finite($duration) || $duration <= 0) {
                 throw new RuntimeException('Unable to read video duration');
             }
 
