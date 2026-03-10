@@ -5,7 +5,10 @@ namespace Tests\Feature\Endpoints;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Video;
+use App\Services\VideoAnalyzer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class VideosTest extends TestCase
@@ -217,5 +220,53 @@ class VideosTest extends TestCase
             ->assertJsonPath('data.user.id', $commenter->id);
 
         $this->assertDatabaseHas('comments', ['video_id' => $video->id, 'content' => 'Nice video!', 'user_id' => $commenter->id]);
+    }
+
+    /**
+     * Test uploading a video as an authenticated user.
+     */
+    public function test_authenticated_user_can_upload_video(): void
+    {
+        $user = User::factory()->create();
+
+        Storage::fake('public');
+
+        // Mock the VideoAnalyzer to return a fixed duration for testing
+        $this->mock(VideoAnalyzer::class, function ($mock) {
+            $mock->shouldReceive('getDuration')
+                ->once()
+                ->andReturn(45.5);
+        });
+
+        $videoFile = UploadedFile::fake()->create('video.mp4', 10240, 'video/mp4');
+
+        $payload = [
+            'title' => 'Uploaded Video',
+            'description' => 'Upload test',
+            'video' => $videoFile,
+        ];
+
+        $response = $this->actingAs($user, 'sanctum')->postJson('/api/videos', $payload);
+
+        $response->assertOk()
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => ['id', 'title', 'description', 'url', 'duration'],
+            ])
+            ->assertJsonPath('message', 'Video uploaded successfully')
+            ->assertJsonPath('data.title', 'Uploaded Video')
+            ->assertJsonPath('data.duration', 46); // Rounded duration
+
+        $this->assertDatabaseHas('videos', ['title' => 'Uploaded Video', 'user_id' => $user->id, 'duration' => 46]);
+
+        // Verify the video file was stored
+        $videoUrl = $response->json('data.url');
+        if ($videoUrl) {
+            $videoPath = str_replace(url(Storage::url('')), '', $videoUrl);
+            $videoPath = ltrim($videoPath, '/');
+
+            Storage::disk('public')->assertExists($videoPath);
+        }
     }
 }
