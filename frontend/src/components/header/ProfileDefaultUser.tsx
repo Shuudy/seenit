@@ -8,7 +8,7 @@ export function ProfileDefaultUser() {
     <Link
       href="/login"
       className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors"
-      aria-label={t('login')}
+      aria-label={t('signIn')}
     >
       <svg
         className="h-6 w-6"
