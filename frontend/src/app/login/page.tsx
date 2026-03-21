@@ -8,7 +8,7 @@ export default async function LoginPage() {
   const t = await getTranslations('auth');
 
   return (
-    <div className="bg-background flex min-h-screen items-center justify-center px-4">
+    <main className="bg-background flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-md">
         <AuthLogo />
 
@@ -33,6 +33,6 @@ export default async function LoginPage() {
 
         <AuthFooter />
       </div>
-    </div>
+    </main>
   );
 }
