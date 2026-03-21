@@ -31,7 +31,7 @@ test('should allow a new user to complete full auth flow', async ({ page }) => {
 
     await page.getByRole('button', { name: 'Logout' }).click();
     await expect(profileButton).toBeHidden();
-    await expect(page.getByRole('button', { name: 'Sign in' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Sign in' })).toBeVisible();
   });
 
   await test.step('user can log back in with the new account', async () => {
