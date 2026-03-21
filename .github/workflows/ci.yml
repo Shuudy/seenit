@@ -108,8 +108,8 @@ jobs:
       - name: Run Laravel Pint
         run: vendor/bin/pint --test
 
-  backend-checks:
-    name: Backend / Laravel Checks (PHP ${{ matrix.php }})
+  backend-tests:
+    name: Backend / Laravel Tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -123,10 +123,11 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: laravel
+          MYSQL_DATABASE: laravel_test
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -136,6 +137,9 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
@@ -144,12 +148,9 @@ jobs:
           echo "DB_CONNECTION=mysql" >> .env
           echo "DB_HOST=127.0.0.1" >> .env
           echo "DB_PORT=3306" >> .env
-          echo "DB_DATABASE=laravel" >> .env
+          echo "DB_DATABASE=laravel_test" >> .env
           echo "DB_USERNAME=root" >> .env
           echo "DB_PASSWORD=" >> .env
-
-      - name: Install Dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: Generate key
         run: php artisan key:generate
@@ -160,5 +161,5 @@ jobs:
       - name: Run migrations and seeders
         run: php artisan migrate:fresh --seed --force
 
-      - name: Verify migration status
-        run: php artisan migrate:status
+      - name: Run Tests
+        run: vendor/bin/phpunit
