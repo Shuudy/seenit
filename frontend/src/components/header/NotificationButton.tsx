@@ -1,7 +1,20 @@
+import { useTranslations } from 'next-intl';
+
 export function NotificationButton() {
+  const t = useTranslations('header');
+
   return (
-    <button className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors">
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button
+      className="hover:bg-secondary cursor-pointer rounded-full p-2 transition-colors"
+      aria-label={t('notifications')}
+    >
+      <svg
+        className="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"

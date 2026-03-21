@@ -1,4 +1,6 @@
 {
   "recommendations": "Recommendations",
-  "share": "Share"
+  "share": "Share",
+  "likeWithCount": "Like ({count})",
+  "dislike": "Dislike"
 }
