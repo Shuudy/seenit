@@ -39,5 +39,7 @@
   "videoDescriptionRequired": "La description de la vidéo est requise",
   "videoDescriptionTooLong": "La description de la vidéo est trop longue",
   "videoFileRequired": "Le fichier vidéo est requis",
-  "videoFileMustBeVideo": "Le fichier doit être une vidéo"
+  "videoFileMustBeVideo": "Le fichier doit être une vidéo",
+  "saveProfileImages": "Enregistrer les images du profil",
+  "saveProfile": "Enregistrer le profil"
 }
