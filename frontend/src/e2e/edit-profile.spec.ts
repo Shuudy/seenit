@@ -38,6 +38,11 @@ test('user can register, update profile, and see changes persist', async ({ page
     const saveButton = page.getByRole('button', { name: 'Save profile', exact: true });
     await saveButton.click();
 
+    // Check for success toast message
+    await expect(
+      page.getByRole('alert').filter({ hasText: 'Your profile has been updated successfully.' })
+    ).toBeVisible();
+
     // Wait for the UI to settle: the button is disabled while saving
     await expect(saveButton).toBeEnabled();
   });
