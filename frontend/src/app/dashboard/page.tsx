@@ -1,7 +1,6 @@
+import { DashboardTabsClient } from '@/app/dashboard/_components/DashboardTabsClient';
 import { Header } from '@/components/Header';
 import { Sidebar } from '@/components/Sidebar';
-
-import { DashboardTabsClient } from '@/app/dashboard/_components/DashboardTabsClient';
 
 export default function Dashboard() {
   return (

@@ -1,5 +1,6 @@
-import { formatDuration } from '@/utils/format-duration';
 import Image from 'next/image';
+
+import { formatDuration } from '@/utils/format-duration';
 
 interface VideoThumbnailProps {
   thumbnail: string | null;

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 export function LikeDislikeButtons({ initialLikes }: { initialLikes: number }) {
   const t = useTranslations('watch');

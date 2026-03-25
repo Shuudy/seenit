@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 export function SubscribeButton({ initial = false }: { initial?: boolean }) {
   const t = useTranslations('common');

@@ -1,9 +1,9 @@
 'use client';
 
-import { Locale } from '@/messages';
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
-import Cookies from 'js-cookie';
+import { Locale } from '@/messages';
 
 export function LanguageSwitcherClient({ locale }: { locale: Locale }) {
   const router = useRouter();

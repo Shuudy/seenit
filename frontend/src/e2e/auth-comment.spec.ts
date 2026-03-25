@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+
 import { uniqueId } from '@/e2e/utilities';
 
 test('user can register, open a video and post a comment', async ({ page }) => {

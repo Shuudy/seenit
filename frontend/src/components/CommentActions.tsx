@@ -1,5 +1,6 @@
-import { LikeButton } from '@/components/LikeButton';
 import { useTranslations } from 'next-intl';
+
+import { LikeButton } from '@/components/LikeButton';
 
 export function CommentActions({ likes }: { likes: number }) {
   const t = useTranslations('common');

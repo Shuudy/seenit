@@ -1,11 +1,12 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { SubmitHandler } from 'react-hook-form';
+
 import {
   useVideoUploadForm,
   VideoUploadFormFields,
 } from '@/app/dashboard/_hooks/useVideoUploadForm';
-import { SubmitHandler } from 'react-hook-form';
 import { InputError } from '@/components/InputError';
 
 const onSubmit: SubmitHandler<VideoUploadFormFields> = data => {

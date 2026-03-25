@@ -1,11 +1,12 @@
 'use client';
 
-import Image from 'next/image';
-import { useChannelHeaderSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelHeaderSuspenseQuery';
-import { useParams } from 'next/navigation';
-import { getAvatarUrl } from '@/utils/get-avatar-url';
-import { SubscribeButton } from '@/components/SubscribeButton';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import { useParams } from 'next/navigation';
+
+import { useChannelHeaderSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelHeaderSuspenseQuery';
+import { SubscribeButton } from '@/components/SubscribeButton';
+import { getAvatarUrl } from '@/utils/get-avatar-url';
 
 export function ChannelHeader() {
   const t = useTranslations('channel');

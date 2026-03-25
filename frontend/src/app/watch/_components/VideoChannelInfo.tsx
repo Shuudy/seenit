@@ -1,10 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+
 import type { User } from '@/types/user';
+
 import { ChannelAvatar } from '@/components/ChannelAvatar';
-import { useFormatSubscribers } from '@/utils/format-subscribers';
 import { SubscribeButton } from '@/components/SubscribeButton';
+import { useFormatSubscribers } from '@/utils/format-subscribers';
 
 export function VideoChannelInfo({
   user,

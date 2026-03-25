@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+
 import { RecommendedVideoItem } from '@/app/watch/_components/RecommendedVideoItem';
 import { useRecommendedVideoListSuspenseQuery } from '@/app/watch/_hooks/queries/useRecommendedVideoListSuspenseQuery';
 

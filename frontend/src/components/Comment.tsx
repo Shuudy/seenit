@@ -1,8 +1,9 @@
-import { ChannelAvatar } from '@/components/ChannelAvatar';
 import Link from 'next/link';
-import { useFormatRelativeTime } from '@/utils/format-relative-time';
+
+import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { CommentActions } from '@/components/CommentActions';
 import { Comment as CommentType } from '@/types/comment';
+import { useFormatRelativeTime } from '@/utils/format-relative-time';
 
 export function Comment({ comment }: { comment: CommentType }) {
   const formatRelativeTime = useFormatRelativeTime();

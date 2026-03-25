@@ -1,8 +1,9 @@
+import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
+
+import { RegisterForm } from '@/app/register/_components/RegisterForm';
 import { AuthFooter } from '@/components/auth/AuthFooter';
 import { AuthLogo } from '@/components/auth/AuthLogo';
-import Link from 'next/link';
-import { RegisterForm } from '@/app/register/_components/RegisterForm';
-import { getTranslations } from 'next-intl/server';
 
 export default async function RegisterPage() {
   const t = await getTranslations('auth');

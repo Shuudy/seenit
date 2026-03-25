@@ -1,5 +1,5 @@
-import { ApiResponse } from '@/types/api';
 import { apiClient } from '@/lib/api-client';
+import { ApiResponse } from '@/types/api';
 import { User } from '@/types/user';
 import { Video } from '@/types/video';
 

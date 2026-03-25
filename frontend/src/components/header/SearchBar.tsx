@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 export function SearchBar() {
   const t = useTranslations('common');

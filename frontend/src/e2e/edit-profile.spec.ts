@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+
 import { uniqueId } from '@/e2e/utilities';
 
 test('user can register, update profile, and see changes persist', async ({ page }) => {

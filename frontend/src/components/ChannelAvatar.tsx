@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import { getAvatarUrl } from '@/utils/get-avatar-url';
 
 interface ChannelAvatarProps {
