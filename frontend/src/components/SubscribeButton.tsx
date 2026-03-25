@@ -3,11 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-interface SubscribeButtonProps {
-  initial?: boolean;
-}
-
-export function SubscribeButton({ initial = false }: SubscribeButtonProps) {
+export function SubscribeButton({ initial = false }: { initial?: boolean }) {
   const t = useTranslations('common');
   const [isSubscribed, setIsSubscribed] = useState(initial);
 

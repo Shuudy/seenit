@@ -18,6 +18,7 @@
   "bioPlaceholder": "Tell us about yourself",
   "bioMaxLength": "Bio must be at most 500 characters",
   "profileUpdateError": "There was an error updating your profile. Please try again.",
+  "profileUpdateSuccess": "Your profile has been updated successfully.",
   "save": "Save",
   "saving": "Saving...",
   "cancel": "Cancel",
@@ -38,5 +39,7 @@
   "videoDescriptionRequired": "Video description is required",
   "videoDescriptionTooLong": "Video description is too long",
   "videoFileRequired": "Video file is required",
-  "videoFileMustBeVideo": "File must be a video"
+  "videoFileMustBeVideo": "File must be a video",
+  "saveProfileImages": "Save profile images",
+  "saveProfile": "Save profile"
 }

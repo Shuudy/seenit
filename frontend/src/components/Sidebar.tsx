@@ -3,13 +3,17 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useAuth } from '@/providers/AuthProvider';
 
 export function Sidebar() {
   const pathname = usePathname();
   const t = useTranslations('sidebar');
+  const { user } = useAuth();
+
+  const youHref = user ? `/channel/${user.id}` : '/login';
 
   const isActive = (href: string) =>
-    pathname === href || (href !== '/' && pathname?.startsWith(href));
+    pathname === href || (href !== '/' && pathname?.startsWith(href + '/'));
 
   const linkClass = (href: string) =>
     `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
@@ -52,7 +56,7 @@ export function Sidebar() {
       <div className="border-border mx-3 my-1 border-t" />
 
       <nav className="space-y-1 px-3 py-2">
-        <Link href="#" className={linkClass('/profile')}>
+        <Link href={youHref} className={linkClass(youHref)}>
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"

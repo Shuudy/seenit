@@ -1,8 +1,4 @@
-interface InputErrorProps {
-  message?: string | null;
-}
-
-export function InputError({ message }: InputErrorProps) {
+export function InputError({ message }: { message?: string | null }) {
   if (!message) {
     // eslint-disable-next-line unicorn/no-null
     return null;

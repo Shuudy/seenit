@@ -13,6 +13,7 @@ import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
 import { useProfileImagesMutation } from '@/app/dashboard/_hooks/mutations/useProfileImagesMutation';
+import { useToast } from '@/components/toast/ToastProvider';
 
 export function ProfileImagesForm() {
   const t = useTranslations('dashboard');
@@ -20,6 +21,8 @@ export function ProfileImagesForm() {
   const { user, setUser } = useAuth();
 
   const { mutate: updateProfileImages, isPending } = useProfileImagesMutation();
+
+  const { addToast } = useToast();
 
   const initialImages = {
     bannerSrc: user?.banner_url ?? '/celebratory-banner.png',
@@ -48,6 +51,7 @@ export function ProfileImagesForm() {
           reset();
           setBannerPreview(updatedUser.banner_url ?? '/celebratory-banner.png');
           setAvatarPreview(getAvatarUrl(updatedUser.username, updatedUser.avatar_url));
+          addToast(t('profileUpdateSuccess'), 'success');
         },
         onError: error => {
           console.error('Failed to update profile images:', error);
@@ -121,6 +125,7 @@ export function ProfileImagesForm() {
         <button
           type="submit"
           disabled={isPending}
+          aria-label={t('saveProfileImages')}
           className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isPending ? t('saving') : t('save')}

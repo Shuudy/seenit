@@ -1,12 +1,11 @@
 import { ChannelAvatar } from '@/components/ChannelAvatar';
 import Link from 'next/link';
-import { CommentProps } from '@/types/props';
 import { useFormatRelativeTime } from '@/utils/format-relative-time';
 import { CommentActions } from '@/components/CommentActions';
+import { Comment as CommentType } from '@/types/comment';
 
-export function Comment({ comment }: CommentProps) {
+export function Comment({ comment }: { comment: CommentType }) {
   const formatRelativeTime = useFormatRelativeTime();
-  const createdAtFormatted = formatRelativeTime(comment.created_at);
 
   return (
     <div className="flex gap-4">
@@ -20,7 +19,7 @@ export function Comment({ comment }: CommentProps) {
             {comment.user.username}
           </Link>
           <p className="text-muted-foreground text-xs" suppressHydrationWarning>
-            {createdAtFormatted}
+            {formatRelativeTime(comment.created_at)}
           </p>
         </div>
         <p className="text-foreground/90 text-sm">{comment.content}</p>

@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Test user creation
+        User::factory()->create([
+            'username' => 'testuser',
+            'email' => 'test@example.com',
+            'bio' => 'This is a test user.',
+        ]);
+
         $users = User::factory(10)->create();
         $videos = Video::factory(30)->make()->each(function ($video) use ($users) {
             $video->user_id = $users->random()->id;

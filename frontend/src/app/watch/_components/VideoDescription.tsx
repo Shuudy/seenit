@@ -14,16 +14,27 @@ export function VideoDescription({ views, uploadedAt, description }: VideoDescri
   const t = useTranslations('common');
   const [expanded, setExpanded] = useState(false);
 
+  const handleParagraphClick = () => {
+    if (expanded) return;
+
+    const selection = globalThis.getSelection();
+    if (selection?.isCollapsed === false) {
+      return;
+    }
+
+    setExpanded(true);
+  };
+
   return (
     <div className="bg-secondary mt-4 rounded-lg p-4">
       <VideoStats views={views} uploadedAt={uploadedAt} />
 
       <p
-        className={`text-foreground cursor-pointer text-sm whitespace-pre-line ${
-          expanded ? '' : 'line-clamp-3'
+        id="video-description"
+        className={`text-foreground text-sm whitespace-pre-line ${
+          expanded ? '' : 'line-clamp-3 cursor-pointer'
         }`}
-        onClick={() => !expanded && setExpanded(true)}
-        aria-expanded={expanded}
+        onClick={handleParagraphClick}
       >
         {description}
       </p>
@@ -32,6 +43,7 @@ export function VideoDescription({ views, uploadedAt, description }: VideoDescri
         className="text-foreground hover:text-muted-foreground mt-3 cursor-pointer text-xs font-medium"
         onClick={() => setExpanded(s => !s)}
         aria-controls="video-description"
+        aria-expanded={expanded}
       >
         {expanded ? t('showLess') : t('showMore')}
       </button>

@@ -6,17 +6,9 @@ import { useFormatRelativeTime } from '@/utils/format-relative-time';
 import { formatDuration } from '@/utils/format-duration';
 import type { Video } from '@/types/video';
 
-interface VideoCardProps {
-  video: Video;
-  showChannel?: boolean;
-}
-
-export function VideoCard({ video, showChannel = true }: VideoCardProps) {
+export function VideoCard({ video, showChannel = true }: { video: Video; showChannel?: boolean }) {
   const formatViews = useFormatViews();
   const formatRelativeTime = useFormatRelativeTime();
-  const viewsFormatted = formatViews(video.count_views);
-  const createdAtFormatted = formatRelativeTime(video.created_at);
-  const durationFormatted = formatDuration(video.duration);
   const channelUsername = showChannel ? video.user.username : undefined;
 
   return (
@@ -37,7 +29,7 @@ export function VideoCard({ video, showChannel = true }: VideoCardProps) {
           </div>
         </div>
         <div className="absolute right-1.5 bottom-1.5 rounded bg-black/60 px-1.5 py-0.5 text-xs font-medium text-white">
-          {durationFormatted}
+          {formatDuration(video.duration)}
         </div>
       </div>
 
@@ -48,7 +40,7 @@ export function VideoCard({ video, showChannel = true }: VideoCardProps) {
           </h3>
           <p className="text-muted-foreground mt-1 text-xs">{channelUsername}</p>
           <p className="text-muted-foreground text-xs" suppressHydrationWarning>
-            {viewsFormatted} • {createdAtFormatted}
+            {formatViews(video.count_views)} • {formatRelativeTime(video.created_at)}
           </p>
         </div>
       </div>
