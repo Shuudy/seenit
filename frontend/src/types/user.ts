@@ -5,7 +5,7 @@ export type User = {
   avatar_url?: string | null;
   handle?: string;
   bio?: string | null;
-  subscribers?: string;
+  subscribers_count?: number;
   videos_count?: number;
   banner_url?: string | null;
 };
