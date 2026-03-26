@@ -16,8 +16,8 @@ class UserController extends Controller
      */
     public function show(User $user): SuccessResource
     {
-        // Prevent N+1 problem
-        $user->loadCount('videos');
+        // Prevent N+1 problem and include subscribers count
+        $user->loadCount(['videos', 'subscribers']);
 
         return new SuccessResource([
             'message' => 'User found successfully.',

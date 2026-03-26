@@ -74,4 +74,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Comment::class, 'user_comment');
     }
+
+    /**
+     * The users who are subscribed to this user.
+     */
+    public function subscribers(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'user_subscriptions', 'subscribed_id', 'subscriber_id');
+    }
 }
