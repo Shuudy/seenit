@@ -28,6 +28,7 @@ class VideoResource extends JsonResource
                     'id' => $this->user->id,
                     'username' => $this->user->username,
                     'avatar_url' => $this->user->avatar_url,
+                    'subscribers_count' => $this->user->subscribers_count,
                 ];
             }),
             'created_at' => $this->created_at,
