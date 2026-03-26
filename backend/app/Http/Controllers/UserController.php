@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileImagesRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Resources\ErrorResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -21,6 +23,66 @@ class UserController extends Controller
 
         return new SuccessResource([
             'message' => 'User found successfully.',
+            'data' => new UserResource($user),
+        ]);
+    }
+
+    /**
+     * Subscribe the authenticated user to the given user.
+     */
+    public function subscribe(User $user, Request $request): SuccessResource|ErrorResource
+    {
+        $auth = $request->user();
+
+        if ($auth->id === $user->id) {
+            return new ErrorResource([
+                'message' => 'You cannot subscribe to yourself.',
+            ]);
+        }
+
+        if ($auth->isSubscribedTo($user)) {
+            return new ErrorResource([
+                'message' => 'Already subscribed.',
+            ]);
+        }
+
+        $auth->subscriptions()->attach($user->id);
+
+        // Reload counts
+        $user->loadCount('subscribers');
+
+        return new SuccessResource([
+            'message' => 'Subscribed successfully.',
+            'data' => new UserResource($user),
+        ]);
+    }
+
+    /**
+     * Unsubscribe the authenticated user from the given user.
+     */
+    public function unsubscribe(User $user, Request $request): SuccessResource|ErrorResource
+    {
+        $auth = $request->user();
+
+        if ($auth->id === $user->id) {
+            return new ErrorResource([
+                'message' => 'You cannot unsubscribe from yourself.',
+            ]);
+        }
+
+        if (! $auth->isSubscribedTo($user)) {
+            return new ErrorResource([
+                'message' => 'Not subscribed.',
+            ]);
+        }
+
+        $auth->subscriptions()->detach($user->id);
+
+        // Reload counts
+        $user->loadCount('subscribers');
+
+        return new SuccessResource([
+            'message' => 'Unsubscribed successfully.',
             'data' => new UserResource($user),
         ]);
     }

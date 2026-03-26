@@ -55,6 +55,8 @@ Route::prefix('/users')->controller(UserController::class)->group(function () {
     Route::get('/{user}/videos', 'videos');
     Route::get('/{user}/liked-videos', 'likedVideos');
     Route::get('/{user}/liked-comments', 'likedComments');
+    Route::post('/{user}/subscribe', 'subscribe')->middleware('auth:sanctum');
+    Route::delete('/{user}/subscribe', 'unsubscribe')->middleware('auth:sanctum');
 });
 
 Route::fallback(function () {
