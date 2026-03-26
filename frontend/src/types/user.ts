@@ -6,7 +6,6 @@ export type User = {
   handle?: string;
   bio?: string | null;
   subscribers?: string;
-  subscribersRaw?: number;
   videos_count?: number;
   banner_url?: string | null;
 };
