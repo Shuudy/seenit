@@ -76,10 +76,26 @@ class User extends Authenticatable
     }
 
     /**
+     * The users that this user is subscribed to.
+     */
+    public function subscriptions(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'user_subscriptions', 'subscriber_id', 'subscribed_id');
+    }
+
+    /**
      * The users who are subscribed to this user.
      */
     public function subscribers(): BelongsToMany
     {
         return $this->belongsToMany(self::class, 'user_subscriptions', 'subscribed_id', 'subscriber_id');
+    }
+
+    /**
+     * Determine if this user is subscribed to the specified user.
+     */
+    public function isSubscribedTo(User $user): bool
+    {
+        return $this->subscriptions()->where('subscribed_id', $user->id)->exists();
     }
 }
