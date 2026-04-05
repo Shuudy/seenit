@@ -41,5 +41,15 @@ class DatabaseSeeder extends Seeder
             $likedUsers = $users->random(rand(0, 5))->pluck('id');
             $comment->likedBy()->attach($likedUsers);
         }
+
+        // Create random subscriptions
+        User::all()->each(function ($user) {
+            $subscriptions = User::where('id', '!=', $user->id)
+                ->inRandomOrder()
+                ->limit(rand(0, 5))
+                ->pluck('id');
+
+            $user->subscriptions()->attach($subscriptions);
+        });
     }
 }

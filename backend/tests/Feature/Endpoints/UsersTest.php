@@ -130,4 +130,98 @@ class UsersTest extends TestCase
                 ],
             ]);
     }
+
+    /**
+     * Test that an authenticated user can subscribe to another user.
+     */
+    public function test_authenticated_user_can_subscribe_to_another_user(): void
+    {
+        $subscriber = User::factory()->create();
+        $channel = User::factory()->create();
+
+        $response = $this->actingAs($subscriber, 'sanctum')->postJson("/api/users/{$channel->id}/subscribe");
+
+        $response->assertOk()
+            ->assertJsonPath('message', 'Subscribed successfully.')
+            ->assertJsonPath('data.id', $channel->id)
+            ->assertJsonPath('data.subscribers_count', 1);
+
+        $this->assertDatabaseHas('user_subscriptions', [
+            'subscriber_id' => $subscriber->id,
+            'subscribed_id' => $channel->id,
+        ]);
+    }
+
+    /**
+     * Test that an authenticated user cannot subscribe to the same user twice.
+     */
+    public function test_cannot_subscribe_if_already_subscribed(): void
+    {
+        $subscriber = User::factory()->create();
+        $channel = User::factory()->create();
+
+        // create initial subscription
+        $subscriber->subscriptions()->attach($channel->id);
+
+        $response = $this->actingAs($subscriber, 'sanctum')->postJson("/api/users/{$channel->id}/subscribe");
+
+        $response->assertBadRequest()
+            ->assertJsonPath('data.message', 'Already subscribed.');
+    }
+
+    /**
+     * Test that an authenticated user cannot subscribe to themselves.
+     */
+    public function test_cannot_subscribe_to_self(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user, 'sanctum')->postJson("/api/users/{$user->id}/subscribe");
+
+        $response->assertBadRequest()
+            ->assertJsonPath('data.message', 'You cannot subscribe to yourself.');
+    }
+
+    /**
+     * Test that an authenticated user can unsubscribe from another user.
+     */
+    public function test_authenticated_user_can_unsubscribe(): void
+    {
+        $subscriber = User::factory()->create();
+        $channel = User::factory()->create();
+
+        // create initial subscription
+        $subscriber->subscriptions()->attach($channel->id);
+
+        $response = $this->actingAs($subscriber, 'sanctum')->deleteJson("/api/users/{$channel->id}/subscribe");
+
+        $response->assertOk()
+            ->assertJsonPath('message', 'Unsubscribed successfully.')
+            ->assertJsonPath('data.id', $channel->id)
+            ->assertJsonPath('data.subscribers_count', 0);
+
+        $this->assertDatabaseMissing('user_subscriptions', [
+            'subscriber_id' => $subscriber->id,
+            'subscribed_id' => $channel->id,
+        ]);
+    }
+
+    /**
+     * Test that an authenticated user cannot unsubscribe from a user they are not subscribed to.
+     */
+    public function test_unsubscribe_when_not_subscribed_returns_not_subscribed_message(): void
+    {
+        $subscriber = User::factory()->create();
+        $channel = User::factory()->create();
+
+        $response = $this->actingAs($subscriber, 'sanctum')->deleteJson("/api/users/{$channel->id}/subscribe");
+
+        $response->assertBadRequest()
+            ->assertJsonPath('data.message', 'Not subscribed.');
+
+        $this->assertDatabaseMissing('user_subscriptions', [
+            'subscriber_id' => $subscriber->id,
+            'subscribed_id' => $channel->id,
+        ]);
+    }
 }

@@ -20,7 +20,7 @@ export function VideoDetails() {
       <VideoTitle title={video.title} />
 
       <div className="border-secondary flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
-        <VideoChannelInfo user={video.user} channelSubscribers={351} />
+        <VideoChannelInfo user={video.user} />
 
         <div className="flex gap-2">
           <LikeDislikeButtons initialLikes={video.likes_count} />

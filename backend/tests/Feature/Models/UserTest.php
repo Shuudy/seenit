@@ -79,4 +79,47 @@ class UserTest extends TestCase
         $this->assertTrue($user->likedComments->contains($comment));
         $this->assertTrue($comment->likedBy->contains($user));
     }
+
+    /**
+     * Test that a user can have many subscriptions.
+     */
+    public function test_belongs_to_many_subscriptions(): void
+    {
+        $user = User::factory()->create();
+        $subscribedUsers = User::factory()->count(2)->create();
+
+        $user->subscriptions()->attach($subscribedUsers->pluck('id'));
+
+        $this->assertCount(2, $user->subscriptions);
+        $this->assertTrue($user->subscriptions->contains($subscribedUsers->first()));
+    }
+
+    /**
+     * Test that a user can have many subscribers.
+     */
+    public function test_belongs_to_many_subscribers(): void
+    {
+        $user = User::factory()->create();
+        $subscribers = User::factory()->count(2)->create();
+
+        $user->subscribers()->attach($subscribers->pluck('id'));
+
+        $this->assertCount(2, $user->subscribers);
+        $this->assertTrue($user->subscribers->contains($subscribers->first()));
+    }
+
+    /**
+     * Test the isSubscribedTo helper method.
+     */
+    public function test_is_subscribed_to_helper(): void
+    {
+        $user = User::factory()->create();
+        $targetUser = User::factory()->create();
+
+        $this->assertFalse($user->isSubscribedTo($targetUser));
+
+        $user->subscriptions()->attach($targetUser->id);
+
+        $this->assertTrue($user->isSubscribedTo($targetUser));
+    }
 }

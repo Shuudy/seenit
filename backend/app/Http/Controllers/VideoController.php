@@ -37,8 +37,10 @@ class VideoController extends Controller
      */
     public function show(Video $video): SuccessResource
     {
-        // Eager load the user relationship
-        $video->load('user');
+        // Eager load the user relationship and include subscribers count
+        $video->load(['user' => function ($q) {
+            $q->withCount('subscribers');
+        }]);
 
         return new SuccessResource([
             'message' => 'Video retrieved',

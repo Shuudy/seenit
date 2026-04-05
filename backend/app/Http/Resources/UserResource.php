@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'avatar_url' => $this->avatar_url,
             'banner_url' => $this->banner_url,
             'videos_count' => $this->videos_count,
+            'subscribers_count' => $this->subscribers_count,
             'created_at' => $this->created_at?->toDateTimeString(),
             'updated_at' => $this->updated_at?->toDateTimeString(),
         ];

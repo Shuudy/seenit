@@ -15,6 +15,7 @@ export function ChannelHeader() {
 
   const { data: user } = useChannelHeaderSuspenseQuery(channelId);
   const videosCount = user.videos_count ?? 0;
+  const subscribersCount = user.subscribers_count ?? 0;
 
   return (
     <>
@@ -53,8 +54,8 @@ export function ChannelHeader() {
 
               <div className="mb-3 flex gap-4 text-sm">
                 <span className="text-muted-foreground">
-                  <span className="text-foreground font-semibold">54K</span>{' '}
-                  {tCommon('subscriber', { count: 54_000 })}
+                  <span className="text-foreground font-semibold">{subscribersCount}</span>{' '}
+                  {tCommon('subscriber', { count: subscribersCount })}
                 </span>
                 <span className="text-muted-foreground">
                   <span className="text-foreground font-semibold">{videosCount}</span>{' '}
