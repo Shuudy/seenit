@@ -9,6 +9,7 @@ import sidebar from './sidebar.json';
 import watch from './watch.json';
 import comment from './comment.json';
 import header from './header.json';
+import toast from './toast.json';
 
 export const en = {
   auth,
@@ -22,4 +23,5 @@ export const en = {
   watch,
   comment,
   header,
+  toast,
 };

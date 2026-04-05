@@ -55,6 +55,12 @@ test('user can register and update profile images', async ({ page }) => {
     const saveButton = page.getByRole('button', { name: 'Save profile images', exact: true });
     await saveButton.click();
 
+    // Check for success toast message
+    await expect(
+      page.getByRole('alert').filter({ hasText: 'Your profile has been updated successfully.' })
+    ).toBeVisible();
+
+    // Wait for the UI to settle: the button is disabled while saving
     await expect(saveButton).toBeEnabled();
   });
 
