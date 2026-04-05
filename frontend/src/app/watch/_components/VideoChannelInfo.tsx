@@ -6,13 +6,7 @@ import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { useFormatSubscribers } from '@/utils/format-subscribers';
 import { SubscribeButton } from '@/components/SubscribeButton';
 
-export function VideoChannelInfo({
-  user,
-  channelSubscribers,
-}: {
-  user: User;
-  channelSubscribers: number;
-}) {
+export function VideoChannelInfo({ user }: { user: User }) {
   const formatSubscribers = useFormatSubscribers();
 
   return (
@@ -25,7 +19,9 @@ export function VideoChannelInfo({
         >
           {user.username}
         </Link>
-        <p className="text-muted-foreground text-xs">{formatSubscribers(channelSubscribers)}</p>
+        <p className="text-muted-foreground text-xs">
+          {formatSubscribers(user.subscribers_count ?? 0)}
+        </p>
       </div>
       <SubscribeButton />
     </div>
