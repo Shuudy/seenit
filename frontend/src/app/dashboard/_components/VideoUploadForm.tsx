@@ -6,14 +6,16 @@ import {
   VideoUploadFormFields,
 } from '@/app/dashboard/_hooks/useVideoUploadForm';
 import { SubmitHandler } from 'react-hook-form';
+import { useVideoUploadMutation } from '@/app/dashboard/_hooks/mutations/useVideoUploadMutation';
 import { InputError } from '@/components/InputError';
-
-const onSubmit: SubmitHandler<VideoUploadFormFields> = data => {
-  console.log(data);
-};
+import { useToast } from '@/components/toast/ToastProvider';
 
 export function VideoUploadForm() {
   const t = useTranslations('dashboard');
+
+  const { mutate: uploadVideo, isPending } = useVideoUploadMutation();
+
+  const { addToast } = useToast();
 
   const {
     formState: { errors },
@@ -35,6 +37,24 @@ export function VideoUploadForm() {
       description: '',
     });
   }
+
+  const onSubmit: SubmitHandler<VideoUploadFormFields> = data => {
+    const file = data.file?.[0];
+    if (!file) return;
+
+    uploadVideo(
+      { title: data.title, description: data.description ?? null, file },
+      {
+        onSuccess: () => {
+          reset();
+          addToast(t('videoUploadSuccess'), 'success');
+        },
+        onError: error => {
+          console.error('Video upload failed:', error);
+        },
+      }
+    );
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -111,6 +131,7 @@ export function VideoUploadForm() {
       <div className="flex gap-3 pt-4">
         <button
           type="submit"
+          disabled={isPending}
           className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors"
         >
           {t('upload')}
@@ -118,6 +139,7 @@ export function VideoUploadForm() {
         <button
           type="button"
           onClick={handleReset}
+          disabled={isPending}
           className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors"
         >
           {t('cancel')}
