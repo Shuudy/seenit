@@ -2,6 +2,8 @@ import path from 'node:path';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const apiURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const apiDomain = new URL(apiURL);
 
@@ -12,6 +14,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
+    dangerouslyAllowLocalIP: isDevelopment,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
