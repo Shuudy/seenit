@@ -132,14 +132,13 @@ export function VideoUploadForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors"
+          className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60"
         >
           {t('upload')}
         </button>
         <button
           type="button"
           onClick={handleReset}
-          disabled={isPending}
           className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors"
         >
           {t('cancel')}
