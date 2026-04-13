@@ -40,6 +40,8 @@
   "videoDescriptionTooLong": "La description de la vidéo est trop longue",
   "videoFileRequired": "Le fichier vidéo est requis",
   "videoFileMustBeVideo": "Le fichier doit être une vidéo",
+  "videoUploadSuccess": "La vidéo a été uploadée avec succès.",
+  "videoUploadError": "Une erreur est survenue lors de l'upload de la vidéo. Veuillez réessayer.",
   "saveProfileImages": "Enregistrer les images du profil",
   "saveProfile": "Enregistrer le profil"
 }

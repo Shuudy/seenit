@@ -40,6 +40,8 @@
   "videoDescriptionTooLong": "Video description is too long",
   "videoFileRequired": "Video file is required",
   "videoFileMustBeVideo": "File must be a video",
+  "videoUploadSuccess": "The video has been uploaded successfully.",
+  "videoUploadError": "There was an error uploading the video. Please try again.",
   "saveProfileImages": "Save profile images",
   "saveProfile": "Save profile"
 }
