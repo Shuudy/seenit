@@ -37,7 +37,7 @@ export function ProfileForm() {
 
   const [serverError, setServerError] = useState<string | undefined>();
 
-  const submitHandler: SubmitHandler<ProfileFormFields> = data => {
+  const onSubmit: SubmitHandler<ProfileFormFields> = data => {
     profileMutation(data, {
       onSuccess: updatedUser => {
         // Update the user in AuthContext
@@ -63,7 +63,7 @@ export function ProfileForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitHandler)} className="border-border space-y-5 border-t pt-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="border-border space-y-5 border-t pt-6">
       {serverError && (
         <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
           {serverError}
