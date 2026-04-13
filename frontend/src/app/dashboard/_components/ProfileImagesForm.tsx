@@ -24,6 +24,8 @@ export function ProfileImagesForm() {
 
   const { addToast } = useToast();
 
+  const [serverError, setServerError] = useState<string | undefined>();
+
   const initialImages = {
     bannerSrc: user?.banner_url ?? '/celebratory-banner.png',
     avatarSrc: getAvatarUrl(user?.username ?? 'user', user?.avatar_url),
@@ -53,8 +55,8 @@ export function ProfileImagesForm() {
           setAvatarPreview(getAvatarUrl(updatedUser.username, updatedUser.avatar_url));
           addToast(t('profileUpdateSuccess'), 'success');
         },
-        onError: error => {
-          console.error('Failed to update profile images:', error);
+        onError: () => {
+          setServerError(t('profileUpdateError'));
         },
       }
     );
@@ -64,10 +66,17 @@ export function ProfileImagesForm() {
     reset(),
     setBannerPreview(initialImages.bannerSrc),
     setAvatarPreview(initialImages.avatarSrc),
+    setServerError(undefined),
   ];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {serverError && (
+        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
+          {serverError}
+        </div>
+      )}
+
       <h2 className="text-muted-foreground mb-3 text-sm font-medium">{t('bannerPhoto')}</h2>
       <div>
         <div className="bg-secondary group relative h-32 overflow-hidden rounded-lg">
