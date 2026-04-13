@@ -142,7 +142,7 @@ export function VideoUploadForm() {
           disabled={isPending}
           className="bg-foreground hover:bg-foreground/90 text-background cursor-pointer rounded-lg px-8 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {t('upload')}
+          {isPending ? t('uploading') : t('upload')}
         </button>
         <button
           type="button"
