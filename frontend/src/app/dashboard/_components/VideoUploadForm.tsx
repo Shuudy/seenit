@@ -10,6 +10,7 @@ import { useVideoUploadMutation } from '@/app/dashboard/_hooks/mutations/useVide
 import { InputError } from '@/components/InputError';
 import { useToast } from '@/components/toast/ToastProvider';
 import { useState } from 'react';
+import { FormError } from '@/components/forms/FormError';
 
 export function VideoUploadForm() {
   const t = useTranslations('dashboard');
@@ -62,11 +63,7 @@ export function VideoUploadForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {serverError && (
-        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
-          {serverError}
-        </div>
-      )}
+      {serverError && <FormError message={serverError} />}
 
       <div>
         <label htmlFor="video-title" className="text-foreground mb-2 block text-sm font-medium">

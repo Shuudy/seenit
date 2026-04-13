@@ -14,6 +14,7 @@ import { useAuth } from '@/providers/AuthProvider';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
 import { useProfileImagesMutation } from '@/app/dashboard/_hooks/mutations/useProfileImagesMutation';
 import { useToast } from '@/components/toast/ToastProvider';
+import { FormError } from '@/components/forms/FormError';
 
 export function ProfileImagesForm() {
   const t = useTranslations('dashboard');
@@ -71,11 +72,7 @@ export function ProfileImagesForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {serverError && (
-        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
-          {serverError}
-        </div>
-      )}
+      {serverError && <FormError message={serverError} />}
 
       <h2 className="text-muted-foreground mb-3 text-sm font-medium">{t('bannerPhoto')}</h2>
       <div>

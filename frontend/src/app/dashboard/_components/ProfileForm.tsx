@@ -9,6 +9,7 @@ import { useProfileMutation } from '@/app/dashboard/_hooks/mutations/useProfileM
 import { User } from '@/types/user';
 import { useState } from 'react';
 import { useToast } from '@/components/toast/ToastProvider';
+import { FormError } from '@/components/forms/FormError';
 
 export function ProfileForm() {
   const t = useTranslations('dashboard');
@@ -64,11 +65,7 @@ export function ProfileForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="border-border space-y-5 border-t pt-6">
-      {serverError && (
-        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
-          {serverError}
-        </div>
-      )}
+      {serverError && <FormError message={serverError} />}
 
       <div>
         <label htmlFor="username" className="text-foreground mb-2 block text-sm font-medium">

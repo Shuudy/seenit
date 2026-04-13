@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { useLoginMutation } from '@/app/login/_hooks/mutations/useLoginMutation';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/providers/AuthProvider';
+import { FormError } from '@/components/forms/FormError';
 
 export function LoginForm() {
   const t = useTranslations('auth');
@@ -50,11 +51,8 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      {errorMessage && (
-        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
-          {errorMessage}
-        </div>
-      )}
+      {errorMessage && <FormError message={errorMessage} />}
+
       <div>
         <label htmlFor="email" className="text-foreground mb-2 block text-sm font-medium">
           {t('email')}
