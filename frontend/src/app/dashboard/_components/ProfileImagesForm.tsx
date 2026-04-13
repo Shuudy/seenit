@@ -133,8 +133,7 @@ export function ProfileImagesForm() {
         <button
           type="button"
           onClick={handleCancel}
-          disabled={isPending}
-          className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
         >
           {t('cancel')}
         </button>
