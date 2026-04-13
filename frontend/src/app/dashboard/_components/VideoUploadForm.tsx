@@ -39,6 +39,7 @@ export function VideoUploadForm() {
       title: '',
       description: '',
     });
+    setServerError(undefined);
   }
 
   const onSubmit: SubmitHandler<VideoUploadFormFields> = data => {
