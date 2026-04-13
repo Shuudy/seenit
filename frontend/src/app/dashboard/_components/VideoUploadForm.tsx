@@ -9,6 +9,7 @@ import { SubmitHandler } from 'react-hook-form';
 import { useVideoUploadMutation } from '@/app/dashboard/_hooks/mutations/useVideoUploadMutation';
 import { InputError } from '@/components/InputError';
 import { useToast } from '@/components/toast/ToastProvider';
+import { useState } from 'react';
 
 export function VideoUploadForm() {
   const t = useTranslations('dashboard');
@@ -16,6 +17,8 @@ export function VideoUploadForm() {
   const { mutate: uploadVideo, isPending } = useVideoUploadMutation();
 
   const { addToast } = useToast();
+
+  const [serverError, setServerError] = useState<string | undefined>();
 
   const {
     formState: { errors },
@@ -43,14 +46,14 @@ export function VideoUploadForm() {
     if (!file) return;
 
     uploadVideo(
-      { title: data.title, description: data.description ?? null, file },
+      { title: data.title, description: data.description ?? undefined, file },
       {
         onSuccess: () => {
           reset();
           addToast(t('videoUploadSuccess'), 'success');
         },
-        onError: error => {
-          console.error('Video upload failed:', error);
+        onError: () => {
+          setServerError(t('videoUploadError'));
         },
       }
     );
@@ -58,6 +61,12 @@ export function VideoUploadForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {serverError && (
+        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
+          {serverError}
+        </div>
+      )}
+
       <div>
         <label htmlFor="video-title" className="text-foreground mb-2 block text-sm font-medium">
           {t('videoTitle')}
