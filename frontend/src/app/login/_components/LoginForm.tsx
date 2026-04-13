@@ -29,7 +29,6 @@ export function LoginForm() {
     setErrorMessage(undefined);
     postLogin(data, {
       onSuccess: user => {
-        setErrorMessage(undefined);
         setUser({
           ...user,
           avatar_url: user.avatar_url ?? undefined,

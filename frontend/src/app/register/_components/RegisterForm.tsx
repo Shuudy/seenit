@@ -37,7 +37,6 @@ export function RegisterForm() {
 
     postUser(payload, {
       onSuccess: user => {
-        setErrorMessage(undefined);
         setUser({
           ...user,
           avatar_url: user.avatar_url ?? undefined,
