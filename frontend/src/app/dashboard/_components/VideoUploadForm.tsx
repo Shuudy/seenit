@@ -44,6 +44,7 @@ export function VideoUploadForm() {
   }
 
   const onSubmit: SubmitHandler<VideoUploadFormFields> = data => {
+    setServerError(undefined);
     const file = data.file?.[0];
     if (!file) return;
 

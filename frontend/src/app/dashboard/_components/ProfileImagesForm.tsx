@@ -43,6 +43,7 @@ export function ProfileImagesForm() {
   const [avatarPreview, setAvatarPreview] = useState<string | undefined>(initialImages.avatarSrc);
 
   const onSubmit: SubmitHandler<ProfileImagesFormFields> = data => {
+    setServerError(undefined);
     const avatar = data.avatar?.[0];
     const banner = data.banner?.[0];
 

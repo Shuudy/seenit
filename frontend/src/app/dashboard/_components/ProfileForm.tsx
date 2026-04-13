@@ -39,6 +39,8 @@ export function ProfileForm() {
   const [serverError, setServerError] = useState<string | undefined>();
 
   const onSubmit: SubmitHandler<ProfileFormFields> = data => {
+    setServerError(undefined);
+
     profileMutation(data, {
       onSuccess: updatedUser => {
         // Update the user in AuthContext
