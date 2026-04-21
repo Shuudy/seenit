@@ -1,10 +1,11 @@
 'use client';
 
-import { useAuth } from '@/providers/AuthProvider';
-import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { useState } from 'react';
-import { ProfileDropdown } from '@/components/header/ProfileDropdown';
+
+import { ChannelAvatar } from '@/components/ChannelAvatar';
 import { ProfileDefaultUser } from '@/components/header/ProfileDefaultUser';
+import { ProfileDropdown } from '@/components/header/ProfileDropdown';
+import { useAuth } from '@/providers/AuthProvider';
 
 export function ProfileButton() {
   const { user } = useAuth();

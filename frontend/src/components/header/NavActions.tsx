@@ -1,5 +1,5 @@
-import { ProfileButton } from '@/components/header/ProfileButton';
 import { NotificationButton } from '@/components/header/NotificationButton';
+import { ProfileButton } from '@/components/header/ProfileButton';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 export function NavActions() {

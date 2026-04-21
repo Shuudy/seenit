@@ -1,8 +1,9 @@
 'use client';
 
-import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
+
+import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
 
 export function CommentCount() {
   const t = useTranslations('common');

@@ -1,5 +1,6 @@
-import { ToastType } from '@/components/toast/ToastProvider';
 import { useTranslations } from 'next-intl';
+
+import { ToastType } from '@/components/toast/ToastProvider';
 
 interface ToastMessageProps {
   message: string;

@@ -1,8 +1,9 @@
 'use client';
 
-import { Comment } from '@/components/Comment';
-import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
 import { useParams } from 'next/navigation';
+
+import { useVideoCommentsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoCommentsSuspenseQuery';
+import { Comment } from '@/components/Comment';
 
 export function CommentList() {
   const { id: videoId } = useParams<{ id: string }>();

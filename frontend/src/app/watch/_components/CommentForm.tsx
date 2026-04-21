@@ -1,15 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { CommentFormFields, useCommentForm } from '@/app/watch/_hooks/useCommentForm';
-import { SubmitHandler } from 'react-hook-form';
-import { InputError } from '@/components/InputError';
-import { useAuth } from '@/providers/AuthProvider';
-import { ChannelAvatar } from '@/components/ChannelAvatar';
-import { UserDefaultAvatar } from '@/components/UserDefaultAvatar';
-import { usePostCommentMutation } from '@/app/watch/_hooks/mutations/usePostCommentMutation';
 import { useParams } from 'next/navigation';
+import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+
+import { usePostCommentMutation } from '@/app/watch/_hooks/mutations/usePostCommentMutation';
+import { CommentFormFields, useCommentForm } from '@/app/watch/_hooks/useCommentForm';
+import { ChannelAvatar } from '@/components/ChannelAvatar';
+import { InputError } from '@/components/InputError';
+import { UserDefaultAvatar } from '@/components/UserDefaultAvatar';
+import { useAuth } from '@/providers/AuthProvider';
 
 export function CommentForm() {
   const t = useTranslations('comment');

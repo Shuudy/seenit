@@ -1,13 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Suspense, useState } from 'react';
 
-import { ChannelTabId, ChannelTabs, Tab } from '@/app/channel/_components/ChannelTabs';
 import { ChannelAbout } from '@/app/channel/_components/ChannelAbout';
+import { ChannelTabId, ChannelTabs, Tab } from '@/app/channel/_components/ChannelTabs';
 import { ChannelVideoGrid } from '@/app/channel/_components/ChannelVideoGrid';
-
 import { ChannelVideoGridFallback } from '@/app/channel/_components/fallbacks/ChannelVideoGridFallback';
-import { useTranslations } from 'next-intl';
 
 export function ChannelTabsClient() {
   const t = useTranslations('channel');

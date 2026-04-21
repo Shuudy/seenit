@@ -1,5 +1,5 @@
-export { en } from './en';
-export { fr } from './fr';
+export { en } from '@/messages/en';
+export { fr } from '@/messages/fr';
 
 export const LOCALES = ['en', 'fr'] as const;
 

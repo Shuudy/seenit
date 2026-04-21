@@ -1,8 +1,9 @@
 'use client';
 
-import { VideoCard } from '@/components/VideoCard';
-import { useChannelVideoGridSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelVideoGridSuspenseQuery';
 import { useParams } from 'next/navigation';
+
+import { useChannelVideoGridSuspenseQuery } from '@/app/channel/_hooks/queries/useChannelVideoGridSuspenseQuery';
+import { VideoCard } from '@/components/VideoCard';
 
 export function ChannelVideoGrid() {
   const { id: channelId } = useParams<{ id: string }>();

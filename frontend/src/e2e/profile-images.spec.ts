@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+
 import { uniqueId } from '@/e2e/utilities';
 
 const tinyPng = {

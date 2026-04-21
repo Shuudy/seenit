@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useFormatViews } from '@/utils/format-views';
-import { useFormatRelativeTime } from '@/utils/format-relative-time';
-import { formatDuration } from '@/utils/format-duration';
 import type { Video } from '@/types/video';
+
+import { formatDuration } from '@/utils/format-duration';
+import { useFormatRelativeTime } from '@/utils/format-relative-time';
+import { useFormatViews } from '@/utils/format-views';
 
 export function VideoCard({ video, showChannel = true }: { video: Video; showChannel?: boolean }) {
   const formatViews = useFormatViews();

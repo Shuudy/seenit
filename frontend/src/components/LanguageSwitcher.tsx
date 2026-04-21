@@ -1,4 +1,5 @@
 import { getLocale } from 'next-intl/server';
+
 import { LanguageSwitcherClient } from '@/components/LanguageSwitcherClient';
 import { Locale } from '@/messages';
 

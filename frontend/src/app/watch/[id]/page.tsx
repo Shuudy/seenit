@@ -1,13 +1,13 @@
-import { Header } from '@/components/Header';
-
-import { RecommendedVideoList } from '@/app/watch/_components/RecommendedVideoList';
 import { Suspense } from 'react';
-import { VideoDetails } from '@/app/watch/_components/VideoDetails';
+
 import { RecommendedVideoListFallback } from '@/app/watch/_components/fallbacks/RecommendedVideoListFallback';
-import { VideoComments } from '@/app/watch/_components/VideoComments';
 import { VideoCommentsFallback } from '@/app/watch/_components/fallbacks/VideoCommentsFallback';
 import { VideoInfoFallback } from '@/app/watch/_components/fallbacks/VideoInfoFallback';
+import { RecommendedVideoList } from '@/app/watch/_components/RecommendedVideoList';
 import { RecommendedVideoTitle } from '@/app/watch/_components/RecommendedVideoTitle';
+import { VideoComments } from '@/app/watch/_components/VideoComments';
+import { VideoDetails } from '@/app/watch/_components/VideoDetails';
+import { Header } from '@/components/Header';
 
 export default async function WatchPage() {
   return (

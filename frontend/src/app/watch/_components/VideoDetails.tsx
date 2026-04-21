@@ -1,13 +1,14 @@
 'use client';
 
-import { VideoPlayer } from '@/app/watch/_components/VideoPlayer';
-import { VideoTitle } from '@/app/watch/_components/VideoTitle';
-import { VideoChannelInfo } from '@/app/watch/_components/VideoChannelInfo';
+import { useParams } from 'next/navigation';
+
 import { LikeDislikeButtons } from '@/app/watch/_components/LikeDislikeButtons';
 import { ShareButton } from '@/app/watch/_components/ShareButton';
+import { VideoChannelInfo } from '@/app/watch/_components/VideoChannelInfo';
 import { VideoDescription } from '@/app/watch/_components/VideoDescription';
+import { VideoPlayer } from '@/app/watch/_components/VideoPlayer';
+import { VideoTitle } from '@/app/watch/_components/VideoTitle';
 import { useVideoDetailsSuspenseQuery } from '@/app/watch/_hooks/queries/useVideoDetailsSuspenseQuery';
-import { useParams } from 'next/navigation';
 
 export function VideoDetails() {
   const { id: videoId } = useParams<{ id: string }>();

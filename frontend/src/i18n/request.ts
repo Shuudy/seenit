@@ -1,5 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 import { cookies, headers } from 'next/headers';
+
 import { Locale, LOCALES } from '@/messages';
 
 export default getRequestConfig(async () => {
