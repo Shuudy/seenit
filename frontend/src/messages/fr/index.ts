@@ -1,15 +1,15 @@
-import auth from './auth.json';
-import categories from './categories.json';
-import channel from './channel.json';
-import common from './common.json';
-import dashboard from './dashboard.json';
-import error from './error.json';
-import homePage from './home-page.json';
-import sidebar from './sidebar.json';
-import watch from './watch.json';
-import comment from './comment.json';
-import header from './header.json';
-import toast from './toast.json';
+import auth from '@/messages/fr/auth.json';
+import categories from '@/messages/fr/categories.json';
+import channel from '@/messages/fr/channel.json';
+import comment from '@/messages/fr/comment.json';
+import common from '@/messages/fr/common.json';
+import dashboard from '@/messages/fr/dashboard.json';
+import error from '@/messages/fr/error.json';
+import header from '@/messages/fr/header.json';
+import homePage from '@/messages/fr/home-page.json';
+import sidebar from '@/messages/fr/sidebar.json';
+import toast from '@/messages/fr/toast.json';
+import watch from '@/messages/fr/watch.json';
 
 export const fr = {
   auth,

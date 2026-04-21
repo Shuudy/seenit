@@ -1,12 +1,13 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+
+import { useRegisterMutation } from '@/app/register/_hooks/mutations/useRegisterMutation';
 import { RegisterFormFields, useRegisterForm } from '@/app/register/_hooks/useRegisterForm';
 import { InputError } from '@/components/InputError';
-import { SubmitHandler } from 'react-hook-form';
-import { useTranslations } from 'next-intl';
-import { useRegisterMutation } from '@/app/register/_hooks/mutations/useRegisterMutation';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/providers/AuthProvider';
 
 export function RegisterForm() {

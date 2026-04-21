@@ -1,7 +1,7 @@
-import { ApiResponse, MetaAPI } from '@/types/api';
 import { apiClient } from '@/lib/api-client';
-import { Video } from '@/types/video';
+import { ApiResponse, MetaAPI } from '@/types/api';
 import { Comment, PostVideoCommentPayload } from '@/types/comment';
+import { Video } from '@/types/video';
 
 export async function getVideos(): Promise<Video[]> {
   const response = await apiClient<ApiResponse<Video[]>>('/videos');

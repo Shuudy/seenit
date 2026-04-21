@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
-import { SearchBar } from '@/components/header/SearchBar';
-import { NavActions } from '@/components/header/NavActions';
+
 import { HeaderBrand } from '@/components/header/HeaderBrand';
+import { NavActions } from '@/components/header/NavActions';
+import { SearchBar } from '@/components/header/SearchBar';
 
 export function Header() {
   return (

@@ -1,9 +1,10 @@
 'use client';
 
-import { VideoCard } from '@/components/VideoCard';
-import { useVideosSuspenseQuery } from '@/app/_hooks/queries/useVideosSuspenseQuery';
 import { useSearchParams } from 'next/navigation';
+
 import { VideosGridSearchEmpty } from '@/app/_components/VideosGridSearchEmpty';
+import { useVideosSuspenseQuery } from '@/app/_hooks/queries/useVideosSuspenseQuery';
+import { VideoCard } from '@/components/VideoCard';
 
 export function VideosGrid() {
   const { data: videos } = useVideosSuspenseQuery();

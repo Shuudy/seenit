@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
+
 import { fetchMeIfAuthenticated } from '@/lib/auth';
 import { AuthProvider } from '@/providers/AuthProvider';
-import { ReactNode } from 'react';
 
 export default async function AuthServer({ children }: { children: ReactNode }) {
   const me = await fetchMeIfAuthenticated();

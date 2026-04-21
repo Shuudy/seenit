@@ -1,6 +1,7 @@
+import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
+
 import { postVideoComment } from '@/lib/api/video';
 import { Comment, PostVideoCommentPayload } from '@/types/comment';
-import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
 
 export function usePostCommentMutation(): UseMutationResult<
   Comment,

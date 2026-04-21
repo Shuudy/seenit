@@ -1,19 +1,20 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+
+import { useProfileImagesMutation } from '@/app/dashboard/_hooks/mutations/useProfileImagesMutation';
 import {
   ProfileImagesFormFields,
   useProfileImagesForm,
 } from '@/app/dashboard/_hooks/useProfileImagesForm';
-import { SubmitHandler } from 'react-hook-form';
-import { useState } from 'react';
 import { handleImageChange } from '@/app/dashboard/_utils/handleImageChange';
 import { InputError } from '@/components/InputError';
+import { useToast } from '@/components/toast/ToastProvider';
 import { useAuth } from '@/providers/AuthProvider';
 import { getAvatarUrl } from '@/utils/get-avatar-url';
-import { useProfileImagesMutation } from '@/app/dashboard/_hooks/mutations/useProfileImagesMutation';
-import { useToast } from '@/components/toast/ToastProvider';
 
 export function ProfileImagesForm() {
   const t = useTranslations('dashboard');

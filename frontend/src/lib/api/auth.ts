@@ -1,6 +1,6 @@
-import { LoginCredentials, ProfileUpdate, RegisterCredentials, User } from '@/types/auth';
 import { apiClient } from '@/lib/api-client';
 import { ApiResponse } from '@/types/api';
+import { LoginCredentials, ProfileUpdate, RegisterCredentials, User } from '@/types/auth';
 
 const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 

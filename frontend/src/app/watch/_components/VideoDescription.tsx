@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { VideoStats } from '@/app/watch/_components/VideoStats';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+
+import { VideoStats } from '@/app/watch/_components/VideoStats';
 
 interface VideoDescriptionProps {
   views: number;

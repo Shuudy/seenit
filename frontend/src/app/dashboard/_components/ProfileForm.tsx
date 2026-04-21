@@ -1,14 +1,15 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { ProfileFormFields, useProfileForm } from '@/app/dashboard/_hooks/useProfileForm';
-import { SubmitHandler } from 'react-hook-form';
-import { InputError } from '@/components/InputError';
-import { useAuth } from '@/providers/AuthProvider';
-import { useProfileMutation } from '@/app/dashboard/_hooks/mutations/useProfileMutation';
-import { User } from '@/types/user';
 import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+
+import { useProfileMutation } from '@/app/dashboard/_hooks/mutations/useProfileMutation';
+import { ProfileFormFields, useProfileForm } from '@/app/dashboard/_hooks/useProfileForm';
+import { InputError } from '@/components/InputError';
 import { useToast } from '@/components/toast/ToastProvider';
+import { useAuth } from '@/providers/AuthProvider';
+import { User } from '@/types/user';
 
 export function ProfileForm() {
   const t = useTranslations('dashboard');
