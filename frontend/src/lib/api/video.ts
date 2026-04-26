@@ -1,4 +1,5 @@
 import { apiClient } from '@/lib/api-client';
+import { getCsrfCookie } from '@/lib/api/auth';
 import { ApiResponse, MetaAPI } from '@/types/api';
 import { Comment, PostVideoCommentPayload } from '@/types/comment';
 import { Video } from '@/types/video';
@@ -35,6 +36,28 @@ export async function postVideoComment({
   const response = await apiClient<ApiResponse<Comment>>(`/videos/${videoId}/comments`, {
     method: 'POST',
     body: JSON.stringify({ content }),
+  });
+
+  return response.data;
+}
+
+export async function uploadVideo(data: {
+  title: string;
+  description?: string | null;
+  file: File;
+}): Promise<Video> {
+  await getCsrfCookie();
+
+  const formData = new FormData();
+  formData.append('title', data.title);
+  if (data.description) {
+    formData.append('description', data.description);
+  }
+  formData.append('video', data.file);
+
+  const response = await apiClient<ApiResponse<Video>>('/videos', {
+    method: 'POST',
+    body: formData,
   });
 
   return response.data;

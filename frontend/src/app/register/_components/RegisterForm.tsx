@@ -7,6 +7,7 @@ import { SubmitHandler } from 'react-hook-form';
 
 import { useRegisterMutation } from '@/app/register/_hooks/mutations/useRegisterMutation';
 import { RegisterFormFields, useRegisterForm } from '@/app/register/_hooks/useRegisterForm';
+import { FormError } from '@/components/forms/FormError';
 import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
 
@@ -37,7 +38,6 @@ export function RegisterForm() {
 
     postUser(payload, {
       onSuccess: user => {
-        setErrorMessage(undefined);
         setUser({
           ...user,
           avatar_url: user.avatar_url ?? undefined,
@@ -59,11 +59,8 @@ export function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      {errorMessage && (
-        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
-          {errorMessage}
-        </div>
-      )}
+      {errorMessage && <FormError message={errorMessage} />}
+
       <div>
         <label htmlFor="username" className="text-foreground mb-2 block text-sm font-medium">
           {t('username')}

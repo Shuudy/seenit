@@ -7,6 +7,7 @@ import { SubmitHandler } from 'react-hook-form';
 
 import { useLoginMutation } from '@/app/login/_hooks/mutations/useLoginMutation';
 import { LoginFormFields, useLoginForm } from '@/app/login/_hooks/useLoginForm';
+import { FormError } from '@/components/forms/FormError';
 import { InputError } from '@/components/InputError';
 import { useAuth } from '@/providers/AuthProvider';
 
@@ -29,7 +30,6 @@ export function LoginForm() {
     setErrorMessage(undefined);
     postLogin(data, {
       onSuccess: user => {
-        setErrorMessage(undefined);
         setUser({
           ...user,
           avatar_url: user.avatar_url ?? undefined,
@@ -51,11 +51,8 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      {errorMessage && (
-        <div className="rounded-lg border border-red-500 bg-red-500/10 px-4 py-3 text-red-500">
-          {errorMessage}
-        </div>
-      )}
+      {errorMessage && <FormError message={errorMessage} />}
+
       <div>
         <label htmlFor="email" className="text-foreground mb-2 block text-sm font-medium">
           {t('email')}

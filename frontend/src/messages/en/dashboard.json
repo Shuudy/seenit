@@ -30,6 +30,7 @@
   "videoFilePlaceholder": "Click or drag your video here",
   "videoFileFormats": "MP4, WebM or Ogg. Max 500MB",
   "upload": "Upload",
+  "uploading": "Uploading...",
   "sampleBioDashboard": "Passionate content creator",
   "sampleUsername": "My Profile",
   "validImageFormats": "JPG, GIF or PNG. Max size 2MB",
@@ -40,6 +41,8 @@
   "videoDescriptionTooLong": "Video description is too long",
   "videoFileRequired": "Video file is required",
   "videoFileMustBeVideo": "File must be a video",
+  "videoUploadSuccess": "The video has been uploaded successfully.",
+  "videoUploadError": "There was an error uploading the video. Please try again.",
   "saveProfileImages": "Save profile images",
   "saveProfile": "Save profile"
 }

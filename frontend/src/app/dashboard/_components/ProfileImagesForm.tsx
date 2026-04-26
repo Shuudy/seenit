@@ -11,6 +11,7 @@ import {
   useProfileImagesForm,
 } from '@/app/dashboard/_hooks/useProfileImagesForm';
 import { handleImageChange } from '@/app/dashboard/_utils/handleImageChange';
+import { FormError } from '@/components/forms/FormError';
 import { InputError } from '@/components/InputError';
 import { useToast } from '@/components/toast/ToastProvider';
 import { useAuth } from '@/providers/AuthProvider';
@@ -24,6 +25,8 @@ export function ProfileImagesForm() {
   const { mutate: updateProfileImages, isPending } = useProfileImagesMutation();
 
   const { addToast } = useToast();
+
+  const [serverError, setServerError] = useState<string | undefined>();
 
   const initialImages = {
     bannerSrc: user?.banner_url ?? '/celebratory-banner.png',
@@ -41,6 +44,7 @@ export function ProfileImagesForm() {
   const [avatarPreview, setAvatarPreview] = useState<string | undefined>(initialImages.avatarSrc);
 
   const onSubmit: SubmitHandler<ProfileImagesFormFields> = data => {
+    setServerError(undefined);
     const avatar = data.avatar?.[0];
     const banner = data.banner?.[0];
 
@@ -54,8 +58,8 @@ export function ProfileImagesForm() {
           setAvatarPreview(getAvatarUrl(updatedUser.username, updatedUser.avatar_url));
           addToast(t('profileUpdateSuccess'), 'success');
         },
-        onError: error => {
-          console.error('Failed to update profile images:', error);
+        onError: () => {
+          setServerError(t('profileUpdateError'));
         },
       }
     );
@@ -65,10 +69,13 @@ export function ProfileImagesForm() {
     reset(),
     setBannerPreview(initialImages.bannerSrc),
     setAvatarPreview(initialImages.avatarSrc),
+    setServerError(undefined),
   ];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {serverError && <FormError message={serverError} />}
+
       <h2 className="text-muted-foreground mb-3 text-sm font-medium">{t('bannerPhoto')}</h2>
       <div>
         <div className="bg-secondary group relative h-32 overflow-hidden rounded-lg">
@@ -134,8 +141,7 @@ export function ProfileImagesForm() {
         <button
           type="button"
           onClick={handleCancel}
-          disabled={isPending}
-          className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-secondary hover:bg-secondary/80 text-foreground cursor-pointer rounded-lg px-6 py-2 text-sm font-medium transition-colors"
         >
           {t('cancel')}
         </button>
