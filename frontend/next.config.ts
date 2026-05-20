@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     // eslint-disable-next-line unicorn/prefer-module
     root: path.resolve(__dirname, '..'),
   },
+  allowedDevOrigins: ['127.0.0.1'],
   images: {
     dangerouslyAllowSVG: true,
     dangerouslyAllowLocalIP: isDevelopment,
